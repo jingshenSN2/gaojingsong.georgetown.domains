@@ -13,14 +13,16 @@
 <div class="main">
     <div class="left-side">
         <div class="left-navi">
-            <li class="nav"><p>PC Component</p></li>
-            <li class="nav"><a href="#pc-amazon">Amazon Sales</a></li>
-            <li class="nav"><p>Cryptocurrency</p></li>
-            <li class="nav"><a href="#crypto-chia">Chia</a></li>
-            <li class="nav"><p>Raw Material</p></li>
-            <li class="nav"><a href="#material-price">Price</a></li>
-            <li class="nav"><p>Public View</p></li>
-            <li class="nav"><a href="#youtube">Youtube Comments</a></li>
+            <ul>
+                <li class="nav"><p>PC Component</p></li>
+                <li class="nav"><a href="#pc-amazon">Amazon Sales</a></li>
+                <li class="nav"><p>Cryptocurrency</p></li>
+                <li class="nav"><a href="#crypto-chia">Chia</a></li>
+                <li class="nav"><p>Raw Material</p></li>
+                <li class="nav"><a href="#material-price">Price</a></li>
+                <li class="nav"><p>Public View</p></li>
+                <li class="nav"><a href="#youtube">Youtube Comments</a></li>
+            </ul>
         </div>
     </div>
 
@@ -32,7 +34,7 @@
         <section id="pc-amazon">
             <p>The python scripts can be found at <a
                     href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/amazon"
-                    target="_blank">data_clean/amazon</a> folder on Github. And the cleaned data can be found at <a
+                    target="_blank">data_clean/amazon</a> folder on GitHub. And the cleaned data can be found at <a
                     href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/amazon.db"
                     target="_blank">data/amazon.db</a>.</p>
 
@@ -41,7 +43,7 @@
 
             <img style="width:90%" class="centerfig" src="picture/data_clean/product.png">
             <figurecaption>Screenshot: JSON structure for the data of AMD Ryzen CPU Threadripper 1900X in Python
-                debuger
+                debugger
             </figurecaption>
 
             <h2>1.2 Cleaned Dataset in SQLite</h2>
@@ -49,10 +51,10 @@
             <p>During cleaning, two wrong ASIN codes are corrected and one product with no historical data are removed.
                 See commit <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/commit/1dfef30a9e7d8c23b8615b16dcbe5db48d05bb0a">1dfef3</a>
-                on Github.</p>
+                on GitHub.</p>
 
             <p>All data of amazon products are stored in SQLite database with multiple tables. See EDA part for the
-                defination of each SQL table and a table summary.</p>
+                definition of each SQL table and a table summary.</p>
 
 
         </section>
@@ -87,7 +89,7 @@
                     target="_blank">data/commodity.csv</a></p>
 
             <p>The raw historical price data of 5 commodities including aluminum, copper, gold, silver, and crude oil
-                are read by R. Because the earliest PC hardware data is from June 2015, all the commodities data are
+                are read by R. Because the earliest PC hardware data is from June 2015, all the commodities' data are
                 only selected after 2015. </p>
 
             <p>During the data cleaning, the Date columns are converted to 'Date' type in R and only the close price are
@@ -101,7 +103,7 @@
 
             <p>The Python scripts in this section can be found at <a
                     href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/news"
-                    target="_blank">data_clean/news</a> folder on Github. </p>
+                    target="_blank">data_clean/news</a> folder on GitHub. </p>
 
             <h3>4.1 Video list under Youtube channel (CSV Data)</h3>
             <p>Cleaned data can be found at <a
@@ -111,12 +113,12 @@
                     target="_blank">data/video_tags.csv</a>. </p>
 
             <p>The raw json data of 10 pages(50 videos per page) of videos under TechLinked channel are read by Python.
-                And relavent information of the video such as <b>video_id</b>, <b>published_at</b>, <b>title</b>, <b>description</b>,
+                And relevant information of the video such as <b>video_id</b>, <b>published_at</b>, <b>title</b>, <b>description</b>,
                 and <b>tags</b>. Some promotion lines such as 'FOLLOW OTHER CHANNEL' or 'FOLLOW OUR ELSEWHERE' in
                 description are removed. As a result, 796 videos are recorded in the csv file.</p>
 
-            <p>Also the <b>tags</b> column is separated into a individual csv file so that we can see the file overview
-                on Github(the csv with descriptions are too large to be previewed on Github).</p>
+            <p>Also the <b>tags</b> column is separated into an individual csv file so that we can see the file overview
+                on GitHub(the csv with descriptions are too large to be previewed on GitHub).</p>
 
             <p></p>
 
@@ -128,20 +130,20 @@
                     href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/comments_labeled.csv"
                     target="_blank">data/comments_labeled.csv</a>.</p>
 
-            <p>The earlist video selected was published on June 12th 2018. To see the trend of public view to graphic
+            <p>The earliest video selected was published on June 12th 2018. To see the trend of public view to graphic
                 shortage, the <b>published_week</b>(the first day of the week published) are calculated from the column
-                <b>published_at</b>. Also, comments with less than 20 characters or 5 words are treated as irrelavent
+                <b>published_at</b>. Also, comments with less than 20 characters or 5 words are treated as irrelevant
                 and removed. As a result, 115526 comments are recorded in the csv file.</p>
 
             <p>1000 comments are selected and manually labeled whether it's related to the graphic card topic. As a
-                result, 113 comments are labled as 1(relevant) and other comments are labeled as 0(irrelevant). <b>CountVectorizer</b>
+                result, 113 comments are labelled as 1(relevant) and other comments are labeled as 0(irrelevant). <b>CountVectorizer</b>
                 are used to vectorize the comments, the result vocab contains 3347 words. The manually labeled data can
                 be found at <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/news/content_sample_labeled.csv"
                         target="_blank">data_clean/news/content_sample_labeled.csv</a>.</p>
 
             <p>Then a LinearSVC model is trained by the labeled comments and then used to predict the label of all other
-                110 thousands unlabeled comments. As a result, 10332 comments are labeled as 1(relavent to graphic card
+                110 thousands unlabeled comments. As a result, 10332 comments are labeled as 1(relevant to graphic card
                 topic).</p>
 
             <p>A further cleaning and transformation to the text data is performed by R. But the main purpose of it is

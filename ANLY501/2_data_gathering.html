@@ -14,20 +14,22 @@
 <div class="main">
     <div class="left-side">
         <div class="left-navi">
-            <li class="nav"><p>PC Component</p></li>
-            <li class="nav"><a href="#pc-amazon">Amazon Sales</a></li>
-            <li class="nav"><a href="#pc-ebay">Ebay Second-hand</a></li>
-            <li class="nav"><p>Cryptocurrency</p></li>
-            <li class="nav"><a href="#crypto-yahoo">Yahoo Finance</a></li>
-            <li class="nav"><a href="#crypto-coinmetrics">Coinmetrics</a></li>
-            <li class="nav"><a href="#crypto-chia">Chia</a></li>
-            <li class="nav"><p>Raw Material</p></li>
-            <li class="nav"><a href="#material-price">Price</a></li>
-            <li class="nav"><a href="#material-produce">Production</a></li>
-            <li class="nav"><p>Public View</p></li>
-            <li class="nav"><a href="#youtube">Youtube Comments</a></li>
-            <li class="nav"><p>Github</p></li>
-            <li class="nav"><a href="#structure">File Hierarchy</a></li>
+            <ul>
+                <li class="nav"><p>PC Component</p></li>
+                <li class="nav"><a href="#pc-amazon">Amazon Sales</a></li>
+                <li class="nav"><a href="#pc-ebay">Ebay Second-hand</a></li>
+                <li class="nav"><p>Cryptocurrency</p></li>
+                <li class="nav"><a href="#crypto-yahoo">Yahoo Finance</a></li>
+                <li class="nav"><a href="#crypto-coinmetrics">Coin Metrics</a></li>
+                <li class="nav"><a href="#crypto-chia">Chia</a></li>
+                <li class="nav"><p>Raw Material</p></li>
+                <li class="nav"><a href="#material-price">Price</a></li>
+                <li class="nav"><a href="#material-produce">Production</a></li>
+                <li class="nav"><p>Public View</p></li>
+                <li class="nav"><a href="#youtube">Youtube Comments</a></li>
+                <li class="nav"><p>Github</p></li>
+                <li class="nav"><a href="#structure">File Hierarchy</a></li>
+            </ul>
         </div>
     </div>
     <div class="content">
@@ -38,7 +40,7 @@
         <section id="pc-amazon">
             <p>All the python scripts and raw data in this section can be found at <a
                     href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/amazon"
-                    target="_blank">data_gather/amazon</a> folder on Github.</p>
+                    target="_blank">data_gather/amazon</a> folder on GitHub.</p>
             <h3>1.1 Amazon Sale and Stock (Python API)</h3>
 
             <p>Amazon is one of the largest online market in the world, so the price of products on it can be very
@@ -567,9 +569,9 @@
 
             <h4>1.1.5 Data Overview</h4>
 
-            <p>Keepa API not only tracks the price of brand new product, but also it records the price of renewed item.
+            <p>Keepa API not only tracks the price of brand-new product, but also it records the price of renewed item.
                 The json response of a historical price request is something like below. There is a key domain called
-                'csv' and its value is a two-dimensional list. Each row in the list will be a array of combination of
+                'csv' and its value is a two-dimensional list. Each row in the list will be an array of combination of
                 time and price(time, price, time, price...). Different rows refer to the source of the product like
                 brand new, used-like new, used-good, wholesale, etc.</p>
 
@@ -585,10 +587,10 @@
                 scraping. However, web scraping is banned by ebay according to their term of service. So this part will
                 be in suspense until there's any available api. For data already gathered, see <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/ebay"
-                        target="_blank">data_gather/ebay</a> folder on Github.</p>
+                        target="_blank">data_gather/ebay</a> folder on GitHub.</p>
 
             <p>Data from Ebay is basically raw html. The name of product, pre-owned situation, sold price can be found
-                in certain html blocks. Here's a example of where the information is located in html.</p>
+                in certain html blocks. Here's an example of where the information is located in html.</p>
 
             <img style="width:90%" class="centerfig" src="picture/data_gather/ebay.png"/>
             <figurecaption>Screenshot: the html block that stores information of the product</figurecaption>
@@ -687,10 +689,10 @@
             <p>The price of each crypto-USD trade pair on Yahoo Finance is collected by R. The R scripts and raw data in
                 this section can be found at <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/yahoo_finance"
-                        target="_blank">data_gather/crypto/yahoo_finance</a> folder on Github.</p>
+                        target="_blank">data_gather/crypto/yahoo_finance</a> folder on GitHub.</p>
 
             <p>Data get from Yahoo Finance has 7 columns: "Date","Open","High","Low","Close","Adj Close","Volume", which
-                are both easy to understand the meaning. Here's a example of the price of BCH-USD trade pair from Yahoo
+                are both easy to understand the meaning. Here's an example of the price of BCH-USD trade pair from Yahoo
                 Finance.</p>
 
             <img style="width:90%" class="centerfig" src="picture/data_gather/crypto_yahoo.png"/>
@@ -705,10 +707,10 @@
                 and makes it transparent and accessible. The data in csv format can be directly download from the
                 website. The python scripts and raw data in this section can be found at <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/coin_metrics"
-                        target="_blank">data_gather/crypto/coin_metrics</a> folder on Github.</p>
+                        target="_blank">data_gather/crypto/coin_metrics</a> folder on GitHub.</p>
 
             <p>Data get from Coin Metrics has more than 100 columns. For exact meaning of each column, please see <a
-                    href="https://coinmetrics.io/tools/" target="_blank">Coin Metrics API Doc</a>. Here's a example of
+                    href="https://coinmetrics.io/tools/" target="_blank">Coin Metrics API Doc</a>. Here's an example of
                 the data of Bitcoin from Coin Metrics.</p>
 
             <img style="width:90%" class="centerfig" src="picture/data_gather/coinmetrics.png"/>
@@ -723,7 +725,7 @@
                 chart on <a href="https://xchscan.com/charts" target="_blank">xchscan.com</a>. For the data already
                 gathered, see <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/chia"
-                        target="_blank">data_gather/crypto/chia</a> folder on Github.</p>
+                        target="_blank">data_gather/crypto/chia</a> folder on GitHub.</p>
 
             <p>Data get from XCHScan is time series of some attribute of Chia. For example, here's the data of total
                 netspace of Chia.</p>
@@ -740,7 +742,7 @@
             <p>The price of each raw material on Yahoo Finance and Quandl is collected by R. The R scripts and raw data
                 in this section can be found at <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/commodity"
-                        target="_blank">data_gather/commodity</a> folder on Github.</p>
+                        target="_blank">data_gather/commodity</a> folder on GitHub.</p>
 
             <table width=100%>
                 <caption>Raw material price source and price change during pandemic</caption>
@@ -786,7 +788,7 @@
             </table>
 
             <p>Data from Yahoo Finance has the same format as those data of cryptocurrencies. And data from Quandl API
-                is a time series of the price. Here's a example of the price of gold from Quandl.</p>
+                is a time series of the price. Here's an example of the price of gold from Quandl.</p>
 
             <img style="width:90%" class="centerfig" src="picture/data_gather/gold.png"/>
             <figurecaption>Screenshot: the price of gold from Quandl</figurecaption>
@@ -805,24 +807,24 @@
         <section id="youtube">
             <p>The Python scripts and raw data in this section can be found at <a
                     href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/news"
-                    target="_blank">data_gather/news</a> folder on Github.</p>
+                    target="_blank">data_gather/news</a> folder on GitHub.</p>
 
-            <h3>4.1 Youtube Comments from TechLinked Channel (Python API)</h3>
+            <h3>4.1 YouTube Comments from TechLinked Channel (Python API)</h3>
 
-            <p>TechLinked is a subchannel of the famous technology channel LinusTechTips on YouTube. This subchannel
+            <p>TechLinked is a sub-channel of the famous technology channel LinusTechTips on YouTube. This sub-channel
                 makes tech news video twice a week since 3 years ago. In 2021, many of their videos talk about news of
                 graphic card and every video has a lot of comments. So it's a good source to see public view of the
                 graphic card shortage.</p>
 
-            <p>175 videos about graphic cards from 2018.6.12 to 2021.9.14 are selected. And all of the comments under
+            <p>175 videos about graphic cards from 2018.6.12 to 2021.9.14 are selected. And all the comments under
                 these video are collected by YouTube API. As a result, over 1500 json files are collected and each of
                 them contains an average comment count of 100.</p>
 
         </section>
 
-        <h2>5. Github</h2>
+        <h2>5. GitHub</h2>
         <section id="structure">
-            <h3>5.1 File Hierarchy of data_gather Folder on Github</h3>
+            <h3>5.1 File Hierarchy of data_gather Folder on GitHub</h3>
 
             <p style="line-height:0.5;font-size:8px">&#9500;data_gather: master folder</p>
 
@@ -924,10 +926,10 @@
             <p style="line-height:0.5;font-size:8px">&#9500;&#9472;ebay: all the code and raw data from ebay</p>
 
             <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;ebay_cpu.py: Python script of gather CPU
-                transcations data from eBay</p>
+                transactions data from eBay</p>
 
             <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;ebay_gpu.py: Python script of gather graphic
-                card transcations data from eBay</p>
+                card transactions data from eBay</p>
 
             <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;cpu</p>
 

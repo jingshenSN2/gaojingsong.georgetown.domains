@@ -13,15 +13,17 @@
 <div class="main">
     <div class="left-side">
         <div class="left-navi">
-            <li class="nav"><p>PC Component</p></li>
-            <li class="nav"><a href="#pc-pre">Pre-classification</a></li>
-            <li class="nav"><a href="#pc-uneq">Unequal-Len Time Series</a></li>
-            <li class="nav"><a href="#pc-eq">Equal-Len Time Series</a></li>
-            <li class="nav"><p>Crypto & Commodity</p></li>
-            <li class="nav"><a href="#crypto">Crypto Time Series</a></li>
-            <li class="nav"><a href="#commodity">Commodity Time Series</a></li>
-            <li class="nav"><p>Public View</p></li>
-            <li class="nav"><a href="#youtube">Youtube Comments</a></li>
+            <ul>
+                <li class="nav"><p>PC Component</p></li>
+                <li class="nav"><a href="#pc-pre">Pre-classification</a></li>
+                <li class="nav"><a href="#pc-uneq">Unequal-Len Time Series</a></li>
+                <li class="nav"><a href="#pc-eq">Equal-Len Time Series</a></li>
+                <li class="nav"><p>Crypto & Commodity</p></li>
+                <li class="nav"><a href="#crypto">Crypto Time Series</a></li>
+                <li class="nav"><a href="#commodity">Commodity Time Series</a></li>
+                <li class="nav"><p>Public View</p></li>
+                <li class="nav"><a href="#youtube">Youtube Comments</a></li>
+            </ul>
         </div>
     </div>
 
@@ -44,9 +46,9 @@
                 value to their database <b>only</b> when the price changes.</p>
 
             <p>So, the first step of preprocessing is to rebuild a <b>equal-interval</b> time series from the database.
-                <b>Pandas</b> is a useful tool to do this. Since it not only provides a SQL interface but also provides
-                a powerful function called <b>resample</b>. With Pandas, histrotical price data in SQLite database can
-                be easilty converted into equal-interval time series. <b>After several attempts, the time interval for
+                <b>Pandas</b> is a useful tool to do this. Since it not only provides an SQL interface but also provides
+                a powerful function called <b>resample</b>. With Pandas, historical price data in SQLite database can
+                be easily converted into equal-interval time series. <b>After several attempts, the time interval for
                     resampling is assigned to 1 day</b>.</p>
 
             <table width="100%">
@@ -101,15 +103,15 @@
                 </tr>
                 <tr>
                     <td>6m</td>
-                    <td>time span bewteen 6 months to 1 year</td>
+                    <td>time span between 6 months to 1 year</td>
                 </tr>
                 <tr>
                     <td>1y</td>
-                    <td>time span bewteen 1 year to 2 years</td>
+                    <td>time span between 1 year to 2 years</td>
                 </tr>
                 <tr>
                     <td>2y</td>
-                    <td>time span bewteen 2 years to 4 years</td>
+                    <td>time span between 2 years to 4 years</td>
                 </tr>
                 <tr>
                     <td>4y</td>
@@ -125,11 +127,11 @@
                 </tr>
                 <tr>
                     <td>eqts</td>
-                    <td>time seires of normal prices but are truncated to same length.</td>
+                    <td>time series of normal prices but are truncated to same length.</td>
                 </tr>
                 <tr>
                     <td>eqosts</td>
-                    <td>time seires of out-of-stock indicators but are truncated to same length.</td>
+                    <td>time series of out-of-stock indicators but are truncated to same length.</td>
                 </tr>
                 <tr>
                     <td>label</td>
@@ -137,7 +139,7 @@
                 </tr>
             </table>
 
-            <p>Because some distance metrics in the following clustering require a equal-length time series, so time
+            <p>Because some distance metrics in the following clustering require an equal-length time series, so time
                 series all have a truncated version. For example, <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/BUY_BOX_eqts_1y.txt">BUY_BOX_eqts_1y.txt</a>
                 contains the same products as <a
@@ -184,13 +186,13 @@
 
 
         <section id="youtube">
-            <h3>3.1 KMeans Clustering on youtube comments (metric: Euclidean, Cosine)</h3>
+            <h3>3.1 KMeans Clustering on YouTube comments (metric: Euclidean, Cosine)</h3>
 
 
-            <h3>3.2 DBScan Clustering on youtube comments (metric: Cosine)</h3>
+            <h3>3.2 DBScan Clustering on YouTube comments (metric: Cosine)</h3>
 
 
-            <h3>3.3 Hierarchical Clustering on youtube comments (metric: Cosine)</h3>
+            <h3>3.3 Hierarchical Clustering on YouTube comments (metric: Cosine)</h3>
 
 
         </section>
