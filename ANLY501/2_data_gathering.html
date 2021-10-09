@@ -4,8 +4,8 @@
     <title>Jingsong Gao - 501 Portfolio</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css"/>
-    <link rel="shortcut icon" href="/icon.png" />
-    <link rel="bookmark" href="/icon.png" />
+    <link rel="shortcut icon" href="/icon.png"/>
+    <link rel="bookmark" href="/icon.png"/>
 </head>
 
 <body>
@@ -14,564 +14,592 @@
 <div class="main">
     <div class="left-side">
         <div class="left-navi">
-            <li class="nav"> <p>PC Component</p> </li>
-            <li class="nav"> <a href="#pc-amazon">Amazon Sales</a> </li>
-            <li class="nav"> <a href="#pc-ebay">Ebay Second-hand</a> </li>
-            <li class="nav"> <p>Cryptocurrency</p> </li>
-            <li class="nav"> <a href="#crypto-yahoo">Yahoo Finance</a> </li>
-            <li class="nav"> <a href="#crypto-coinmetrics">Coinmetrics</a> </li>
-            <li class="nav"> <a href="#crypto-chia">Chia</a> </li>
-            <li class="nav"> <p>Raw Material</p> </li>
-            <li class="nav"> <a href="#material-price">Price</a> </li>
-            <li class="nav"> <a href="#material-produce">Production</a> </li>
-            <li class="nav"> <p>Public View</p> </li>
-            <li class="nav"> <a href="#youtube">Youtube Comments</a> </li>
-            <li class="nav"> <p>Github</p> </li>
-            <li class="nav"> <a href="#structure">File Hierarchy</a> </li>
+            <li class="nav"><p>PC Component</p></li>
+            <li class="nav"><a href="#pc-amazon">Amazon Sales</a></li>
+            <li class="nav"><a href="#pc-ebay">Ebay Second-hand</a></li>
+            <li class="nav"><p>Cryptocurrency</p></li>
+            <li class="nav"><a href="#crypto-yahoo">Yahoo Finance</a></li>
+            <li class="nav"><a href="#crypto-coinmetrics">Coinmetrics</a></li>
+            <li class="nav"><a href="#crypto-chia">Chia</a></li>
+            <li class="nav"><p>Raw Material</p></li>
+            <li class="nav"><a href="#material-price">Price</a></li>
+            <li class="nav"><a href="#material-produce">Production</a></li>
+            <li class="nav"><p>Public View</p></li>
+            <li class="nav"><a href="#youtube">Youtube Comments</a></li>
+            <li class="nav"><p>Github</p></li>
+            <li class="nav"><a href="#structure">File Hierarchy</a></li>
         </div>
     </div>
     <div class="content">
         <h1 style="text-align:center">Data Gathering</h1>
-        
+
         <h2>1. Data of PC Component</h2>
-        
+
         <section id="pc-amazon">
-        <p>All the python scripts and raw data in this section can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/amazon" target="_blank">data_gather/amazon</a> folder on Github.</p>
-        <h3>1.1 Amazon Sale and Stock (Python API)</h3>
-    
-        <p>Amazon is one of the largest online market in the world, so the price of products on it can be very representative. <a href="https://keepa.com/#!" target="_blank">Keepa.com</a> provides a nice API of product's historical price on Amazon. </p>
-        
-        <p>Firstly, please subscribe to the keepa API($19/m) to get an access key. Then you can request the historical price by providing the ASIN of product. The ASIN is a unique 10-characters identifier starts with 'B', which can be easily found in the Amazon url of the product. You can manually search for the PC components from different manufacturers and record their ASIN and use the keepa API to request their historical prices.</p>
-        
-        <h4>1.1.1 CPU</h4>
-        <p>The first component is CPU. There are only two mainstream CPU manufacturer - Intel and AMD. All the products collected for Intel CPU is list below, which models released in recent four generations(8th gen - 11th gen) are included.</p>
-        
-        <table width=100%>
-            <caption>List of Intel® Core™ CPU collected from Amazon</caption>
-            <col width=25%>
-            <col width=75%>
-            <tr>
-                <th>Series of Processors</th>
-                <th>Product name</th>
-            </tr>
-            <tr>
-                <td>Core™ X-series</td>
-                <td>10940X, 10920X, 10900X, 9980XE, 9940X, 9920X, 9900X, 9820X</td>
-            </tr>
-            <tr>
-                <td>Core™ i9</td>
-                <td>11900K, 11900, 10900K, 10900KF, 10900, 10900F, 10850K, 9900KS, 9900K, 9900KF, 9900</td>
-            </tr>
-            <tr>
-                <td>Core™ i7</td>
-                <td>11700K, 11700KF, 11700, 11700F, 10700K, 10700KF, 10700, 10800F, 9700K, 9700KF, 9700, 9700F, 8086K, 8700K, 8700, 7700K, 7700</td>
-            </tr>
-            <tr>
-                <td>Core™ i5</td>
-                <td>11600K, 11600KF, 11600, 11500, 11400, 11400F, 10600K, 10600KF, 10600, 10500, 10400, 10400F, 9600KF, 9600, 9500, 9400, 9400F, 8500, 8400</td>
-            </tr>
-            <tr>
-                <td>Core™ i3</td>
-                <td>10300, 10100, 10100F, 9100, 9100F, 8350K, 8300, 8100</td>
-            </tr>
-        </table>
-        
-        <p>All the products collected for AMD CPU is list below, which models released in recent four generations(Zen+ arch - Zen3 arch) are included.</p>
-        
-        <table width=100%>
-            <caption>List of AMD® Ryzen™ CPU collected from Amazon</caption>
-            <col width=25%>
-            <col width=75%>
-            <tr>
-                <th>Series of Processors</th>
-                <th>Product name</th>
-            </tr>
-            <tr>
-                <td>Ryzen™ Threadripper</td>
-                <td>3990X, 3970X, 3960X, 2990WX, 2970WX, 2950X, 2920X, 1950X, 1920X, 1900X</td>
-            </tr>
-            <tr>
-                <td>Ryzen™ 9</td>
-                <td>5950X, 5900X, 3950X, 3900XT, 3900X</td>
-            </tr>
-            <tr>
-                <td>Ryzen™ 7</td>
-                <td>5800X, 5700G, 3800XT, 3800X, 3700X, 2700X, 2700</td>
-            </tr>
-            <tr>
-                <td>Ryzen™ 5</td>
-                <td>5600X, 5600G, 3600XT, 3600X, 3600, 2600X, 2600, 3400G</td>
-            </tr>
-            <tr>
-                <td>Ryzen™ 3</td>
-                <td>3300X, 3100, 3200G</td>
-            </tr>
-        </table>
-        
-        <h4>1.1.2 GPU</h4>
-        <p>The second component is GPU(graphic processing unit) or graphic card. Products from different manufacturers are recorded as many as possible. The number of different products from manufacturer collected for NVIDIA GPU is list below, which models released in recent 5 generations(900 Series - 30 Series) are included.</p>
-        
-        <table width=100%>
-            <caption>Number of models for NVIDIA Geforce® GPU collected from Amazon</caption>
-            <col width=25%>
-            <col width=15%>
-            <colgroup width=12% span=5></colgroup>
-            <tr>
-                <th rowspan=2>Series of GPU</th>
-                <th rowspan=2>Product name</th>
-                <th colspan=5 style="text-align:center;">Manufacturer</th>
-            </tr>
-            <tr>
-                <th scope="colgroup">ASUS</th>
-                <th scope="colgroup">EVGA</th>
-                <th scope="colgroup">Gigabyte</th>
-                <th scope="colgroup">MSI</th>
-                <th scope="colgroup">ZOTAC</th>
-            </tr>
-            <tr>
-                <td>GTX™ 900 Series</td>
-                <td>960</td>
-                <td></td>
-                <td>1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td rowspan=3>GTX™ 10 Series</td>
-                <td>1030</td>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td></td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>1050 Ti</td>
-                <td>3</td>
-                <td>1</td>
-                <td>3</td>
-                <td>2</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>1060</td>
-                <td></td>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td rowspan=5>GTX™ 16 Series</td>
-                <td>1650</td>
-                <td></td>
-                <td>3</td>
-                <td>2</td>
-                <td>3</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>1650 Super</td>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>1660</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>1660 Super</td>
-                <td>3</td>
-                <td>1</td>
-                <td></td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>1660 Ti</td>
-                <td></td>
-                <td>1</td>
-                <td>1</td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td rowspan=7>RTX™ 20 Series</td>
-                <td>2060</td>
-                <td>2</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>2060 Super</td>
-                <td>1</td>
-                <td>2</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>2070</td>
-                <td>1</td>
-                <td>1</td>
-                <td>3</td>
-                <td>4</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>2070 Super</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>2080</td>
-                <td>2</td>
-                <td>2</td>
-                <td></td>
-                <td>1</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td>2080 Super</td>
-                <td>1</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>2080 Ti</td>
-                <td>1</td>
-                <td>3</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td rowspan=6>RTX™ 30 Series</td>
-                <td>3060</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>3070</td>
-                <td>2</td>
-                <td></td>
-                <td>2</td>
-                <td>3</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>3070 Ti</td>
-                <td>1</td>
-                <td>1</td>
-                <td></td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>3080</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3080 Ti</td>
-                <td>2</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>3090</td>
-                <td>2</td>
-                <td>2</td>
-                <td>3</td>
-                <td>1</td>
-                <td>2</td>
-            </tr>
-            
-        </table>
-        
-        <p>The number of different products from manufacturer collected for AMD GPU is list below, which models released in recent 3 generations(500 Series - 6000 Series) are included.</p>
-        
-        <table width=100%>
-            <caption>Number of models for AMD® Radeon™ GPU collected from Amazon</caption>
-            <col width=25%>
-            <col width=15%>
-            <colgroup width=12% span=5></colgroup>
-            <tr>
-                <th rowspan=2>Series of GPU</th>
-                <th rowspan=2>Product name</th>
-                <th colspan=5 style="text-align:center;">Manufacturer</th>
-            </tr>
-            <tr>
-                <th scope="colgroup">ASUS</th>
-                <th scope="colgroup">Gigabyte</th>
-                <th scope="colgroup">MSI</th>
-                <th scope="colgroup">Sapphire</th>
-                <th scope="colgroup">XFX</th>
-            </tr>
-            <tr>
-                <td rowspan=2>RX 500 Series</td>
-                <td>570</td>
-                <td>1</td>
-                <td>1</td>
-                <td></td>
-                <td>5</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>580</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>3</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td rowspan=3>RX 5000 Series</td>
-                <td>5500 XT</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>5600 XT</td>
-                <td>1</td>
-                <td>1</td>
-                <td>3</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>5700 XT</td>
-                <td>1</td>
-                <td>2</td>
-                <td>1</td>
-                <td>3</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td rowspan=4>RX 6000 Series</td>
-                <td>6700 XT</td>
-                <td>2</td>
-                <td>1</td>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>6800</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>6800 XT</td>
-                <td></td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>6900 XT</td>
-                <td>2</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>2</td>
-            </tr>
-        
-        
-        
-        </table>
-        
-        <h4>1.1.3 Solid-state Drive</h4>
-        <p>Next component is SSD. The product names from manufacturer collected for SSD is list below.</p>
-        
-        <table width=100%>
-            <caption>Models of solid-state drive(SSD) collected from Amazon</caption>
-            <col width=20%>
-            <col width=20%>
-            <col width=60%>
-            <tr>
-                <th>SSD type</th>
-                <th>Manufacturer</th>
-                <th>Product name</th>
-            </tr>
-            <tr>
-                <td rowspan=8>2.5" SATA</td>
-                <td>ADATA</td>
-                <td>SU800, SU760, SU740, SU720, SU635</td>
-            </tr>
-            <tr>
-                <td>Crucial</td>
-                <td>MX500, BX500</td>
-            </tr>
-            <tr>
-                <td>Kingston</td>
-                <td>KC600, Q500</td>
-            </tr>
-            <tr>
-                <td>Samsung</td>
-                <td>870 QVO, 870 EVO, 860 Pro, 860 QVO, 860 EVO</td>
-            </tr>
-            <tr>
-                <td>Sandisk</td>
-                <td>SSD Plus, Ultra 3D NAND</td>
-            </tr>
-            <tr>
-                <td>Seagate</td>
-                <td>FireCuda 120, Barracuda 120, BarraCuda Q1</td>
-            </tr>
-            <tr>
-                <td>SK hynix</td>
-                <td>Gold S31</td>
-            </tr>
-            <tr>
-                <td>Western Digital</td>
-                <td>WD Gold, WD Red, WD Blue, WD Green</td>
-            </tr>
-            <tr>
-                <td rowspan=4>m.2 SATA</td>
-                <td>ADATA</td>
-                <td>SU800, SU650</td>
-            </tr>
-            <tr>
-                <td>Kingston</td>
-                <td>A400</td>
-            </tr>
-            <tr>
-                <td>Samsung</td>
-                <td>860 EVO</td>
-            </tr>
-            <tr>
-                <td>Western Digital</td>
-                <td>WD Red, WD Blue</td>
-            </tr>
-            <tr>
-                <td rowspan=8>m.2 NVME</td>
-                <td>ADATA</td>
-                <td>SX8200 Pro, SX6000 Pro, SX6000 Lite</td>
-            </tr>
-            <tr>
-                <td>Crucial</td>
-                <td>P5 Plus, P5, P2</td>
-            </tr>
-            <tr>
-                <td>Kingston</td>
-                <td>NV1, KC2500, A2000</td>
-            </tr>
-            <tr>
-                <td>Samsung</td>
-                <td>980 Pro, 980, 970 Pro, 970 EVO Plus, 970 EVO</td>
-            </tr>
-            <tr>
-                <td>Seagate</td>
-                <td>FireCuda 530, FireCuda 520, FireCuda 510, Barracuda 510, BarraCuda Q5</td>
-            </tr>
-            <tr>
-                <td>SK hynix</td>
-                <td>Gold P31</td>
-            </tr>
-            <tr>
-                <td>Western Digital</td>
-                <td>AN1500, SN850, SN750, SN550</td>
-            
-        </table>
-        
-        <h4>1.1.4 Hard-disk Drive</h4>
-        <p>Next component is HDD. The product names from manufacturer collected for HDD is list below.</p>
-        
-        <table width=100%>
-            <caption>Models of hard-disk drive(HDD) collected from Amazon</caption>
-            <col width=20%>
-            <col width=20%>
-            <col width=60%>
-            <tr>
-                <th>Disk size</th>
-                <th>Manufacturer</th>
-                <th>Product name</th>
-            </tr>
-            <tr>
-                <td rowspan=3>2.5 inch</td>
-                <td>Seagate</td>
-                <td>BarraCuda, FireCuda</td>
-            </tr>
-            <tr>
-                <td>Toshiba</td>
-                <td>L200</td>
-            </tr>
-            <tr>
-                <td>Western Digital</td>
-                <td>WD Blue</td>
-            </tr>
-            <tr>
-                <td rowspan=3>3.5 inch</td>
-                <td>Seagate</td>
-                <td>BarraCuda, FireCuda, IronWolf, IronWolf Pro, Skyhawk, Skyhawk AI</td>
-            </tr>
-            <tr>
-                <td>Toshiba</td>
-                <td>X300, P300, N300, S300</td>
-            </tr>
-            <tr>
-                <td>Western Digital</td>
-                <td>WD Blue, WD Red, WD Red Plus, WD Red Pro, WD Purple, WD Black, WD Gold</td>
-            </tr>
-            
-        </table>
-        
-        <h4>1.1.5 Data Overview</h4>
-        
-        <p>Keepa API not only tracks the price of brand new product, but also it records the price of renewed item. The json response of a historical price request is something like below. There is a key domain called 'csv' and its value is a two-dimensional list. Each row in the list will be a array of combination of time and price(time, price, time, price...). Different rows refer to the source of the product like brand new, used-like new, used-good, wholesale, etc.</p>
-        
-        <img style="width:90%" class="centerfig" src="picture/data_gather/keepa.png" />
-        <figurecaption>Screenshot: Response JSON of AMD Ryzen CPU Threadripper 3970X from Keepa API</figurecaption>
-        
+            <p>All the python scripts and raw data in this section can be found at <a
+                    href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/amazon"
+                    target="_blank">data_gather/amazon</a> folder on Github.</p>
+            <h3>1.1 Amazon Sale and Stock (Python API)</h3>
+
+            <p>Amazon is one of the largest online market in the world, so the price of products on it can be very
+                representative. <a href="https://keepa.com/#!" target="_blank">Keepa.com</a> provides a nice API of
+                product's historical price on Amazon. </p>
+
+            <p>Firstly, please subscribe to the keepa API($19/m) to get an access key. Then you can request the
+                historical price by providing the ASIN of product. The ASIN is a unique 10-characters identifier starts
+                with 'B', which can be easily found in the Amazon url of the product. You can manually search for the PC
+                components from different manufacturers and record their ASIN and use the keepa API to request their
+                historical prices.</p>
+
+            <h4>1.1.1 CPU</h4>
+            <p>The first component is CPU. There are only two mainstream CPU manufacturer - Intel and AMD. All the
+                products collected for Intel CPU is list below, which models released in recent four generations(8th gen
+                - 11th gen) are included.</p>
+
+            <table width=100%>
+                <caption>List of Intel® Core™ CPU collected from Amazon</caption>
+                <col width=25%>
+                <col width=75%>
+                <tr>
+                    <th>Series of Processors</th>
+                    <th>Product name</th>
+                </tr>
+                <tr>
+                    <td>Core™ X-series</td>
+                    <td>10940X, 10920X, 10900X, 9980XE, 9940X, 9920X, 9900X, 9820X</td>
+                </tr>
+                <tr>
+                    <td>Core™ i9</td>
+                    <td>11900K, 11900, 10900K, 10900KF, 10900, 10900F, 10850K, 9900KS, 9900K, 9900KF, 9900</td>
+                </tr>
+                <tr>
+                    <td>Core™ i7</td>
+                    <td>11700K, 11700KF, 11700, 11700F, 10700K, 10700KF, 10700, 10800F, 9700K, 9700KF, 9700, 9700F,
+                        8086K, 8700K, 8700, 7700K, 7700
+                    </td>
+                </tr>
+                <tr>
+                    <td>Core™ i5</td>
+                    <td>11600K, 11600KF, 11600, 11500, 11400, 11400F, 10600K, 10600KF, 10600, 10500, 10400, 10400F,
+                        9600KF, 9600, 9500, 9400, 9400F, 8500, 8400
+                    </td>
+                </tr>
+                <tr>
+                    <td>Core™ i3</td>
+                    <td>10300, 10100, 10100F, 9100, 9100F, 8350K, 8300, 8100</td>
+                </tr>
+            </table>
+
+            <p>All the products collected for AMD CPU is list below, which models released in recent four
+                generations(Zen+ arch - Zen3 arch) are included.</p>
+
+            <table width=100%>
+                <caption>List of AMD® Ryzen™ CPU collected from Amazon</caption>
+                <col width=25%>
+                <col width=75%>
+                <tr>
+                    <th>Series of Processors</th>
+                    <th>Product name</th>
+                </tr>
+                <tr>
+                    <td>Ryzen™ Threadripper</td>
+                    <td>3990X, 3970X, 3960X, 2990WX, 2970WX, 2950X, 2920X, 1950X, 1920X, 1900X</td>
+                </tr>
+                <tr>
+                    <td>Ryzen™ 9</td>
+                    <td>5950X, 5900X, 3950X, 3900XT, 3900X</td>
+                </tr>
+                <tr>
+                    <td>Ryzen™ 7</td>
+                    <td>5800X, 5700G, 3800XT, 3800X, 3700X, 2700X, 2700</td>
+                </tr>
+                <tr>
+                    <td>Ryzen™ 5</td>
+                    <td>5600X, 5600G, 3600XT, 3600X, 3600, 2600X, 2600, 3400G</td>
+                </tr>
+                <tr>
+                    <td>Ryzen™ 3</td>
+                    <td>3300X, 3100, 3200G</td>
+                </tr>
+            </table>
+
+            <h4>1.1.2 GPU</h4>
+            <p>The second component is GPU(graphic processing unit) or graphic card. Products from different
+                manufacturers are recorded as many as possible. The number of different products from manufacturer
+                collected for NVIDIA GPU is list below, which models released in recent 5 generations(900 Series - 30
+                Series) are included.</p>
+
+            <table width=100%>
+                <caption>Number of models for NVIDIA Geforce® GPU collected from Amazon</caption>
+                <col width=25%>
+                <col width=15%>
+                <colgroup width=12% span=5></colgroup>
+                <tr>
+                    <th rowspan=2>Series of GPU</th>
+                    <th rowspan=2>Product name</th>
+                    <th colspan=5 style="text-align:center;">Manufacturer</th>
+                </tr>
+                <tr>
+                    <th scope="colgroup">ASUS</th>
+                    <th scope="colgroup">EVGA</th>
+                    <th scope="colgroup">Gigabyte</th>
+                    <th scope="colgroup">MSI</th>
+                    <th scope="colgroup">ZOTAC</th>
+                </tr>
+                <tr>
+                    <td>GTX™ 900 Series</td>
+                    <td>960</td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan=3>GTX™ 10 Series</td>
+                    <td>1030</td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1050 Ti</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>1060</td>
+                    <td></td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td rowspan=5>GTX™ 16 Series</td>
+                    <td>1650</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>1650 Super</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1660</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1660 Super</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1660 Ti</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td rowspan=7>RTX™ 20 Series</td>
+                    <td>2060</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2060 Super</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2070</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>2070 Super</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2080</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>2080 Super</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>2080 Ti</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td rowspan=6>RTX™ 30 Series</td>
+                    <td>3060</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>3070</td>
+                    <td>2</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>3070 Ti</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td></td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>3080</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3080 Ti</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>3090</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+
+            </table>
+
+            <p>The number of different products from manufacturer collected for AMD GPU is list below, which models
+                released in recent 3 generations(500 Series - 6000 Series) are included.</p>
+
+            <table width=100%>
+                <caption>Number of models for AMD® Radeon™ GPU collected from Amazon</caption>
+                <col width=25%>
+                <col width=15%>
+                <colgroup width=12% span=5></colgroup>
+                <tr>
+                    <th rowspan=2>Series of GPU</th>
+                    <th rowspan=2>Product name</th>
+                    <th colspan=5 style="text-align:center;">Manufacturer</th>
+                </tr>
+                <tr>
+                    <th scope="colgroup">ASUS</th>
+                    <th scope="colgroup">Gigabyte</th>
+                    <th scope="colgroup">MSI</th>
+                    <th scope="colgroup">Sapphire</th>
+                    <th scope="colgroup">XFX</th>
+                </tr>
+                <tr>
+                    <td rowspan=2>RX 500 Series</td>
+                    <td>570</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td></td>
+                    <td>5</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>580</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td rowspan=3>RX 5000 Series</td>
+                    <td>5500 XT</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>5600 XT</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>5700 XT</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td rowspan=4>RX 6000 Series</td>
+                    <td>6700 XT</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>6800</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>6800 XT</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>6900 XT</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+
+
+            </table>
+
+            <h4>1.1.3 Solid-state Drive</h4>
+            <p>Next component is SSD. The product names from manufacturer collected for SSD is list below.</p>
+
+            <table width=100%>
+                <caption>Models of solid-state drive(SSD) collected from Amazon</caption>
+                <col width=20%>
+                <col width=20%>
+                <col width=60%>
+                <tr>
+                    <th>SSD type</th>
+                    <th>Manufacturer</th>
+                    <th>Product name</th>
+                </tr>
+                <tr>
+                    <td rowspan=8>2.5" SATA</td>
+                    <td>ADATA</td>
+                    <td>SU800, SU760, SU740, SU720, SU635</td>
+                </tr>
+                <tr>
+                    <td>Crucial</td>
+                    <td>MX500, BX500</td>
+                </tr>
+                <tr>
+                    <td>Kingston</td>
+                    <td>KC600, Q500</td>
+                </tr>
+                <tr>
+                    <td>Samsung</td>
+                    <td>870 QVO, 870 EVO, 860 Pro, 860 QVO, 860 EVO</td>
+                </tr>
+                <tr>
+                    <td>Sandisk</td>
+                    <td>SSD Plus, Ultra 3D NAND</td>
+                </tr>
+                <tr>
+                    <td>Seagate</td>
+                    <td>FireCuda 120, Barracuda 120, BarraCuda Q1</td>
+                </tr>
+                <tr>
+                    <td>SK hynix</td>
+                    <td>Gold S31</td>
+                </tr>
+                <tr>
+                    <td>Western Digital</td>
+                    <td>WD Gold, WD Red, WD Blue, WD Green</td>
+                </tr>
+                <tr>
+                    <td rowspan=4>m.2 SATA</td>
+                    <td>ADATA</td>
+                    <td>SU800, SU650</td>
+                </tr>
+                <tr>
+                    <td>Kingston</td>
+                    <td>A400</td>
+                </tr>
+                <tr>
+                    <td>Samsung</td>
+                    <td>860 EVO</td>
+                </tr>
+                <tr>
+                    <td>Western Digital</td>
+                    <td>WD Red, WD Blue</td>
+                </tr>
+                <tr>
+                    <td rowspan=8>m.2 NVME</td>
+                    <td>ADATA</td>
+                    <td>SX8200 Pro, SX6000 Pro, SX6000 Lite</td>
+                </tr>
+                <tr>
+                    <td>Crucial</td>
+                    <td>P5 Plus, P5, P2</td>
+                </tr>
+                <tr>
+                    <td>Kingston</td>
+                    <td>NV1, KC2500, A2000</td>
+                </tr>
+                <tr>
+                    <td>Samsung</td>
+                    <td>980 Pro, 980, 970 Pro, 970 EVO Plus, 970 EVO</td>
+                </tr>
+                <tr>
+                    <td>Seagate</td>
+                    <td>FireCuda 530, FireCuda 520, FireCuda 510, Barracuda 510, BarraCuda Q5</td>
+                </tr>
+                <tr>
+                    <td>SK hynix</td>
+                    <td>Gold P31</td>
+                </tr>
+                <tr>
+                    <td>Western Digital</td>
+                    <td>AN1500, SN850, SN750, SN550</td>
+
+            </table>
+
+            <h4>1.1.4 Hard-disk Drive</h4>
+            <p>Next component is HDD. The product names from manufacturer collected for HDD is list below.</p>
+
+            <table width=100%>
+                <caption>Models of hard-disk drive(HDD) collected from Amazon</caption>
+                <col width=20%>
+                <col width=20%>
+                <col width=60%>
+                <tr>
+                    <th>Disk size</th>
+                    <th>Manufacturer</th>
+                    <th>Product name</th>
+                </tr>
+                <tr>
+                    <td rowspan=3>2.5 inch</td>
+                    <td>Seagate</td>
+                    <td>BarraCuda, FireCuda</td>
+                </tr>
+                <tr>
+                    <td>Toshiba</td>
+                    <td>L200</td>
+                </tr>
+                <tr>
+                    <td>Western Digital</td>
+                    <td>WD Blue</td>
+                </tr>
+                <tr>
+                    <td rowspan=3>3.5 inch</td>
+                    <td>Seagate</td>
+                    <td>BarraCuda, FireCuda, IronWolf, IronWolf Pro, Skyhawk, Skyhawk AI</td>
+                </tr>
+                <tr>
+                    <td>Toshiba</td>
+                    <td>X300, P300, N300, S300</td>
+                </tr>
+                <tr>
+                    <td>Western Digital</td>
+                    <td>WD Blue, WD Red, WD Red Plus, WD Red Pro, WD Purple, WD Black, WD Gold</td>
+                </tr>
+
+            </table>
+
+            <h4>1.1.5 Data Overview</h4>
+
+            <p>Keepa API not only tracks the price of brand new product, but also it records the price of renewed item.
+                The json response of a historical price request is something like below. There is a key domain called
+                'csv' and its value is a two-dimensional list. Each row in the list will be a array of combination of
+                time and price(time, price, time, price...). Different rows refer to the source of the product like
+                brand new, used-like new, used-good, wholesale, etc.</p>
+
+            <img style="width:90%" class="centerfig" src="picture/data_gather/keepa.png"/>
+            <figurecaption>Screenshot: Response JSON of AMD Ryzen CPU Threadripper 3970X from Keepa API</figurecaption>
+
         </section>
-        
+
         <section id="pc-ebay">
-        <h3>1.2 Ebay Second-hand Transaction (Python Web Scraping)</h3>
-    
-        <p>Currently there is NO open api to get historical sale data of eBay, so data from eBay is collected web scraping. However, web scraping is banned by ebay according to their term of service. So this part will be in suspense until there's any available api. For data already gathered, see <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/ebay" target="_blank">data_gather/ebay</a> folder on Github.</p>
-        
-        <p>Data from Ebay is basically raw html. The name of product, pre-owned situation, sold price can be found in certain html blocks. Here's a example of where the information is located in html.</p>
-        
-        <img style="width:90%" class="centerfig" src="picture/data_gather/ebay.png" />
-        <figurecaption>Screenshot: the html block that stores information of the product</figurecaption>
-        
+            <h3>1.2 Ebay Second-hand Transaction (Python Web Scraping)</h3>
+
+            <p>Currently there is NO open api to get historical sale data of eBay, so data from eBay is collected web
+                scraping. However, web scraping is banned by ebay according to their term of service. So this part will
+                be in suspense until there's any available api. For data already gathered, see <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/ebay"
+                        target="_blank">data_gather/ebay</a> folder on Github.</p>
+
+            <p>Data from Ebay is basically raw html. The name of product, pre-owned situation, sold price can be found
+                in certain html blocks. Here's a example of where the information is located in html.</p>
+
+            <img style="width:90%" class="centerfig" src="picture/data_gather/ebay.png"/>
+            <figurecaption>Screenshot: the html block that stores information of the product</figurecaption>
+
         </section>
-        
+
         <h2>2. Data of Cryptocurrency</h2>
-        
-        <p>Eight cryptocurrencies that have the largest market size and trade volume are selected and also Chia coin is selected to study its impact on the price of storage. The basic information are listed below.</p>
-        
+
+        <p>Eight cryptocurrencies that have the largest market size and trade volume are selected and also Chia coin is
+            selected to study its impact on the price of storage. The basic information are listed below.</p>
+
         <table width=100%>
             <caption>Basic information of 9 cryptocurrencies on 10th Sep 2021</caption>
             <col width=20%>
@@ -650,231 +678,280 @@
                 <td>330.5M</td>
             </tr>
         </table>
-        
+
         <p>ETH, ETC, XMR are GPU-mined cryptocurrencies.</p>
-        
+
         <section id="crypto-yahoo">
-        <h3>2.1 Price on Yahoo Finance (R API)</h3>
-        
-        <p>The price of each crypto-USD trade pair on Yahoo Finance is collected by R. The R scripts and raw data in this section can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/yahoo_finance" target="_blank">data_gather/crypto/yahoo_finance</a> folder on Github.</p>
-        
-        <p>Data get from Yahoo Finance has 7 columns: "Date","Open","High","Low","Close","Adj Close","Volume", which are both easy to understand the meaning. Here's a example of the price of BCH-USD trade pair from Yahoo Finance.</p>
-        
-        <img style="width:90%" class="centerfig" src="picture/data_gather/crypto_yahoo.png" />
-        <figurecaption>Screenshot: the price of BCH-USD from Yahoo Finance</figurecaption>
-        
+            <h3>2.1 Price on Yahoo Finance (R API)</h3>
+
+            <p>The price of each crypto-USD trade pair on Yahoo Finance is collected by R. The R scripts and raw data in
+                this section can be found at <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/yahoo_finance"
+                        target="_blank">data_gather/crypto/yahoo_finance</a> folder on Github.</p>
+
+            <p>Data get from Yahoo Finance has 7 columns: "Date","Open","High","Low","Close","Adj Close","Volume", which
+                are both easy to understand the meaning. Here's a example of the price of BCH-USD trade pair from Yahoo
+                Finance.</p>
+
+            <img style="width:90%" class="centerfig" src="picture/data_gather/crypto_yahoo.png"/>
+            <figurecaption>Screenshot: the price of BCH-USD from Yahoo Finance</figurecaption>
+
         </section>
-        
+
         <section id="crypto-coinmetrics">
-        <h3>2.2 More information on Coin Metrics (Python Directly Download)</h3>
-        
-        <p><a href="https://coinmetrics.io/" target="_blank">Coin Metrics</a> is a website that tracking crypto data and makes it transparent and accessible. The data in csv format can be directly download from the website. The python scripts and raw data in this section can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/coin_metrics" target="_blank">data_gather/crypto/coin_metrics</a> folder on Github.</p>
-        
-        <p>Data get from Coin Metrics has more than 100 columns. For exact meaning of each column, please see <a href="https://coinmetrics.io/tools/" target="_blank">Coin Metrics API Doc</a>. Here's a example of the data of Bitcoin from Coin Metrics.</p>
-        
-        <img style="width:90%" class="centerfig" src="picture/data_gather/coinmetrics.png" />
-        <figurecaption>Screenshot: daily data of Bitcoin from Coin Metrics</figurecaption>
-        
+            <h3>2.2 More information on Coin Metrics (Python Directly Download)</h3>
+
+            <p><a href="https://coinmetrics.io/" target="_blank">Coin Metrics</a> is a website that tracking crypto data
+                and makes it transparent and accessible. The data in csv format can be directly download from the
+                website. The python scripts and raw data in this section can be found at <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/coin_metrics"
+                        target="_blank">data_gather/crypto/coin_metrics</a> folder on Github.</p>
+
+            <p>Data get from Coin Metrics has more than 100 columns. For exact meaning of each column, please see <a
+                    href="https://coinmetrics.io/tools/" target="_blank">Coin Metrics API Doc</a>. Here's a example of
+                the data of Bitcoin from Coin Metrics.</p>
+
+            <img style="width:90%" class="centerfig" src="picture/data_gather/coinmetrics.png"/>
+            <figurecaption>Screenshot: daily data of Bitcoin from Coin Metrics</figurecaption>
+
         </section>
-        
+
         <section id="crypto-chia">
-        <h3>2.3 Chia data from XCHScan (Python Web Scraping)</h3>
-        
-        <p>Currently there's no open data of total netspace data of Chia, so data of Chia is parsed from the html chart on <a href="https://xchscan.com/charts" target="_blank">xchscan.com</a>. For the data already gathered, see <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/chia" target="_blank">data_gather/crypto/chia</a> folder on Github.</p>
-        
-        <p>Data get from XCHScan is time series of some attribute of Chia. For example, here's the data of total netspace of Chia.</p>
-        
-        <img style="width:90%" class="centerfig" src="picture/data_gather/chia.png" />
-        <figurecaption>Screenshot: daily data of Chia NetSpace from XCHScan</figurecaption>
-        
+            <h3>2.3 Chia data from XCHScan (Python Web Scraping)</h3>
+
+            <p>Currently there's no open data of total netspace data of Chia, so data of Chia is parsed from the html
+                chart on <a href="https://xchscan.com/charts" target="_blank">xchscan.com</a>. For the data already
+                gathered, see <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/crypto/chia"
+                        target="_blank">data_gather/crypto/chia</a> folder on Github.</p>
+
+            <p>Data get from XCHScan is time series of some attribute of Chia. For example, here's the data of total
+                netspace of Chia.</p>
+
+            <img style="width:90%" class="centerfig" src="picture/data_gather/chia.png"/>
+            <figurecaption>Screenshot: daily data of Chia NetSpace from XCHScan</figurecaption>
+
         </section>
-        
+
         <h2>3. Data of Raw Material</h2>
         <section id="material-price">
-        <h3>3.1 Material Price  (R API)</h3>
-        
-        <p>The price of each raw material on Yahoo Finance and Quandl is collected by R. The R scripts and raw data in this section can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/commodity" target="_blank">data_gather/commodity</a> folder on Github.</p>
-        
-        <table width=100%>
-            <caption>Raw material price source and price change during pandemic</caption>
-            <col width=20%>
-            <col width=20%>
-            <col width=20%>
-            <col width=20%>
-            <tr>
-                <th>Name</th>
-                <th>Source</th>
-                <th>Price on 2019-12-31($)</th>
-                <th>Price on 2021-9-10($)</th>
-                <th>Change</th>
-            </tr>
-            <tr>
-                <td>Aluminum</td>
-                <td>Yahoo Finance</td>
-                <td>1824.5</td>
-                <td>2948.0</td>
-                <td>+61.6%</td>
-            </tr>
-            <tr>
-                <td>Copper</td>
-                <td>Yahoo Finance</td>
-                <td>2.8040</td>
-                <td>4.2755</td>
-                <td>+52.5%</td>
-            </tr>
-            <tr>
-                <td>Gold</td>
-                <td>Quandl</td>
-                <td>1523.0</td>
-                <td>1799.9</td>
-                <td>+18.1%</td>
-            </tr>
-            <tr>
-                <td>Silver</td>
-                <td>Quandl</td>
-                <td>18.045</td>
-                <td>24.025</td>
-                <td>+33.1%</td>
-            </tr>
-        </table>
-        
-        <p>Data from Yahoo Finance has the same format as those data of cryptocurrencies. And data from Quandl API is a time series of the price. Here's a example of the price of gold from Quandl.</p>
-        
-        <img style="width:90%" class="centerfig" src="picture/data_gather/gold.png" />
-        <figurecaption>Screenshot: the price of gold from Quandl</figurecaption>
-        
+            <h3>3.1 Material Price (R API)</h3>
+
+            <p>The price of each raw material on Yahoo Finance and Quandl is collected by R. The R scripts and raw data
+                in this section can be found at <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/commodity"
+                        target="_blank">data_gather/commodity</a> folder on Github.</p>
+
+            <table width=100%>
+                <caption>Raw material price source and price change during pandemic</caption>
+                <col width=20%>
+                <col width=20%>
+                <col width=20%>
+                <col width=20%>
+                <tr>
+                    <th>Name</th>
+                    <th>Source</th>
+                    <th>Price on 2019-12-31($)</th>
+                    <th>Price on 2021-9-10($)</th>
+                    <th>Change</th>
+                </tr>
+                <tr>
+                    <td>Aluminum</td>
+                    <td>Yahoo Finance</td>
+                    <td>1824.5</td>
+                    <td>2948.0</td>
+                    <td>+61.6%</td>
+                </tr>
+                <tr>
+                    <td>Copper</td>
+                    <td>Yahoo Finance</td>
+                    <td>2.8040</td>
+                    <td>4.2755</td>
+                    <td>+52.5%</td>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td>Quandl</td>
+                    <td>1523.0</td>
+                    <td>1799.9</td>
+                    <td>+18.1%</td>
+                </tr>
+                <tr>
+                    <td>Silver</td>
+                    <td>Quandl</td>
+                    <td>18.045</td>
+                    <td>24.025</td>
+                    <td>+33.1%</td>
+                </tr>
+            </table>
+
+            <p>Data from Yahoo Finance has the same format as those data of cryptocurrencies. And data from Quandl API
+                is a time series of the price. Here's a example of the price of gold from Quandl.</p>
+
+            <img style="width:90%" class="centerfig" src="picture/data_gather/gold.png"/>
+            <figurecaption>Screenshot: the price of gold from Quandl</figurecaption>
+
         </section>
-        
+
         <section id="material-produce">
-        <h3>3.2 Material Production</h3>
-        
-        <p>This part is not been done yet. There is no open tracker of the production of raw materials, so data may need to gather from some industrial reports.</p>
-        
+            <h3>3.2 Material Production</h3>
+
+            <p>This part is not been done yet. There is no open tracker of the production of raw materials, so data may
+                need to gather from some industrial reports.</p>
+
         </section>
-        
+
         <h2>4. Data of Public View</h2>
         <section id="youtube">
-        <p>The Python scripts and raw data in this section can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/news" target="_blank">data_gather/news</a> folder on Github.</p>
-        
-        <h3>4.1 Youtube Comments from TechLinked Channel (Python API)</h3>
-        
-        <p>TechLinked is a subchannel of the famous technology channel LinusTechTips on YouTube. This subchannel makes tech news video twice a week since 3 years ago. In 2021, many of their videos talk about news of graphic card and every video has a lot of comments. So it's a good source to see public view of the graphic card shortage.</p>
-        
-        <p>175 videos about graphic cards from 2018.6.12 to 2021.9.14 are selected. And all of the comments under these video are collected by YouTube API. As a result, over 1500 json files are collected and each of them contains an average comment count of 100.</p>
-        
+            <p>The Python scripts and raw data in this section can be found at <a
+                    href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_gather/news"
+                    target="_blank">data_gather/news</a> folder on Github.</p>
+
+            <h3>4.1 Youtube Comments from TechLinked Channel (Python API)</h3>
+
+            <p>TechLinked is a subchannel of the famous technology channel LinusTechTips on YouTube. This subchannel
+                makes tech news video twice a week since 3 years ago. In 2021, many of their videos talk about news of
+                graphic card and every video has a lot of comments. So it's a good source to see public view of the
+                graphic card shortage.</p>
+
+            <p>175 videos about graphic cards from 2018.6.12 to 2021.9.14 are selected. And all of the comments under
+                these video are collected by YouTube API. As a result, over 1500 json files are collected and each of
+                them contains an average comment count of 100.</p>
+
         </section>
-        
+
         <h2>5. Github</h2>
         <section id="structure">
-        <h3>5.1 File Hierarchy of data_gather Folder on Github</h3>
-        
-<p style="line-height:0.5;font-size:8px">&#9500;data_gather: master folder</p>
+            <h3>5.1 File Hierarchy of data_gather Folder on Github</h3>
 
-<p style="line-height:0.5;font-size:8px">&#9500;&#9472;amazon: all the code and raw data from amazon</p>
+            <p style="line-height:0.5;font-size:8px">&#9500;data_gather: master folder</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;keepa_cpu.py: Python script of gather CPU data</p>
+            <p style="line-height:0.5;font-size:8px">&#9500;&#9472;amazon: all the code and raw data from amazon</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;keepa_gpu.py: Python script of gather graphic card data</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;keepa_cpu.py: Python script of gather CPU
+                data</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;keepa_drive.py: Python script of gather hdd and sdd data</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;keepa_gpu.py: Python script of gather graphic
+                card data</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;cpu: data of central processing unit, sub folders are products from different manufacturers</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;keepa_drive.py: Python script of gather hdd
+                and sdd data</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;amd</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;cpu: data of central processing unit, sub
+                folders are products from different manufacturers</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9492;&#9472;intel</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;amd</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;gpu: data of graphic processing unit, sub folders are products from different manufacturers</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9492;&#9472;intel</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;ASUS</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;gpu: data of graphic processing unit, sub
+                folders are products from different manufacturers</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;EVGA</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;ASUS</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;Gigabyte</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;EVGA</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;MSI</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;Gigabyte</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;Sapphire</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;MSI</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;XFX</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;Sapphire</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9492;&#9472;ZOTAC</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;XFX</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;hdd: data of hard disk drive, sub folders are products from different manufacturers</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9492;&#9472;ZOTAC</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;Seagate</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;hdd: data of hard disk drive, sub folders are
+                products from different manufacturers</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;Toshiba</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;Seagate</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9492;&#9472;WD</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9500;&#9472;Toshiba</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;ssd: data of solid state drives, sub folders are products from different manufacturers</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9474; &#9492;&#9472;WD</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;ADATA</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;ssd: data of solid state drives, sub folders
+                are products from different manufacturers</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;Crucial</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;ADATA</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;Kingston</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;Crucial</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;Samsung</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;Kingston</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;SanDisk</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;Samsung</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;Seagate</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;SanDisk</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;SK hynix</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;Seagate</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;WD</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;SK hynix</p>
 
-<p style="line-height:0.5;font-size:8px">&#9500;&#9472;commodity: all the code and raw data of commodities</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;WD</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;price_yahoo.r: R script of gather data of copper, aluminum from yahoo finance</p>
+            <p style="line-height:0.5;font-size:8px">&#9500;&#9472;commodity: all the code and raw data of
+                commodities</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;keepa_cpu.py: R script of gather data of silver, gold from quandl</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;price_yahoo.r: R script of gather data of
+                copper, aluminum from yahoo finance</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;data: data of commodities</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;keepa_cpu.py: R script of gather data of
+                silver, gold from quandl</p>
 
-<p style="line-height:0.5;font-size:8px">&#9500;&#9472;crypto: all the code and raw data of cryptocurrencies</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;data: data of commodities</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;chia.py: Python script of gather chia data from XCHScan</p>
+            <p style="line-height:0.5;font-size:8px">&#9500;&#9472;crypto: all the code and raw data of
+                cryptocurrencies</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;coin_metrics.py: Python script of gather crypto data from Coin Metrics</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;chia.py: Python script of gather chia data
+                from XCHScan</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;price_yahoo.py: (deprecated) Python script of gather data of crypto price from yahoo finance</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;coin_metrics.py: Python script of gather
+                crypto data from Coin Metrics</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;price_yahoo.r: R script of gather data of crypto price from yahoo finance</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;price_yahoo.py: (deprecated) Python script of
+                gather data of crypto price from yahoo finance</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;chia: data of chia coin</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;price_yahoo.r: R script of gather data of
+                crypto price from yahoo finance</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;coin_metrics: data from coin metrics</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;chia: data of chia coin</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;yahoo_finance: data from yahoo finance</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;coin_metrics: data from coin metrics</p>
 
-<p style="line-height:0.5;font-size:8px">&#9500;&#9472;ebay: all the code and raw data from ebay</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;yahoo_finance: data from yahoo finance</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;ebay_cpu.py: Python script of gather CPU transcations data from eBay</p>
+            <p style="line-height:0.5;font-size:8px">&#9500;&#9472;ebay: all the code and raw data from ebay</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;ebay_gpu.py: Python script of gather graphic card transcations data from eBay</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;ebay_cpu.py: Python script of gather CPU
+                transcations data from eBay</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;cpu</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;ebay_gpu.py: Python script of gather graphic
+                card transcations data from eBay</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;gpu</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;cpu</p>
 
-<p style="line-height:0.5;font-size:8px">&#9500;&#9472;news: all the code and raw data of news</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9492;&#9472;gpu</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;youtube_channel.py: Python script of gather video info from TechLinked channel</p>
+            <p style="line-height:0.5;font-size:8px">&#9500;&#9472;news: all the code and raw data of news</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;youtube_comments.py: Python script of gather comments under gpu-related videos</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;youtube_channel.py: Python script of gather
+                video info from TechLinked channel</p>
 
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;channel</p>
-<p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;comments</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;youtube_comments.py: Python script of gather
+                comments under gpu-related videos</p>
+
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;channel</p>
+            <p style="line-height:0.5;font-size:8px">&#9474; &#9500;&#9472;comments</p>
         </section>
-        
+
     </div>
 </div>
 
 <script src="jquery-3.5.1.min.js"></script>
-<script>$(function(){$(".headerpage-501").load("header.html");});</script>
+<script>$(function () {
+    $(".headerpage-501").load("header.html");
+});</script>
 <script src="nav_scroll.js"></script>
 </body>
 </html>
