@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Jingsong Gao - 501 Portfolio</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="shortcut icon" href="/icon.png" />
+    <link rel="bookmark" href="/icon.png" />
+</head>
+
+<body>
+<div class="headerpage-501"></div>
+<div class="main">
+    <div class="left-side">
+        <div class="left-navi">
+            <li class="nav"> <p>PC Component</p> </li>
+            <li class="nav"> <a href="#pc-pre">Pre-classification</a> </li>
+            <li class="nav"> <a href="#pc-uneq">Unequal-Len Time Series</a> </li>
+            <li class="nav"> <a href="#pc-eq">Equal-Len Time Series</a> </li>
+            <li class="nav"> <p>Crypto & Commodity</p> </li>
+            <li class="nav"> <a href="#crypto">Crypto Time Series</a> </li>
+            <li class="nav"> <a href="#commodity">Commodity Time Series</a> </li>
+            <li class="nav"> <p>Public View</p> </li>
+            <li class="nav"> <a href="#youtube">Youtube Comments</a> </li>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h1 style="text-align:center">Clustering</h1>
+        
+        <h2>1. PC Component Price Time Series (Python Record Data)</h2>
+        
+        <h3>1.1 Pre-classification of PC components</h3>
+        
+        <section id="pc-pre">
+       
+        <p>The python script for this part is <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data_clean/amazon/timeseries_converter.ipynb">data_clean/amazon/timeseries_converter.ipynb</a>. All the preprocessed time series can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/amazon">data/amazon</a> folder on GitHub (see below for the definition of each file).</p>
+       
+        <p>Data in amazon database is recorded in <b>unequal-interval</b> time series, since Keepa API write a new value to their database <b>only</b> when the price changes.</p>
+       
+        <p>So, the first step of preprocessing is to rebuild a <b>equal-interval</b> time series from the database. <b>Pandas</b> is a useful tool to do this. Since it not only provides a SQL interface but also provides a powerful function called <b>resample</b>. With Pandas, histrotical price data in SQLite database can be easilty converted into equal-interval time series. <b>After several attempts, the time interval for resampling is assigned to 1 day</b>.</p>
+        
+        <table width="100%">
+            <caption>File prefix in pre-classified data and their meaning</caption>
+            <tr><th>File Prefix</th><th>Meaning</th></tr>
+            <tr><td>NEWS</td><td>price history of the New in marketplace</td></tr>
+            <tr><td>USED</td><td>price history of the Used in marketplace</td></tr>
+            <tr><td>BUY_BOX</td><td>price history of the New buy box</td></tr>
+            <tr><td>EBAY_NEW</td><td>price history of the lowest new price on the respective eBay locale</td></tr>
+            <tr><td>EBAY_USED</td><td>price history of the lowest used price on the respective eBay locale</td></tr>
+        </table>
+        
+        <p>Another thing needs to be considered is that Keepa API uses <b>-1</b> as out-of-stock, but these negative values will disturb the following clustering. Therefore, all <b>-1</b>s in the time series are filled with a previous non-negative value to create a <b>normal price time series</b>.</p>
+        
+        <p>But the out-of-stock data does contain some useful information, so a new time series called <b>out-of-stock indicator</b> that records the out-of-stock status is created, which all normal prices are converted into 0 and out-of-stock values are converted into 1. </p>
+       
+        <p>Since the products are released in varied date, some products have data more than 4 years, but some products only have data less than 6 months. A pre-classification is performed on the products, all data are separated into different files based on their time span. The files are labeled by some suffixes.</p>
+        
+        <table width="100%">
+            <caption>File suffix in pre-classified data and their meaning</caption>
+            <tr><th>File Suffix</th><th>Meaning</th></tr>
+            <tr><td>s</td><td>time span less than 6 months</td></tr>
+            <tr><td>6m</td><td>time span bewteen 6 months to 1 year</td></tr>
+            <tr><td>1y</td><td>time span bewteen 1 year to 2 years</td></tr>
+            <tr><td>2y</td><td>time span bewteen 2 years to 4 years</td></tr>
+            <tr><td>4y</td><td>time span more than 4 years</td></tr>
+            <tr><td>ts</td><td>time series, each row contains a time series of normal price separate by space.</td></tr>
+            <tr><td>osts</td><td>time series, each row contains a time series of out-of-stock indicators separate by space. </td></tr>
+            <tr><td>eqts</td><td>time seires of normal prices but are truncated to same length.</td></tr>
+            <tr><td>eqosts</td><td>time seires of out-of-stock indicators but are truncated to same length. </td></tr>
+            <tr><td>label</td><td>label, each row contains a product name as label</td></tr>
+        </table>
+        
+        <p>Because some distance metrics in the following clustering require a equal-length time series, so time series all have a truncated version. For example, <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/BUY_BOX_eqts_1y.txt">BUY_BOX_eqts_1y.txt</a> contains the same products as <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/BUY_BOX_ts_1y.txt">BUY_BOX_ts_1y.txt</a>, but the time spans of the data are truncated to exactly 1 year.</p>
+        
+        </section>
+        
+        <h3>1.2 Clustering on unequal-length Time Series (KMeans, metric: DTW)</h3>
+        
+        <section id="pc-uneq">
+       
+        The pre-classified datasets are not unequal-length time series. For example, the length of time series in <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/BUY_BOX_ts_1y.txt">BUY_BOX_ts_1y.txt</a> can vary from 360(1 year) to 719(2 year).
+        
+        </section>
+        
+        
+        <h3>1.3 Clustering on equal-length Time Series (KMeans, metric: Euclidean, DTW, Soft-DTW)</h3>
+        
+        <section id="pc-eq">
+       
+        </section>
+        
+        
+        <h2>2. Crypto & Commodity (R Record Data)</h2>
+
+        <h3>2.1 Crypto Time Series</h3>
+        
+        <section id="crypto">
+        
+        </section>
+        
+        <h3>2.2 Commodity Time Series</h3>
+        
+        <section id="commodity">
+        
+        </section>
+        
+        
+        <h2>3. Public View (Python Text Data)</h2>
+        
+        
+        <section id="youtube">
+        <h3>3.1 KMeans Clustering on youtube comments (metric: Euclidean, Cosine)</h3>
+        
+        
+        
+        <h3>3.2 DBScan Clustering on youtube comments (metric: Cosine)</h3>
+        
+        
+        <h3>3.3 Hierarchical Clustering on youtube comments (metric: Cosine)</h3>
+        
+        
+        </section>
+        
+    </div>
+    
+</div>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>$(function(){$(".headerpage-501").load("header.html");});</script>
+<script src="nav_scroll.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+.headerpage {
+    background-color: MidnightBlue;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+.headerbtn:link, .headerbtn:visited {
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.headerbtn:hover, .headerbtn:active {
+    background-color: white;
+    color: MidnightBlue;
+}

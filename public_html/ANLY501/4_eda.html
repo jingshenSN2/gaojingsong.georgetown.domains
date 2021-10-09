@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Jingsong Gao - 501 Portfolio</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="shortcut icon" href="/icon.png" />
+    <link rel="bookmark" href="/icon.png" />
+</head>
+
+<body>
+<div class="headerpage-501"></div>
+<div class="main">
+    <div class="left-side">
+        <div class="left-navi">
+            <li class="nav"> <p>PC Component</p> </li>
+            <li class="nav"> <a href="#pc-amazon">Amazon Sales</a> </li>
+            <li class="nav"> <p>Cryptocurrency</p> </li>
+            <li class="nav"> <a href="#crypto-chia">Chia</a> </li>
+            <li class="nav"> <p>Raw Material</p> </li>
+            <li class="nav"> <a href="#material-price">Price</a> </li>
+            <li class="nav"> <p>Public View</p> </li>
+            <li class="nav"> <a href="#youtube">Youtube Comments</a> </li>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h1 style="text-align:center">Exploring Data</h1>
+        
+        <h2>1. PC Component Database</h2>
+        
+        <section id="pc-amazon">
+       
+        <p>All data of amazon products are stored in SQLite database with multiple tables.</p>
+        
+        <img style="width:50%" class="centerfig" src="picture/data_clean/structure.png">
+        <figurecaption>Screenshot: table structure of the Amazon database(from DB Browser for SQLite)</figurecaption>
+        
+        <p> <b>cpu</b>, <b>gpu</b>, <b>drive</b> tables store the product information with <b>ASIN</b> as a primary key.  <b>cpu_ts</b>, <b>gpu_ts</b>, <b>drive_ts</b> tables store the product historical data with (<b>ASIN</b>, <b>keepa_minute</b>, <b>keepa_idx</b>) as a primary key. <b>keepa_idx</b> refers to different historical data such as price, sales volume, etc.</p>
+        
+        <table width=100%>
+            <caption>Table Summary of amazon.db</caption>
+            <col width=30%>
+            <col width=35%>
+            <col width=35%>
+            <tr>
+                <th>Table name</th>
+                <th>#Columns</th>
+                <th>#Rows</th>
+            </tr>
+            <tr>
+                <td>cpu</td>
+                <td>7</td>
+                <td>98</td>
+            </tr>
+            <tr>
+                <td>cpu_ts</td>
+                <td>5</td>
+                <td>755049</td>
+            </tr>
+            <tr>
+                <td>gpu</td>
+                <td>7</td>
+                <td>211</td>
+            </tr>
+            <tr>
+                <td>gpu_ts</td>
+                <td>5</td>
+                <td>788873</td>
+            </tr>
+            <tr>
+                <td>drive</td>
+                <td>10</td>
+                <td>303</td>
+            </tr>
+            <tr>
+                <td>drive_ts</td>
+                <td>5</td>
+                <td>1757710</td>
+            </tr>
+        </table>
+        
+        
+        
+        </section>
+        
+        <h2>2. Cryptocurrency</h2>
+        
+        <h2>2.1. Timeseries of Chia</h2>
+        <section id="crypto-chia">
+        
+        <p>The cleaned historical data of chia coin is visualized by ggplot in R. </p>
+        
+        <img style="width:70%" class="centerfig" src="picture/eda/chia_price.png">
+        <img style="width:70%" class="centerfig" src="picture/eda/chia_makcap.png">
+        <img style="width:70%" class="centerfig" src="picture/eda/chia_netspace.png">
+        
+        <figurecaption>Figure: Historical Price, Market Capacity, Net Space of Chia Network in 2021</figurecaption>
+        
+        <p>From the plots, there is a short period of "chia fever" in May 2021 with the price hit a peak at 1550 USD and the market capacity hit a peak at 570 million USD. Meanwhile, the net space(total drive space used to mine chia) increased dramatically from 0.01 EiB to more than 10 EiB.</p>
+        
+        <p>But in June, though the net space continued to raise from 10 EiB to 30 EiB, the price and market capacity decreased a lot to 300 USD/coin and 300 million USD. After July, the market of chia cooled down. The price, market capacity, and netspace maintained at a relatively stable level since then.</p>
+        
+        </section>
+        
+        
+        <h2>3. Commodity Data</h2>
+        
+        <section id="material-price">
+        
+        <p>Historical price of 5 commodities from 2015 to 2021 are read by Python. To show price trends in one plot, normalization has been performed on the prices. The result figure shows below.</p>
+        
+        <img style="width:90%" class="centerfig" src="picture/eda/commodity.png">
+        <figurecaption>Figure: Normalized Historical Prices of Commodities</figurecaption>
+        
+        <p>From the plot, all the commodities follow a similar trend in long period and they all encountered price skyrocketing since the beginning of pandemic, 2020Q1. </p>
+        
+        </section>
+        
+        
+        <h2>4. Public View</h2>
+        
+        <section id="youtube">
+        
+        <h3>4.1 Word Cloud of Youtube Tags</h3>
+        
+        <p>All the tags of videos under TechLinked Channel are read by Python. A wordcloud with <b>max_words=50</b> are generated as below.</p>
+        
+        <img style="width:95%" class="centerfig" src="picture/eda/tags_wordcloud.png">
+        <figurecaption>Figure: Uncleaned WordCloud of Youtube tags</figurecaption>
+        
+        <p>From the figure, there are some common words like <b>Linus</b>(founder's name), <b>LinusTechTips</b>(main channel name), <b>TechLinked</b>(this channel name), <b>netlinked</b>(this channel's old name), <b>Riley Murdock</b>(host name), <b>tech news</b>. So these words are removed from the tag list and a cleaned wordcloud with <b>max_words=50</b> are generated as below.</p>
+        
+        <img style="width:95%" class="centerfig" src="picture/eda/tags_wordcloud_pure.png">
+        <figurecaption>Figure: Cleaned WordCloud of Youtube tags</figurecaption>
+        
+        <p>From the new figure of word cloud, it's clear to see a overview of the TechLinked channel. For example, Apple is the most common topic in this tech news channel. And also, they talk about manufacturers like <b>Nvidia</b>, <b>AMD</b>, <b>Intel</b>, and internet giants like <b>Facebook</b>, <b>Google</b>, <b>Microsoft</b> and smartphone brand like <b>Huawei</b>, <b>Samsung</b>. Many tech news are about some new products, so <b>release date</b>, <b>launch</b>, <b>review</b>are three common tags on this channel.</p>
+        
+        <h3>4.2 Word Cloud and Bar Plot of Youtube Comments</h3>
+        
+        <p>All the comments related to the graphic card topic are selected and they are grouped by the published date quarterly from 2019Q1 to 2021Q3. A wordcloud animation with <b>max_words=20</b> are generated matplotlib in Python as below.</p>
+        
+        <img style="width:95%" class="centerfig" src="picture/eda/comments_wordcloud.gif">
+        <figurecaption>Animation: WordCloud of Youtube Comments during 2019Q1-2021Q3 (interval=3s/quarter)</figurecaption>
+        
+        <p>A bar plot animation with monthly top 20 words are generated by gganimate in R as below.</p>
+        
+        <img style="width:95%" class="centerfig" src="picture/eda/barplot.gif">
+        <figurecaption>Animation: Top 20 words of Youtube Comments during 2019.1-2021.9 (interval=1s/month)</figurecaption>
+        
+        <p>The animations of word cloud and bar plot show a trend of keywords in the comments related to graphic cards. For example, the keywords related to cryptocurrencies and graphic card shortage like <b>miner</b>, <b>mining</b>, <b>stock</b>, <b>want</b> appears in top20 since the end of 2020, which does make sense because the crypto-boom was started at the same time.</p>
+        
+        <p>The frequencies of <b>AMD</b> were higher than <b>NVIDIA</b> in 2019 and 2020, but in 2021 the opposite is true.</p>
+        
+        </section>
+        
+    </div>
+    
+</div>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>$(function(){$(".headerpage-501").load("header.html");});</script>
+<script src="nav_scroll.js"></script>
+</body>
+</html>

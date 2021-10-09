@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Jingsong Gao - 501 Portfolio</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="shortcut icon" href="/icon.png" />
+    <link rel="bookmark" href="/icon.png" />
+</head>
+
+<body>
+<div class="headerpage-501"></div>
+<div class="main">
+    <div class="left-side">
+        <div class="left-navi">
+            <li class="nav"> <p>PC Component</p> </li>
+            <li class="nav"> <a href="#pc-amazon">Amazon Sales</a> </li>
+            <li class="nav"> <p>Cryptocurrency</p> </li>
+            <li class="nav"> <a href="#crypto-chia">Chia</a> </li>
+            <li class="nav"> <p>Raw Material</p> </li>
+            <li class="nav"> <a href="#material-price">Price</a> </li>
+            <li class="nav"> <p>Public View</p> </li>
+            <li class="nav"> <a href="#youtube">Youtube Comments</a> </li>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h1 style="text-align:center">Data Cleaning</h1>
+        
+        <h2>1. Cleaning PC Component Data (Python & SQL)</h2>
+        
+        <section id="pc-amazon">
+        <p>The python scripts can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/amazon" target="_blank">data_clean/amazon</a> folder on Github. And the cleaned data can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/amazon.db" target="_blank">data/amazon.db</a>.</p>
+        
+        
+        <h2>1.1 Raw Data Overview in Python</h2>
+        
+        <img style="width:90%" class="centerfig" src="picture/data_clean/product.png">
+        <figurecaption>Screenshot: JSON structure for the data of AMD Ryzen CPU Threadripper 1900X in Python debuger</figurecaption>
+        
+        <h2>1.2 Cleaned Dataset in SQLite</h2>
+        
+        <p>During cleaning, two wrong ASIN codes are corrected and one product with no historical data are removed. See commit <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/commit/1dfef30a9e7d8c23b8615b16dcbe5db48d05bb0a">1dfef3</a> on Github.</p>
+        
+        <p>All data of amazon products are stored in SQLite database with multiple tables. See EDA part for the defination of each SQL table and a table summary.</p>
+        
+        
+        </section>
+        
+        <h2>2. Cleaning Cryptocurrency Data</h2>
+        
+        <h2>2.1. Cleaning Chia Data (Python Record Data)</h2>
+        <section id="crypto-chia">
+        <p>The Python scripts can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/crypto/chia.py" target="_blank">data_clean/crypto/chia.py</a>. And cleaned data can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/chia.csv" target="_blank">data/chia.csv</a></p>
+        
+        <p>The raw historical data of chia coin including price, market capacity, and network space are read by Python. </p>
+        
+        <p>During the data cleaning, the timestamps(1616126400000) in time columns are converted to Date(YYYY-MM-DD) and the origin time columns are removed. All the 3 tables are merged into single table by Date with inner-join.</p>
+        
+        </section>
+        
+        
+        <h2>3. Cleaning Commodity Data (R Record Data)</h2>
+        
+        <section id="material-price">
+        <p>The R scripts can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/commodity/clean.r" target="_blank">data_clean/commodity/clean.r</a>. And cleaned data can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/commodity.csv" target="_blank">data/commodity.csv</a></p>
+        
+        <p>The raw historical price data of 5 commodities including aluminum, copper, gold, silver, and crude oil are read by R. Because the earliest PC hardware data is from June 2015, all the commodities data are only selected after 2015. </p>
+        
+        <p>During the data cleaning, the Date columns are converted to 'Date' type in R and only the close price are kept. NA value in price columns are handled by removing the row. All the 5 commodities are merged into single table by Date with inner-join.</p>
+        
+        </section>
+        
+        <h2>4. Cleaning Public View Data (Python & R Text Data)</h2>
+        <section id="youtube">
+        
+        <p>The Python scripts in this section can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/news" target="_blank">data_clean/news</a> folder on Github. </p>
+        
+        <h3>4.1 Video list under Youtube channel (CSV Data)</h3>
+        <p>Cleaned data can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/channel_videos.csv" target="_blank">data/channel_videos.csv</a> and <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/video_tags.csv" target="_blank">data/video_tags.csv</a>. </p>
+        
+        <p>The raw json data of 10 pages(50 videos per page) of videos under TechLinked channel are read by Python. And relavent information of the video such as <b>video_id</b>, <b>published_at</b>, <b>title</b>, <b>description</b>, and <b>tags</b>. Some promotion lines such as 'FOLLOW OTHER CHANNEL' or 'FOLLOW OUR ELSEWHERE' in description are removed. As a result, 796 videos are recorded in the csv file.</p>
+        
+        <p>Also the <b>tags</b> column is separated into a individual csv file so that we can see the file overview on Github(the csv with descriptions are too large to be previewed on Github).</p>
+        
+        <p></p>
+        
+        
+        <h3>4.2 Comments under 175 videos about graphic card (Corpus Data)</h3>
+        <p>Cleaned data can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/comments.csv" target="_blank">data/comments.csv</a> and <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/comments_labeled.csv" target="_blank">data/comments_labeled.csv</a>.</p>
+        
+        <p>The earlist video selected was published on June 12th 2018. To see the trend of public view to graphic shortage, the <b>published_week</b>(the first day of the week published) are calculated from the column <b>published_at</b>. Also, comments with less than 20 characters or 5 words are treated as irrelavent and removed. As a result, 115526 comments are recorded in the csv file.</p>
+        
+        <p>1000 comments are selected and manually labeled whether it's related to the graphic card topic. As a result, 113 comments are labled as 1(relevant) and other comments are labeled as 0(irrelevant). <b>CountVectorizer</b> are used to vectorize the comments, the result vocab contains 3347 words. The manually labeled data can be found at <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/news/content_sample_labeled.csv" target="_blank">data_clean/news/content_sample_labeled.csv</a>.</p>
+        
+        <p>Then a LinearSVC model is trained by the labeled comments and then used to predict the label of all other 110 thousands unlabeled comments. As a result, 10332 comments are labeled as 1(relavent to graphic card topic).</p>
+        
+        <p>A further cleaning and transformation to the text data is performed by R. But the main purpose of it is to visualize the trend of keywords in time series, so this part will be shown in Exploring Data chapter.</p>
+        
+        </section>
+        
+    </div>
+    
+</div>
+    
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>$(function(){$(".headerpage-501").load("header.html");});</script>
+<script src="nav_scroll.js"></script>
+</body>
+</html>
