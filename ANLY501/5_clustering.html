@@ -135,7 +135,7 @@
                 </tr>
                 <tr>
                     <td>label</td>
-                    <td>label, each row contains a product name as label</td>
+                    <td>label, each row contains product type + product name as label</td>
                 </tr>
             </table>
 
@@ -148,7 +148,7 @@
 
         </section>
 
-        <h3>1.2 Clustering on unequal-length Time Series (KMeans, metric: DTW)</h3>
+        <h3>1.2 Clustering on unequal-length Time Series (KMeans, metric: DTW, Soft-DTW)</h3>
 
         <section id="pc-uneq">
 
@@ -156,13 +156,258 @@
                 <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/BUY_BOX_ts_1y.txt">BUY_BOX_ts_1y.txt</a>
                 can vary from 360(1 year) to 719(2 year).</p>
 
+            <p>DTW(<a href="https://tslearn.readthedocs.io/en/stable/user_guide/dtw.html">Dynamic Time Warping</a>) is a better
+                metric to measure the similarity between time series compare to euclidean metric, especially for unequal-length time series(which euclidean metric is no longer available). The <b>tslearn</b> package provides
+                this metric in Python and a time series version of KMeans clustering algorithm. A TimeSeriesKMeans model using DTW metric with n_clusters=8 is trained by the time series in <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/NEW_ts_1y.txt">NEW_ts_1y.txt</a>. The table of clustering
+                results shows below. </p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Type of products in each cluster of TimeSeriesKMeans model using DTW metric</caption>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <tr>
+                    <th style="text-align:center"></th>
+                    <th style="text-align:center">CPU</th>
+                    <th style="text-align:center">GPU</th>
+                    <th style="text-align:center">Drive</th>
+                </tr>
+                <tr>
+                    <td>Cluster 1</td>
+                    <td>2</td>
+                    <td><b>16</b></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Cluster 2</td>
+                    <td>5</td>
+                    <td></td>
+                    <td><b>20</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 3</td>
+                    <td><b>10</b></td>
+                    <td>1</td>
+                    <td><b>28</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 4</td>
+                    <td>1</td>
+                    <td></td>
+                    <td><b>6</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 5</td>
+                    <td></td>
+                    <td><b>27</b></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Cluster 6</td>
+                    <td>4</td>
+                    <td><b>14</b></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Cluster 7</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td><b>12</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 8</td>
+                    <td>6</td>
+                    <td>4</td>
+                    <td><b>28</b></td>
+                </tr>
+            </table>
+
+            <p>The visualization of clusters shows below.</p>
+
+            <img style="width:95%" class="centerfig" src="picture/cluster/new_1y_dtw_8.png">
+            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using DTW metric</figurecaption>
+
+            <p>Some patterns can be found in the clustering table and visualization: </p>
+            <p>(1) Cluster 1,5,6 are both GPU-dominated clusters, they all show increasing trends in price which indicates an abnormal impact on their prices.</p>
+            <p>(2) Cluster 2,3,7,8 are both drive-dominated clusters, they all follow a normal decreasing trend in price which occurs in most goods.</p>
+            <p>(3) There's no CPU-dominated cluster, but most CPUs(25) follow the normal decreasing trend and only 6 CPUs follow the abnormal increasing trend.</p>
+
+            <p>The cluster centers of DTW metric are kind of sharp that have many sudden jumps. A variant of DTW names <a href="https://tslearn.readthedocs.io/en/stable/user_guide/dtw.html#soft-dtw">soft-DTW</a> gives much smoother cluster centers. A TimeSeriesKMeans model using soft-DTW metric with n_clusters=6 is trained by the same time series. The table of cluster result shows below.</p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Type of products in each cluster of TimeSeriesKMeans model using soft-DTW metric</caption>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <tr>
+                    <th style="text-align:center"></th>
+                    <th style="text-align:center">CPU</th>
+                    <th style="text-align:center">GPU</th>
+                    <th style="text-align:center">Drive</th>
+                </tr>
+                <tr>
+                    <td>Cluster 1</td>
+                    <td>1</td>
+                    <td><b>26</b></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Cluster 2</td>
+                    <td><b>15</b></td>
+                    <td>3</td>
+                    <td><b>40</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 3</td>
+                    <td>8</td>
+                    <td>4</td>
+                    <td><b>38</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 4</td>
+                    <td>1</td>
+                    <td><b>17</b></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Cluster 5</td>
+                    <td>5</td>
+                    <td></td>
+                    <td><b>16</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 6</td>
+                    <td>1</td>
+                    <td><b>14</b></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <p>The visualization of clusters shows below.</p>
+
+            <img style="width:95%" class="centerfig" src="picture/cluster/new_1y_softdtw_6.png">
+            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using soft-DTW metric</figurecaption>
+
+            <p>Similar patterns can be found in this model: </p>
+            <p>(1) Cluster 1,4,6 are both GPU-dominated clusters, they all show increasing trends in price which indicates an abnormal impact on their prices.</p>
+            <p>(2) Cluster 2,3,5 are both drive-dominated clusters, they all follow a normal decreasing trend in price which occurs in most goods.</p>
+            <p>(3) There's no CPU-dominated cluster, but most CPUs(28) follow the normal decreasing trend and only 3 CPUs follow the abnormal increasing trend.</p>
+            <p>(4) The cluster centers are much smoother that the trends are clearly shown from them.</p>
 
         </section>
 
 
-        <h3>1.3 Clustering on equal-length Time Series (KMeans, metric: Euclidean, DTW, Soft-DTW)</h3>
+        <h3>1.3 Clustering on equal-length Time Series (KMeans, metric: Euclidean, Cross-correlation)</h3>
 
         <section id="pc-eq">
+
+            <p>Some metrics like euclidean and cross correlation in tslearn need equal-length time series as input. First, a TimeSeriesKMeans model using euclidean metric with n_clusters=6 is trained by the time series in <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/NEW_eqts_1y.txt">NEW_eqts_1y.txt</a>. The table of cluster result shows below.</p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Type of products in each cluster of TimeSeriesKMeans model using euclidean metric</caption>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <tr>
+                    <th style="text-align:center"></th>
+                    <th style="text-align:center">CPU</th>
+                    <th style="text-align:center">GPU</th>
+                    <th style="text-align:center">Drive</th>
+                </tr>
+                <tr>
+                    <td>Cluster 1</td>
+                    <td>1</td>
+                    <td><b>14</b></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Cluster 2</td>
+                    <td><b>14</b></td>
+                    <td>2</td>
+                    <td><b>44</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 3</td>
+                    <td>8</td>
+                    <td>4</td>
+                    <td><b>38</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 4</td>
+                    <td>1</td>
+                    <td><b>26</b></td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Cluster 5</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td><b>19</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 6</td>
+                    <td>1</td>
+                    <td><b>18</b></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <p>The visualization of clusters shows below.</p>
+
+            <img style="width:95%" class="centerfig" src="picture/cluster/new_1y_euclidean_6.png">
+            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using euclidean metric</figurecaption>
+
+            <p>This model gives a very similar clustering result with the DTW model and soft-DTW model. But the smoothness of cluster centers are between two DTW models.</p>
+
+            <p>Then, a KShape model using cross-correlation metric with n_clusters=4 is trained by the same time series. The table of cluster result shows below.</p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Type of products in each cluster of KShape model using cross-correlation metric</caption>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <tr>
+                    <th style="text-align:center"></th>
+                    <th style="text-align:center">CPU</th>
+                    <th style="text-align:center">GPU</th>
+                    <th style="text-align:center">Drive</th>
+                </tr>
+                <tr>
+                    <td>Cluster 1</td>
+                    <td><b>17</b></td>
+                    <td></td>
+                    <td><b>16</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 2</td>
+                    <td></td>
+                    <td><b>17</b></td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Cluster 3</td>
+                    <td>14</td>
+                    <td>12</td>
+                    <td><b>76</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 4</td>
+                    <td></td>
+                    <td><b>35</b></td>
+                    <td>1</td>
+                </tr>
+            </table>
+
+            <p>The visualization of clusters shows below.</p>
+
+            <img style="width:95%" class="centerfig" src="picture/cluster/new_1y_kshape_4.png">
+            <figurecaption>Figure: visualization of clusters in KShape model using cross-correlation metric</figurecaption>
+
+            <p>The number of clusters of this model is only 4, 2 GPU-dominated clusters and 2 CPU-drive-mixed clusters.</p>
 
         </section>
 
