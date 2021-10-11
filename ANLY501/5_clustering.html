@@ -15,14 +15,19 @@
         <div class="left-navi">
             <ul>
                 <li class="nav"><p>PC Component</p></li>
-                <li class="nav"><a href="#pc-pre">Pre-classification</a></li>
+                <li class="nav"><a href="#pc-pre">Preparation</a></li>
                 <li class="nav"><a href="#pc-uneq">Unequal-Len Time Series</a></li>
                 <li class="nav"><a href="#pc-eq">Equal-Len Time Series</a></li>
+                <li class="nav"><a href="#pc-sum">Summary</a></li>
                 <li class="nav"><p>Crypto & Commodity</p></li>
-                <li class="nav"><a href="#crypto">Crypto Time Series</a></li>
-                <li class="nav"><a href="#commodity">Commodity Time Series</a></li>
-                <li class="nav"><p>Public View</p></li>
-                <li class="nav"><a href="#youtube">Youtube Comments</a></li>
+                <li class="nav"><a href="#cc-model">Clustering Models</a></li>
+                <li class="nav"><a href="#cc-pred">Prediction</a></li>
+                <li class="nav"><a href="#cc-sum">Summary</a></li>
+                <li class="nav"><p>YouTube Comments</p></li>
+                <li class="nav"><a href="#youtube-pre">Preparation</a></li>
+                <li class="nav"><a href="#youtube-km">KMeans Clustering</a></li>
+                <li class="nav"><a href="#youtube-other">DBScan & Hierarchical</a></li>
+                <li class="nav"><a href="#youtube-sum">Summary</a></li>
             </ul>
         </div>
     </div>
@@ -151,14 +156,22 @@
         <h3>1.2 Clustering on unequal-length Time Series (KMeans, metric: DTW, Soft-DTW)</h3>
 
         <section id="pc-uneq">
-
-            <p>The pre-classified datasets are not unequal-length time series. For example, the length of time series in
+            <p>The python script for this part is <a
+                    href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/cluster/amazon.ipynb">cluster/amazon.ipynb</a>.
+                The pre-classified datasets are unequal-length time series. For example, the length of time series
+                in
                 <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/BUY_BOX_ts_1y.txt">BUY_BOX_ts_1y.txt</a>
                 can vary from 360(1 year) to 719(2 year).</p>
 
-            <p>DTW(<a href="https://tslearn.readthedocs.io/en/stable/user_guide/dtw.html">Dynamic Time Warping</a>) is a better
-                metric to measure the similarity between time series compare to euclidean metric, especially for unequal-length time series(which euclidean metric is no longer available). The <b>tslearn</b> package provides
-                this metric in Python and a time series version of KMeans clustering algorithm. A TimeSeriesKMeans model using DTW metric with n_clusters=8 is trained by the time series in <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/NEW_ts_1y.txt">NEW_ts_1y.txt</a>. The table of clustering
+            <p>DTW(<a href="https://tslearn.readthedocs.io/en/stable/user_guide/dtw.html">Dynamic Time Warping</a>) is a
+                better
+                metric to measure the similarity between time series compare to euclidean metric, especially for
+                unequal-length time series(which euclidean metric is no longer available). The <b>tslearn</b> package
+                provides
+                this metric in Python and a time series version of KMeans clustering algorithm. A TimeSeriesKMeans model
+                using DTW metric with n_clusters=8 is trained by the time series in <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/NEW_ts_1y.txt">NEW_ts_1y.txt</a>.
+                The table of clustering
                 results shows below. </p>
 
             <table style="text-align:center;width:100%">
@@ -229,11 +242,17 @@
             <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using DTW metric</figurecaption>
 
             <p>Some patterns can be found in the clustering table and visualization: </p>
-            <p>(1) Cluster 1,5,6 are both GPU-dominated clusters, they all show increasing trends in price which indicates an abnormal impact on their prices.</p>
-            <p>(2) Cluster 2,3,7,8 are both drive-dominated clusters, they all follow a normal decreasing trend in price which occurs in most goods.</p>
-            <p>(3) There's no CPU-dominated cluster, but most CPUs(25) follow the normal decreasing trend and only 6 CPUs follow the abnormal increasing trend.</p>
+            <p>(1) Cluster 1,5,6 are both GPU-dominated clusters, they all show increasing trends in price which
+                indicates an abnormal impact on their prices.</p>
+            <p>(2) Cluster 2,3,7,8 are both drive-dominated clusters, they all follow a normal decreasing trend in price
+                which occurs in most goods.</p>
+            <p>(3) There's no CPU-dominated cluster, but most CPUs(25) follow the normal decreasing trend and only 6
+                CPUs follow the abnormal increasing trend.</p>
 
-            <p>The cluster centers of DTW metric are kind of sharp that have many sudden jumps. A variant of DTW names <a href="https://tslearn.readthedocs.io/en/stable/user_guide/dtw.html#soft-dtw">soft-DTW</a> gives much smoother cluster centers. A TimeSeriesKMeans model using soft-DTW metric with n_clusters=6 is trained by the same time series. The table of cluster result shows below.</p>
+            <p>The cluster centers of DTW metric are kind of sharp that have many sudden jumps. A variant of DTW names
+                <a href="https://tslearn.readthedocs.io/en/stable/user_guide/dtw.html#soft-dtw">soft-DTW</a> gives much
+                smoother cluster centers. A TimeSeriesKMeans model using soft-DTW metric with n_clusters=6 is trained by
+                the same time series. The table of cluster result shows below.</p>
 
             <table style="text-align:center;width:100%">
                 <caption>Type of products in each cluster of TimeSeriesKMeans model using soft-DTW metric</caption>
@@ -288,12 +307,16 @@
             <p>The visualization of clusters shows below.</p>
 
             <img style="width:95%" class="centerfig" src="picture/cluster/new_1y_softdtw_6.png">
-            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using soft-DTW metric</figurecaption>
+            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using soft-DTW metric
+            </figurecaption>
 
             <p>Similar patterns can be found in this model: </p>
-            <p>(1) Cluster 1,4,6 are both GPU-dominated clusters, they all show increasing trends in price which indicates an abnormal impact on their prices.</p>
-            <p>(2) Cluster 2,3,5 are both drive-dominated clusters, they all follow a normal decreasing trend in price which occurs in most goods.</p>
-            <p>(3) There's no CPU-dominated cluster, but most CPUs(28) follow the normal decreasing trend and only 3 CPUs follow the abnormal increasing trend.</p>
+            <p>(1) Cluster 1,4,6 are both GPU-dominated clusters, they all show increasing trends in price which
+                indicates an abnormal impact on their prices.</p>
+            <p>(2) Cluster 2,3,5 are both drive-dominated clusters, they all follow a normal decreasing trend in price
+                which occurs in most goods.</p>
+            <p>(3) There's no CPU-dominated cluster, but most CPUs(28) follow the normal decreasing trend and only 3
+                CPUs follow the abnormal increasing trend.</p>
             <p>(4) The cluster centers are much smoother that the trends are clearly shown from them.</p>
 
         </section>
@@ -303,7 +326,15 @@
 
         <section id="pc-eq">
 
-            <p>Some metrics like euclidean and cross correlation in tslearn need equal-length time series as input. First, a TimeSeriesKMeans model using euclidean metric with n_clusters=6 is trained by the time series in <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/NEW_eqts_1y.txt">NEW_eqts_1y.txt</a>. The table of cluster result shows below.</p>
+            <p>The python script for this part is <a
+                    href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/cluster/amazon.ipynb">cluster/amazon.ipynb</a>.
+            </p>
+
+            <p>Some metrics like euclidean and cross correlation in tslearn need equal-length time series as input.
+                First, a TimeSeriesKMeans model using euclidean metric with n_clusters=6 is trained by the time series
+                in
+                <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/NEW_eqts_1y.txt">NEW_eqts_1y.txt</a>.
+                The table of cluster result shows below.</p>
 
             <table style="text-align:center;width:100%">
                 <caption>Type of products in each cluster of TimeSeriesKMeans model using euclidean metric</caption>
@@ -358,11 +389,14 @@
             <p>The visualization of clusters shows below.</p>
 
             <img style="width:95%" class="centerfig" src="picture/cluster/new_1y_euclidean_6.png">
-            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using euclidean metric</figurecaption>
+            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using euclidean metric
+            </figurecaption>
 
-            <p>This model gives a very similar clustering result with the DTW model and soft-DTW model. But the smoothness of cluster centers are between two DTW models.</p>
+            <p>This model gives a very similar clustering result with the DTW model and soft-DTW model. But the
+                smoothness of cluster centers are between two DTW models.</p>
 
-            <p>Then, a KShape model using cross-correlation metric with n_clusters=4 is trained by the same time series. The table of cluster result shows below.</p>
+            <p>Then, a KShape model using cross-correlation metric with n_clusters=4 is trained by the same time series.
+                The table of cluster result shows below.</p>
 
             <table style="text-align:center;width:100%">
                 <caption>Type of products in each cluster of KShape model using cross-correlation metric</caption>
@@ -405,39 +439,273 @@
             <p>The visualization of clusters shows below.</p>
 
             <img style="width:95%" class="centerfig" src="picture/cluster/new_1y_kshape_4.png">
-            <figurecaption>Figure: visualization of clusters in KShape model using cross-correlation metric</figurecaption>
+            <figurecaption>Figure: visualization of clusters in KShape model using cross-correlation metric
+            </figurecaption>
 
-            <p>The number of clusters of this model is only 4, 2 GPU-dominated clusters and 2 CPU-drive-mixed clusters.</p>
+            <p>The number of clusters of this model is only 4, 2 GPU-dominated clusters and 2 CPU-drive-mixed
+                clusters.</p>
 
         </section>
 
+        <h3>1.4 Summary of Time Series Clustering by Python</h3>
+
+        <section id="pc-sum">
+
+            <p>In this part, KMeans clustering is applied to the one-year Amazon historical price data with four
+                different distance metrics including DTW, soft-DTW, euclidean, and cross-correlation. All models give
+                similar clustering results: graphic cards are in clusters which follow an abnormal increasing trend of
+                prices, CPUs and drives are in clusters which follow a normal decreasing trend of prices. This result
+                suggests that graphic cards have taken the biggest impact from the pandemic and cryptocurrency boom.</p>
+
+            <p>The DTW and soft-DTW metrics show a great performance on clustering the unequal-length time series. And
+                the soft-DTW and euclidean metrics give the most clear clustering centers. However, the implementations
+                in tslearn package are slow, especially the soft-DTW metric. Therefore, the k values in these models are
+                chosen arbitrarily without any validation like elbow rule or silhouette coefficient.</p>
+
+        </section>
 
         <h2>2. Crypto & Commodity (R Record Data)</h2>
 
-        <h3>2.1 Crypto Time Series</h3>
+        <p>The R script for this part is <a
+                href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/cluster/crypto.rmd">cluster/crypto.rmd</a>.
+        </p>
 
-        <section id="crypto">
+        <section id="cc-model">
+            <h3>2.1 Preparation of Crypto & Commodity Time Series</h3>
+
+            <p>Time series of 8 cryptocurrencies(BTC,ETH,DOGE,LTC,BCH,ETC,XMR,DASH) and 5
+                commodities(Aluminum,Copper,Gold,Silver,Crude Oil) are cleaned from the raw data from Yahoo Finance and
+                Coin Metrics. To be consistent with the following clustering model, all time series are truncated to
+                recent 2 years(720 days) and their prices are re-scaled to (0,1) interval. </p>
+
+            <h3>2.2 Clustering Model based on Amazon Prices</h3>
+
+            <p>Since there are only 13 records of crypto & commodities, it's better to cluster them based on an existed
+                clustering model. In this part, an R package <b>dtwclust</b> is used to build partition and hierarchical
+                models. All models are trained by the time series in <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/NEW_eqts_2y.txt">NEW_eqts_2y.txt</a>.
+            </p>
+
+            <p>First, KMeans models with k = 4:10 are trained and evaluated by multiple validation parameters. The
+                result is shown below.</p>
+
+
+            <table style="text-align:center;width:100%">
+                <caption>Validation parameters of KMeans models with k = 4:10</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align:center">k_4</th>
+                    <th style="text-align:center">k_5</th>
+                    <th style="text-align:center">k_6</th>
+                    <th style="text-align:center">k_7</th>
+                    <th style="text-align:center">k_8</th>
+                    <th style="text-align:center">k_9</th>
+                    <th style="text-align:center">k_10</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Sil</td>
+                    <td>0.278</td>
+                    <td><b>0.311</b></td>
+                    <td>0.232</td>
+                    <td>0.189</td>
+                    <td>0.194</td>
+                    <td>0.154</td>
+                    <td>0.130</td>
+                </tr>
+                <tr>
+                    <td>CH</td>
+                    <td><b>110.334</b></td>
+                    <td>102.347</td>
+                    <td>88.674</td>
+                    <td>81.615</td>
+                    <td>67.634</td>
+                    <td>61.940</td>
+                    <td>53.926</td>
+                </tr>
+                <tr>
+                    <td>DB</td>
+                    <td>1.419</td>
+                    <td><b>2.161</b></td>
+                    <td>1.568</td>
+                    <td>1.594</td>
+                    <td>1.548</td>
+                    <td>1.737</td>
+                    <td>1.712</td>
+                </tr>
+                <tr>
+                    <td>DB*</td>
+                    <td>1.749</td>
+                    <td><b>2.289</b></td>
+                    <td>1.736</td>
+                    <td>1.830</td>
+                    <td>1.893</td>
+                    <td>1.849</td>
+                    <td>2.133</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>0.057</td>
+                    <td><b>0.051</b></td>
+                    <td>0.083</td>
+                    <td>0.080</td>
+                    <td>0.098</td>
+                    <td>0.075</td>
+                    <td>0.084</td>
+                </tr>
+                <tr>
+                    <td>COP</td>
+                    <td><b>0.179</b></td>
+                    <td>0.159</td>
+                    <td>0.138</td>
+                    <td>0.133</td>
+                    <td>0.126</td>
+                    <td>0.120</td>
+                    <td>0.124</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>Most parameters including the silhouette coefficient suggests that the best choice of <b>k</b> is 5. The
+                clustering result of <b>k=5</b> is
+                shown below. The clustering result is similar to the KMeans in Python.</p>
+
+            <img style="width:95%" class="centerfig" src="picture/cluster/r_2y_kmeans5.png">
+            <figurecaption>Figure: visualization of clusters in KMeans model with k=5</figurecaption>
+
+            <p>Then, a hierarchical clustering model is trained using DTW metrics. The dendrogram is shown below. Also,
+                a <b>HUGE</b> picture of all time series can be found at <a href="picture/cluster/amazon_ts.png">picture/cluster/amazon_ts.png</a>.
+            </p>
+
+            <img style="width:95%" class="centerfig" src="picture/cluster/amazon_dend.png">
+            <figurecaption>Figure: dendrogram of hierarchical model with k=5 (color bar: red-gpu, gold-cpu,
+                blue-drive)</figurecaption>
 
         </section>
 
-        <h3>2.2 Commodity Time Series</h3>
+        <section id="cc-pred">
 
-        <section id="commodity">
+            <h3>2.3 Cluster Prediction of Crypto Time Series</h3>
+
+            <p>KMeans model with k=5 trained in Part 2.2 is used to predict all 8 crypto time series. The prediction is shown below. All cryptos are assigned to cluster 1 which is the graphic card cluster. This result indicates a strong similarity between graphic cards' prices and cryptocurrencies' prices and an auto-similarity among cryptocurrencies' prices themselves.</p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Predicted clusters of cryptocurrencies using KMeans model with k=5</caption>
+                <col width=12.5%>
+                <col width=12.5%>
+                <col width=12.5%>
+                <col width=12.5%>
+                <col width=12.5%>
+                <col width=12.5%>
+                <col width=12.5%>
+                <col width=12.5%>
+                <thead>
+                <tr>
+                    <th style="text-align:center">BTC</th>
+                    <th style="text-align:center">ETH</th>
+                    <th style="text-align:center">DOGE</th>
+                    <th style="text-align:center">LTC</th>
+                    <th style="text-align:center">BCH</th>
+                    <th style="text-align:center">ETC</th>
+                    <th style="text-align:center">XMR</th>
+                    <th style="text-align:center">DASH</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>A visualization of these time series is shown below.</p>
+
+            <img style="width:60%" class="centerfig" src="picture/cluster/crypto.png">
+            <figurecaption>Figure: visualization of 8 cryptocurrencies time series(color as their clusters)</figurecaption>
+
+            <h3>2.4 Cluster Prediction of Commodity Time Series</h3>
+
+            <p>KMeans model with k=5 trained in Part 2.2 is used to predict all 5 commodities time series. The prediction is shown below. </p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Predicted clusters of commodities using KMeans model with k=5</caption>
+                <col width=20%>
+                <col width=20%>
+                <col width=20%>
+                <col width=20%>
+                <col width=20%>
+                <thead>
+                <tr>
+                    <th style="text-align:center">Aluminum</th>
+                    <th style="text-align:center">Copper</th>
+                    <th style="text-align:center">Gold</th>
+                    <th style="text-align:center">Silver</th>
+                    <th style="text-align:center">Crude Oil</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>5</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>A visualization of these time series is shown below.</p>
+
+            <img style="width:60%" class="centerfig" src="picture/cluster/commodity.png">
+            <figurecaption>Figure: visualization of 5 commodities time series(color as their clusters)</figurecaption>
 
         </section>
 
+        <h3>2.5 Summary of Time Series Clustering by R</h3>
 
-        <h2>3. Public View (Python Text Data)</h2>
+        <section id="cc-sum">
+
+            <p>In this part, KMeans clustering and hierarchical clustering models are applied to the 2-year Amazon historical price data using DTW metrics. The best k=5 of KMeans model is selected by multiple validation parameters including silhouette coefficient. The clustering result also suggests that graphic cards have taken the biggest impact from the pandemic and cryptocurrency boom.</p>
+
+            <p>Cryptocurrencies and commodities are used as new data to the KMeans model. The predicted clusters indicate that there are strong correlation between the price of graphic cards and the price of cryptocurrencies.</p>
+
+        </section>
+
+        <h2>3. YouTube Comments (Python Text Data)</h2>
+
+        <h3>3.1 Preparation of YouTube Comments</h3>
+
+        <section id="youtube-pre">
 
 
-        <section id="youtube">
-            <h3>3.1 KMeans Clustering on YouTube comments (metric: Euclidean, Cosine)</h3>
+        </section>
+
+        <h3>3.2 KMeans Clustering on YouTube comments (metric: Euclidean, Cosine)</h3>
+
+        <section id="youtube-km">
 
 
-            <h3>3.2 DBScan Clustering on YouTube comments (metric: Cosine)</h3>
+        </section>
+
+        <h3>3.3 DBScan & Hierarchical Clustering on YouTube comments (metric: Cosine)</h3>
+
+        <section id="youtube-other">
 
 
-            <h3>3.3 Hierarchical Clustering on YouTube comments (metric: Cosine)</h3>
+        </section>
+
+        <h3>3.4 Summary of Text Data Clustering</h3>
+
+        <section id="youtube-sum">
 
 
         </section>
