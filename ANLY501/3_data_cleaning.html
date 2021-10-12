@@ -132,23 +132,50 @@
 
             <p>The earliest video selected was published on June 12th 2018. To see the trend of public view to graphic
                 shortage, the <b>published_week</b>(the first day of the week published) are calculated from the column
-                <b>published_at</b>. Also, comments with less than 20 characters or 5 words are treated as irrelevant
-                and removed. As a result, 115526 comments are recorded in the csv file.</p>
+                <b>published_at</b>.</p>
 
-            <p>1000 comments are selected and manually labeled whether it's related to the graphic card topic. As a
-                result, 113 comments are labelled as 1(relevant) and other comments are labeled as 0(irrelevant). <b>CountVectorizer</b>
-                are used to vectorize the comments, the result vocab contains 3347 words. The manually labeled data can
-                be found at <a
-                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data_clean/news/content_sample_labeled.csv"
-                        target="_blank">data_clean/news/content_sample_labeled.csv</a>.</p>
+            <p>Comments from YouTube are not cleaned enough even after sklearn stopwords remove process, since there are words in singular&plural or different tenses and also many typos. Therefore, a stronger cleaning procedure is introduced by <b>NLTK</b> package with punctuation removal, stemming and more complete stopwords removal. As a result, over 143,000 comments are recorded in the csv file.</p>
 
-            <p>Then a LinearSVC model is trained by the labeled comments and then used to predict the label of all other
-                110 thousands unlabeled comments. As a result, 10332 comments are labeled as 1(relevant to graphic card
-                topic).</p>
+            <p>Comments are automatically labeled whether it's related to some topics. The labels and their count in dataset are shown below.</p>
 
-            <p>A further cleaning and transformation to the text data is performed by R. But the main purpose of it is
-                to visualize the trend of keywords in time series, so this part will be shown in Exploring Data
-                chapter.</p>
+            <table width="100%">
+                <caption>Label in pre-classified data, their meaning, and counts</caption>
+                <tr>
+                    <th>Label</th>
+                    <th>Count</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>113746</td>
+                    <td>not labelled as any class</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>10766</td>
+                    <td>relate to graphic card topic, such as amd, nvidia, rtx, etc.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>5529</td>
+                    <td>relate to cpu topic, such as intel, amd, core, ryzen, etc.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3803</td>
+                    <td>relate to cell phone topic, such as iphone, samsung, xiaomi, etc.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>3709</td>
+                    <td>relate to tech company topic, such as google, facebook, microsoft, etc.</td>
+                </tr>
+                <tr>
+                    <td>-1</td>
+                    <td>4933</td>
+                    <td>relate to more than one of the above topics</td>
+                </tr>
+            </table>
 
         </section>
 
