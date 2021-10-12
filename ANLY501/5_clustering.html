@@ -575,7 +575,51 @@
             <img style="width:95%" class="centerfig" src="picture/cluster/r_2y_kmeans5.png">
             <figurecaption>Figure: visualization of clusters in KMeans model with k=5</figurecaption>
 
-            <p>With k=5, cluster 1 and 2 are GPU-dominated that follow the abnormal increasing trend in prices, and clutser 3,4,5 are CPU-Drive mixed cluster that follow the normal decreasing trend in prices.</p>
+            <p>With k=5, cluster 1 is GPU-dominated that follow the abnormal increasing trend in prices. Cluster 2,3 are CPU-Drive mixed cluster, and cluster 4,5 are drive-dominated cluster that follow the normal decreasing trend in prices.</p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Type of products in each cluster of KMeans(5) model in R</caption>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <col width=25%>
+                <tr>
+                    <th style="text-align:center"></th>
+                    <th style="text-align:center">CPU</th>
+                    <th style="text-align:center">GPU</th>
+                    <th style="text-align:center">Drive</th>
+                </tr>
+                <tr>
+                    <td>Cluster 1</td>
+                    <td>7</td>
+                    <td><b>52</b></td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>Cluster 2</td>
+                    <td><b>16</b></td>
+                    <td>4</td>
+                    <td><b>26</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 3</td>
+                    <td><b>11</b></td>
+                    <td></td>
+                    <td><b>19</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 4</td>
+                    <td>4</td>
+                    <td></td>
+                    <td><b>19</b></td>
+                </tr>
+                <tr>
+                    <td>Cluster 5</td>
+                    <td>5</td>
+                    <td>3</td>
+                    <td><b>35</b></td>
+                </tr>
+            </table>
 
             <p>Then, a hierarchical clustering model is trained using DTW metrics. The dendrogram is shown below. Also,
                 a <b>HUGE</b> picture of all time series can be found at <a href="picture/cluster/amazon_ts.png">picture/cluster/amazon_ts.png</a>.
@@ -587,6 +631,16 @@
             </figurecaption>
 
             <p>The color bar in the dendrogram is the product type, where CPUs are golden, GPUs are red, and drives are blue). With k=5, three clusters on the left (pink, yellow, and green) are mainly drives and CPUs which follows the normal decreasing trend. Two clusters on the right (blue and purple) are mainly GPUs which follows the abnormal increasing trend. These clusters are consistent with the color bar. So, a good choice of k is 5.</p>
+
+            <p>To display the similarity between these products, three heatmaps are created using euclidean distance, DTW distance, and cosine similarity.</p>
+
+            <img style="width:32%" src="picture/cluster/r_dist_eu.png">
+            <img style="width:32%" src="picture/cluster/r_dist_dtw.png">
+            <img style="width:32%" src="picture/cluster/r_dist_cos.png">
+            <figurecaption>Figure: heatmaps of amazon products using euclidean distance, DTW distance, and cosine similarity
+            </figurecaption>
+
+            <p>The heatmaps show that CPU and drives have similar price time series, and GPUs have quite different price trend compare to CPUs and drives.</p>
 
         </section>
 
