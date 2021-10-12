@@ -581,7 +581,8 @@
 
             <img style="width:95%" class="centerfig" src="picture/cluster/amazon_dend.png">
             <figurecaption>Figure: dendrogram of hierarchical model with k=5 (color bar: red-gpu, gold-cpu,
-                blue-drive)</figurecaption>
+                blue-drive)
+            </figurecaption>
 
         </section>
 
@@ -589,7 +590,10 @@
 
             <h3>2.3 Cluster Prediction of Crypto Time Series</h3>
 
-            <p>KMeans model with k=5 trained in Part 2.2 is used to predict all 8 crypto time series. The prediction is shown below. All cryptos are assigned to cluster 1 which is the graphic card cluster. This result indicates a strong similarity between graphic cards' prices and cryptocurrencies' prices and an auto-similarity among cryptocurrencies' prices themselves.</p>
+            <p>KMeans model with k=5 trained in Part 2.2 is used to predict all 8 crypto time series. The prediction is
+                shown below. All cryptos are assigned to cluster 1 which is the graphic card cluster. This result
+                indicates a strong similarity between graphic cards' prices and cryptocurrencies' prices and an
+                auto-similarity among cryptocurrencies' prices themselves.</p>
 
             <table style="text-align:center;width:100%">
                 <caption>Predicted clusters of cryptocurrencies using KMeans model with k=5</caption>
@@ -630,11 +634,13 @@
             <p>A visualization of these time series is shown below.</p>
 
             <img style="width:60%" class="centerfig" src="picture/cluster/crypto.png">
-            <figurecaption>Figure: visualization of 8 cryptocurrencies time series(color as their clusters)</figurecaption>
+            <figurecaption>Figure: visualization of 8 cryptocurrencies time series(color as their clusters)
+            </figurecaption>
 
             <h3>2.4 Cluster Prediction of Commodity Time Series</h3>
 
-            <p>KMeans model with k=5 trained in Part 2.2 is used to predict all 5 commodities time series. The prediction is shown below. </p>
+            <p>KMeans model with k=5 trained in Part 2.2 is used to predict all 5 commodities time series. The
+                prediction is shown below. </p>
 
             <table style="text-align:center;width:100%">
                 <caption>Predicted clusters of commodities using KMeans model with k=5</caption>
@@ -674,25 +680,209 @@
 
         <section id="cc-sum">
 
-            <p>In this part, KMeans clustering and hierarchical clustering models are applied to the 2-year Amazon historical price data using DTW metrics. The best k=5 of KMeans model is selected by multiple validation parameters including silhouette coefficient. The clustering result also suggests that graphic cards have taken the biggest impact from the pandemic and cryptocurrency boom.</p>
+            <p>In this part, KMeans clustering and hierarchical clustering models are applied to the 2-year Amazon
+                historical price data using DTW metrics. The best k=5 of KMeans model is selected by multiple validation
+                parameters including silhouette coefficient. The clustering result also suggests that graphic cards have
+                taken the biggest impact from the pandemic and cryptocurrency boom.</p>
 
-            <p>Cryptocurrencies and commodities are used as new data to the KMeans model. The predicted clusters indicate that there are strong correlation between the price of graphic cards and the price of cryptocurrencies.</p>
+            <p>Cryptocurrencies and commodities are used as new data to the KMeans model. The predicted clusters
+                indicate that there are strong correlation between the price of graphic cards and the price of
+                cryptocurrencies.</p>
 
         </section>
 
         <h2>3. YouTube Comments (Python Text Data)</h2>
 
+        <p>The Python script for this part is <a
+                href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/cluster/youtube.ipynb">cluster/youtube.ipynb</a>.
+        </p>
+
         <h3>3.1 Preparation of YouTube Comments</h3>
 
         <section id="youtube-pre">
 
+            <p>First, all comments labeled as 0(which means not assigned to any topic) or -1(which means assigned to
+                multiple topics) are removed in this part. Also, since comments with very little words are likely to be
+                meaningless and comments with too many words are likely to talk about multiple topics. The word counts
+                in comments are limited in the range from <b>5 to 40</b>. As a result, only <b>18,400 records</b> are
+                selected from the <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/comments_labeled.csv">ata/comments_labeled.csv</a>
+                with over 140,000 comments.</p>
+
+            <p>After cleaning, <b>CountVectorizer</b> and <b>TfidfVectorizer</b> with <b>max_feature=500</b> are applied
+                to the selected comments to create the document-term matrix. Since the dataset is large enough, each DTM
+                contains a full 500 features as expected. A PCA decomposition model with n_components=2 is applied to
+                the comments to create 2D data for plotting.</p>
 
         </section>
 
-        <h3>3.2 KMeans Clustering on YouTube comments (metric: Euclidean, Cosine)</h3>
+        <h3>3.2 KMeans Clustering on YouTube comments (metric: Euclidean)</h3>
 
         <section id="youtube-km">
 
+            <p>KMeans models with k=2:7 are trained by the DTM from CountVectorizer and TfidfVectorizer. The clustering
+                results of k=2,4,6 are shown below.</p>
+
+            <img style="width:47%" src="picture/cluster/kmeans_cv_2.png">
+            <img style="width:48%" src="picture/cluster/kmeans_tfv_2.png">
+            <img style="width:47%" src="picture/cluster/kmeans_cv_4.png">
+            <img style="width:48%" src="picture/cluster/kmeans_tfv_4.png">
+            <img style="width:47%" src="picture/cluster/kmeans_cv_6.png">
+            <img style="width:48%" src="picture/cluster/kmeans_tfv_6.png">
+
+            <figurecaption>Figure: visualization of clusters in KMeans model with k=2,4,6 using CountVectorizer and
+                TfidfVectorizer
+            </figurecaption>
+
+            <p>Also, confusion matrix are calculated using the topic labels. The confusion matrix of KMeans model with
+                k=2,4,6 using CountVectorizer are shown below.</p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Confusion matrix of KMeans model with k=2</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align:center">Topic 1</th>
+                    <th style="text-align:center">Topic 2</th>
+                    <th style="text-align:center">Topic 3</th>
+                    <th style="text-align:center">Topic 4</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Cluster 0</td>
+                    <td>751</td>
+                    <td>1859</td>
+                    <td>22</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>Cluster 1</td>
+                    <td>5702</td>
+                    <td>3849</td>
+                    <td>3152</td>
+                    <td>3139</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table style="text-align:center;width:100%">
+                <caption>Confusion matrix of KMeans model with k=4</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align:center">Topic 1</th>
+                    <th style="text-align:center">Topic 2</th>
+                    <th style="text-align:center">Topic 3</th>
+                    <th style="text-align:center">Topic 4</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Cluster 0</td>
+                    <td>2751</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Cluster 1</td>
+                    <td>1727</td>
+                    <td>2959</td>
+                    <td>3170</td>
+                    <td>3150</td>
+                </tr>
+                <tr>
+                    <td>Cluster 2</td>
+                    <td>11</td>
+                    <td>2747</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Cluster 3</td>
+                    <td>1964</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table style="text-align:center;width:100%">
+                <caption>Confusion matrix of KMeans model with k=6</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align:center">Topic 1</th>
+                    <th style="text-align:center">Topic 2</th>
+                    <th style="text-align:center">Topic 3</th>
+                    <th style="text-align:center">Topic 4</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Cluster 0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1777</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Cluster 1</td>
+                    <td>9</td>
+                    <td>2736</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Cluster 2</td>
+                    <td>1978</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Cluster 3</td>
+                    <td>2266</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Cluster 4</td>
+                    <td>2200</td>
+                    <td>2972</td>
+                    <td>1396</td>
+                    <td>1914</td>
+                </tr>
+                <tr>
+                    <td>Cluster 5</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1238</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>From the confusion matrix, it's obvious that KMeans with k=2 doesn't separate the topic well. When k=4, there are two clusters that mainly contain Topic 1(GPU) comments and a cluster that mainly contains Topic 2(CPU) comments. When k increases to 6, more mono-topic clusters appear, for example, cluster 0 is a Topic 3(Phone) cluster and cluster 5 is a Topic 4(Tech Company) cluster. </p>
+
+            <p>More than one Topic 1(GPU) cluster appear in these models indicates that this topic can be separated to some sub-topics. Wordclouds of two Topic 1 clusters in KMeans(6) is shown below.</p>
+
+            <img style="width:47%" src="picture/cluster/kmeans_wc_3.png">
+            <img style="width:48%" src="picture/cluster/kmeans_wc_5.png">
+            <figurecaption>Figure: wordclouds of Topic 1 clusters in KMeans model with k=6 using CountVectorizer
+            </figurecaption>
+
+            <p>To determine the best k of KMeans model, a silhouette analysis is performed. The KMeans(6) model gives the largest silhouette coefficient 0.12. The results are shown below.</p>
+
+            <img style="width:90%" class="centerfig" src="picture/cluster/sil_cv_3.png">
+            <img style="width:90%" class="centerfig" src="picture/cluster/sil_cv_4.png">
+            <img style="width:90%" class="centerfig" src="picture/cluster/sil_cv_5.png">
+            <img style="width:90%" class="centerfig" src="picture/cluster/sil_cv_6.png">
+            <figurecaption>Figure: silhouette analysis of KMeans model with k=3~6 using CountVectorizer
+            </figurecaption>
 
         </section>
 
@@ -700,6 +890,59 @@
 
         <section id="youtube-other">
 
+            <p>A DBScan model is trained by the DTM from CountVectorizer. However, after multiple attempts on <b>eps</b>, <b>min_sample</b>, the model fails to give a reasonable clustering result. The result from a DBScan model with eps=0.13 and min_sample=20 is shown below.</p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Confusion matrix of DBScan model with eps=0.13 and min_sample=20</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align:center">Topic 1</th>
+                    <th style="text-align:center">Topic 2</th>
+                    <th style="text-align:center">Topic 3</th>
+                    <th style="text-align:center">Topic 4</th>
+                </tr></thead><tbody>
+ <tr><td>Cluster 0</td><td>6299</td><td>4448</td><td>3163</td><td>3152</td></tr>
+ <tr><td>Cluster 1</td><td>6</td><td>921</td><td>1</td><td>1</td></tr>
+ <tr><td>Cluster 2</td><td>0</td><td>41</td><td>0</td><td>0</td></tr>
+ <tr><td>Cluster 3</td><td>0</td><td>94</td><td>0</td><td>0</td></tr>
+ <tr><td>Cluster 4</td><td>0</td><td>87</td><td>0</td><td>0</td></tr>
+ <tr><td>Cluster 5</td><td>20</td><td>0</td><td>0</td><td>0</td></tr>
+ <tr><td>Outlier</td><td>128</td><td>117</td><td>10</td><td>1</td></tr>
+</tbody></table>
+
+            <p>The model only gives several small clusters and one huge cluster with mixed topics. It perhaps because the distance between text data is not well-defined. CountVectorizer does not normalize the text vector, distance between comments is also affected by the length of comments.</p>
+
+            <p>A hierarchical model is trained by the DTM from TfidfVectorizer. The dendrogram is shown below.</p>
+
+            <img style="width:70%" class="centerfig" src="picture/cluster/hier_cv.png">
+
+            <figurecaption>Figure: dendrogram of hierarchical model using TfidfVectorizer
+            </figurecaption>
+
+            <p>The confusion matrix is calculated based on the hierarchical model with 8 clusters.</p>
+
+            <table style="text-align:center;width:100%">
+                <caption>Confusion matrix of hierarchical model with 8 clusters</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align:center">Topic 1</th>
+                    <th style="text-align:center">Topic 2</th>
+                    <th style="text-align:center">Topic 3</th>
+                    <th style="text-align:center">Topic 4</th>
+                </tr></thead><tbody>
+ <tr><td>Cluster 1</td><td>0</td><td>88</td><td>0</td><td>0</td></tr>
+ <tr><td>Cluster 2</td><td>0</td><td>570</td><td>0</td><td>0</td></tr>
+ <tr><td>Cluster 3</td><td>55</td><td>0</td><td>0</td><td>0</td></tr>
+ <tr><td>Cluster 4</td><td>1475</td><td>1</td><td>0</td><td>0</td></tr>
+ <tr><td>Cluster 5</td><td>0</td><td>0</td><td>470</td><td>25</td></tr>
+ <tr><td>Cluster 6</td><td>56</td><td>2554</td><td>6</td><td>11</td></tr>
+ <tr><td>Cluster 7</td><td>4497</td><td>65</td><td>18</td><td>34</td></tr>
+ <tr><td>Cluster 8</td><td>370</td><td>2430</td><td>2680</td><td>3084</td></tr>
+</tbody></table>
+
+            <p>The hierarchical model has a better clustering result comparing to the DBScan model. Cluster 2,4,5,6,7 are both mono-topic clusters with hundreds and thousands comments. Cluster 1,3 are mono-topic clusters but only have small amount of comments. Cluster 8 is a mixed-topic cluster.</p>
 
         </section>
 
@@ -707,6 +950,9 @@
 
         <section id="youtube-sum">
 
+            <p>In this part, three different clustering method is applied to the YouTube comments dataset with 4 topics. KMeans models with k=4~6 are able to give some mono-topic clusters. Also, the results suggest that more than one sub-topic can be separated from the graphic card topic. The best choice of k is 6, which is chosen by the silhouette analysis. The DBScan model fails to give a reasonable clustering result due to the high dimensionality of text data and the information loss during decomposition. The hierarchical model is able to give some mono-topic clusters like the KMeans model. </p>
+
+            <p>Most models give a huge mixed-topic cluster. This remaining mixed-topic cluster indicates some implicit similarities between comments that are failed to cover by the pre-label (remember the comments are collected from the same YouTube channel, maybe many comments contain the channel name or the host name).</p>
 
         </section>
 
