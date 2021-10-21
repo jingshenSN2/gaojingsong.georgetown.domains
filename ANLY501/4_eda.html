@@ -36,9 +36,11 @@
 
             <p>All data of amazon products are stored in SQLite database with multiple tables.</p>
 
-            <img style="width:90%" class="centerfig" src="picture/eda/structure.jpg">
-            <figurecaption>Screenshot: table structure of the Amazon database(from DB Browser for SQLite)
-            </figurecaption>
+            <figure style="width:90%">
+                <img class="centerfig" src="picture/eda/structure.jpg">
+                <figurecaption>Screenshot: table structure of the Amazon database(from DB Browser for SQLite)
+                </figurecaption>
+            </figure>
 
             <p><b>cpu</b>, <b>gpu</b>, <b>drive</b> tables store the product information with <b>ASIN</b> as a primary
                 key. <b>cpu_ts</b>, <b>gpu_ts</b>, <b>drive_ts</b> tables store the product historical data with (<b>ASIN</b>,
@@ -97,9 +99,10 @@
 
             <p>The cleaned historical data of 8 cryptocurrencies is visualized by Python. </p>
 
-            <img style="width:80%" class="centerfig" src="picture/eda/crypto.png">
-
-            <figurecaption>Figure: Historical Price, Market Capacity, Net Space of Chia Network in 2021</figurecaption>
+            <figure style="width:80%">
+                <img class="centerfig" src="picture/eda/crypto.png">
+                <figurecaption>Figure: Historical Price, Market Capacity, Net Space of Chia Network in 2021</figurecaption>
+            </figure>
 
             <p>From the plot, all the cryptocurrencies follow a very similar trend, and they all encountered price
                 skyrocketing since the beginning of pandemic, 2020Q1. </p>
@@ -111,11 +114,12 @@
 
             <p>The cleaned historical data of chia coin is visualized by ggplot in R. </p>
 
-            <img style="width:32%" src="picture/eda/chia_price.png">
-            <img style="width:33%" src="picture/eda/chia_makcap.png">
-            <img style="width:33%" src="picture/eda/chia_netspace.png">
-
-            <figurecaption>Figure: Historical Price, Market Capacity, Net Space of Chia Network in 2021</figurecaption>
+            <figure style="width:90%">
+                <img style="width:32%" src="picture/eda/chia_price.png">
+                <img style="width:33%" src="picture/eda/chia_makcap.png">
+                <img style="width:33%" src="picture/eda/chia_netspace.png">
+                <figurecaption>Figure: Historical Price, Market Capacity, Net Space of Chia Network in 2021</figurecaption>
+            </figure>
 
             <p>From the plots, there is a short period of "chia fever" in May 2021 with the price hit a peak at 1550 USD
                 and the market capacity hit a peak at 570 million USD. Meanwhile, the net space(total drive space used
@@ -135,8 +139,10 @@
             <p>Historical price of 5 commodities from 2015 to 2021 are read by Python. To show price trends in one plot,
                 normalization has been performed on the prices. The result figure shows below.</p>
 
-            <img style="width:90%" class="centerfig" src="picture/eda/commodity.png">
-            <figurecaption>Figure: Normalized Historical Prices of Commodities</figurecaption>
+            <figure style="width:90%">
+                <img class="centerfig" src="picture/eda/commodity.png">
+                <figurecaption>Figure: Normalized Historical Prices of Commodities</figurecaption>
+            </figure>
 
             <p>From the plot, all the commodities follow a similar trend in long period, and they all encountered price
                 skyrocketing since the beginning of pandemic, 2020Q1. </p>
@@ -153,16 +159,20 @@
             <p>All the tags of videos under TechLinked Channel are read by Python. A wordcloud with <b>max_words=50</b>
                 are generated as below.</p>
 
-            <img style="width:95%" class="centerfig" src="picture/eda/tags_wordcloud.png">
-            <figurecaption>Figure: Uncleaned WordCloud of YouTube tags</figurecaption>
+            <figure style="width:90%">
+                <img class="centerfig" src="picture/eda/tags_wordcloud.png">
+                <figurecaption>Figure: Uncleaned WordCloud of YouTube tags</figurecaption>
+            </figure>
 
             <p>From the figure, there are some common words like <b>Linus</b>(founder's name), <b>LinusTechTips</b>(main
                 channel name), <b>TechLinked</b>(this channel name), <b>netlinked</b>(this channel's old name), <b>Riley
                     Murdock</b>(host name), <b>tech news</b>. So these words are removed from the tag list and a cleaned
                 wordcloud with <b>max_words=50</b> are generated as below.</p>
 
-            <img style="width:95%" class="centerfig" src="picture/eda/tags_wordcloud_pure.png">
-            <figurecaption>Figure: Cleaned WordCloud of Youtube tags</figurecaption>
+            <figure style="width:90%">
+                <img class="centerfig" src="picture/eda/tags_wordcloud_pure.png">
+                <figurecaption>Figure: Cleaned WordCloud of Youtube tags</figurecaption>
+            </figure>
 
             <p>From the new figure of word cloud, it's clear to see an overview of the TechLinked channel. For example,
                 Apple is the most common topic in this tech news channel. And also, they talk about manufacturers like
@@ -176,15 +186,19 @@
                 date quarterly from 2019Q1 to 2021Q3. A wordcloud animation with <b>max_words=20</b> are generated
                 matplotlib in Python as below.</p>
 
-            <img style="width:95%" class="centerfig" src="picture/eda/comments_wordcloud.gif">
-            <figurecaption>Animation: WordCloud of YouTube Comments during 2019Q1-2021Q3 (interval=3s/quarter)
-            </figurecaption>
+            <figure style="width:90%">
+                <img class="centerfig" src="picture/eda/comments_wordcloud.gif">
+                <figurecaption>Animation: WordCloud of YouTube Comments during 2019Q1-2021Q3 (interval=3s/quarter)
+                </figurecaption>
+            </figure>
 
             <p>A bar plot animation with monthly top 20 words are generated by gganimate in R as below.</p>
 
-            <img style="width:95%" class="centerfig" src="picture/eda/barplot.gif">
-            <figurecaption>Animation: Top 20 words of YouTube Comments during 2019.1-2021.9 (interval=1s/month)
-            </figurecaption>
+            <figure style="width:90%">
+                <img class="centerfig" src="picture/eda/barplot.gif">
+                <figurecaption>Animation: Top 20 words of YouTube Comments during 2019.1-2021.9 (interval=1s/month)
+                </figurecaption>
+            </figure>
 
             <p>The animations of word cloud and bar plot show a trend of keywords in the comments related to graphic
                 cards. For example, the keywords related to cryptocurrencies and graphic card shortage like <b>miner</b>,

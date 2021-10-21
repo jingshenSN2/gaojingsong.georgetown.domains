@@ -163,8 +163,10 @@
                 <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/BUY_BOX_ts_1y.txt">BUY_BOX_ts_1y.txt</a>
                 can vary from 360(1 year) to 719(2 year).</p>
 
-            <img style="width:80%" class="centerfig" src="picture/cluster/record_screenshot.png">
-            <figurecaption>Screenshot: quick look at data in BUY_BOX_ts_1y.txt</figurecaption>
+            <figure style="width:80%">
+                <img class="centerfig" src="picture/cluster/record_screenshot.png">
+                <figurecaption>Screenshot: quick look at data in BUY_BOX_ts_1y.txt</figurecaption>
+            </figure>
 
             <p>DTW(<a href="https://tslearn.readthedocs.io/en/stable/user_guide/dtw.html">Dynamic Time Warping</a>) is a
                 better
@@ -241,8 +243,10 @@
 
             <p>The visualization of clusters shows below.</p>
 
-            <img style="width:80%" class="centerfig" src="picture/cluster/new_1y_dtw_8.png">
-            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using DTW metric</figurecaption>
+            <figure style="width:80%">
+                <img class="centerfig" src="picture/cluster/new_1y_dtw_8.png">
+                <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using DTW metric</figurecaption>
+            </figure>
 
             <p>Some patterns can be found in the clustering table and visualization: </p>
             <p>(1) Cluster 1,5,6 are both GPU-dominated clusters, they all show increasing trends in price which
@@ -309,9 +313,11 @@
 
             <p>The visualization of clusters shows below.</p>
 
-            <img style="width:80%" class="centerfig" src="picture/cluster/new_1y_softdtw_6.png">
-            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using soft-DTW metric
-            </figurecaption>
+            <figure style="width:80%">
+                <img class="centerfig" src="picture/cluster/new_1y_softdtw_6.png">
+                <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using soft-DTW metric
+                </figurecaption>
+            </figure>
 
             <p>Similar patterns can be found in this model: </p>
             <p>(1) Cluster 1,4,6 are both GPU-dominated clusters, they all show increasing trends in price which
@@ -391,9 +397,11 @@
 
             <p>The visualization of clusters shows below.</p>
 
-            <img style="width:80%" class="centerfig" src="picture/cluster/new_1y_euclidean_6.png">
-            <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using euclidean metric
-            </figurecaption>
+            <figure style="width:80%">
+                <img class="centerfig" src="picture/cluster/new_1y_euclidean_6.png">
+                <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using euclidean metric
+                </figurecaption>
+            </figure>
 
             <p>This model gives a very similar clustering result with the DTW model and soft-DTW model. But the
                 smoothness of cluster centers are between two DTW models.</p>
@@ -441,9 +449,11 @@
 
             <p>The visualization of clusters shows below.</p>
 
-            <img style="width:80%" class="centerfig" src="picture/cluster/new_1y_kshape_4.png">
-            <figurecaption>Figure: visualization of clusters in KShape model using cross-correlation metric
-            </figurecaption>
+            <figure style="width:80%">
+                <img class="centerfig" src="picture/cluster/new_1y_kshape_4.png">
+                <figurecaption>Figure: visualization of clusters in KShape model using cross-correlation metric
+                </figurecaption>
+            </figure>
 
             <p>The number of clusters of this model is only 4, 2 GPU-dominated clusters and 2 CPU-drive-mixed
                 clusters.</p>
@@ -575,8 +585,10 @@
                 clustering result of <b>k=5</b> is
                 shown below. The clustering result is similar to the KMeans in Python.</p>
 
-            <img style="width:95%" class="centerfig" src="picture/cluster/r_2y_kmeans5.png">
-            <figurecaption>Figure: visualization of clusters in KMeans model with k=5</figurecaption>
+            <figure style="width:90%">
+                <img class="centerfig" src="picture/cluster/r_2y_kmeans5.png">
+                <figurecaption>Figure: visualization of clusters in KMeans model with k=5</figurecaption>
+            </figure>
 
             <p>With k=5, cluster 1 is GPU-dominated that follow the abnormal increasing trend in prices. Cluster 2,3 are CPU-Drive mixed cluster, and cluster 4,5 are drive-dominated cluster that follow the normal decreasing trend in prices.</p>
 
@@ -628,20 +640,24 @@
                 a <b>HUGE</b> picture of all time series can be found at <a href="picture/cluster/amazon_ts.png">picture/cluster/amazon_ts.png</a>.
             </p>
 
-            <img style="width:95%" class="centerfig" src="picture/cluster/amazon_dend.png">
-            <figurecaption>Figure: dendrogram of hierarchical model with k=5 (color bar: red-gpu, gold-cpu,
-                blue-drive)
-            </figurecaption>
+            <figure style="width:90%">
+                <img class="centerfig" src="picture/cluster/amazon_dend.png">
+                <figurecaption>Figure: dendrogram of hierarchical model with k=5 (color bar: red-gpu, gold-cpu,
+                    blue-drive)
+                </figurecaption>
+            </figure>
 
             <p>The color bar in the dendrogram is the product type, where CPUs are golden, GPUs are red, and drives are blue). With k=5, three clusters on the left (pink, yellow, and green) are mainly drives and CPUs which follows the normal decreasing trend. Two clusters on the right (blue and purple) are mainly GPUs which follows the abnormal increasing trend. These clusters are consistent with the color bar. So, a good choice of k is 5.</p>
 
             <p>To display the similarity between these products, three heatmaps are created using euclidean distance, DTW distance, and cosine similarity.</p>
 
-            <img style="width:32%" src="picture/cluster/r_dist_eu.png">
-            <img style="width:32%" src="picture/cluster/r_dist_dtw.png">
-            <img style="width:32%" src="picture/cluster/r_dist_cos.png">
-            <figurecaption>Figure: heatmaps of amazon products using euclidean distance, DTW distance, and cosine similarity
-            </figurecaption>
+            <figure style="width:90%">
+                <img style="width:32%" src="picture/cluster/r_dist_eu.png">
+                <img style="width:32%" src="picture/cluster/r_dist_dtw.png">
+                <img style="width:32%" src="picture/cluster/r_dist_cos.png">
+                <figurecaption>Figure: heatmaps of amazon products using euclidean distance, DTW distance, and cosine similarity
+                </figurecaption>
+            </figure>
 
             <p>The heatmaps show that CPU and drives have similar price time series, and GPUs have quite different price trend compare to CPUs and drives.</p>
 
@@ -694,9 +710,11 @@
 
             <p>A visualization of these time series is shown below.</p>
 
-            <img style="width:60%" class="centerfig" src="picture/cluster/crypto.png">
-            <figurecaption>Figure: visualization of 8 cryptocurrencies time series(color as their clusters)
-            </figurecaption>
+            <figure style="width:60%">
+                <img class="centerfig" src="picture/cluster/crypto.png">
+                <figurecaption>Figure: visualization of 8 cryptocurrencies time series(color as their clusters)
+                </figurecaption>
+            </figure>
 
             <h3>2.4 Cluster Prediction of Commodity Time Series</h3>
 
@@ -732,8 +750,10 @@
 
             <p>A visualization of these time series is shown below.</p>
 
-            <img style="width:60%" class="centerfig" src="picture/cluster/commodity.png">
-            <figurecaption>Figure: visualization of 5 commodities time series(color as their clusters)</figurecaption>
+            <figure style="width:60%">
+                <img class="centerfig" src="picture/cluster/commodity.png">
+                <figurecaption>Figure: visualization of 5 commodities time series(color as their clusters)</figurecaption>
+            </figure>
 
         </section>
 
@@ -775,8 +795,10 @@
                 contains a full 500 features as expected. A PCA decomposition model with n_components=2 is applied to
                 the comments to create 2D data for plotting.</p>
 
-            <img style="width:80%" class="centerfig" src="picture/cluster/text_screenshot.png">
-            <figurecaption>Screenshot: quick look at data in comments_labeled.csv</figurecaption>
+            <figure style="width:80%">
+                <img class="centerfig" src="picture/cluster/text_screenshot.png">
+                <figurecaption>Screenshot: quick look at data in comments_labeled.csv</figurecaption>
+            </figure>
 
         </section>
 
@@ -787,16 +809,17 @@
             <p>KMeans models with k=2:7 are trained by the DTM from CountVectorizer and TfidfVectorizer. The clustering
                 results of k=2,4,6 are shown below.</p>
 
-            <img style="width:47%" src="picture/cluster/kmeans_cv_2.png">
-            <img style="width:48%" src="picture/cluster/kmeans_tfv_2.png">
-            <img style="width:47%" src="picture/cluster/kmeans_cv_4.png">
-            <img style="width:48%" src="picture/cluster/kmeans_tfv_4.png">
-            <img style="width:47%" src="picture/cluster/kmeans_cv_6.png">
-            <img style="width:48%" src="picture/cluster/kmeans_tfv_6.png">
-
-            <figurecaption>Figure: visualization of clusters in KMeans model with k=2,4,6 using CountVectorizer and
-                TfidfVectorizer
-            </figurecaption>
+            <figure style="width:90%">
+                <img style="width:47%" src="picture/cluster/kmeans_cv_2.png">
+                <img style="width:48%" src="picture/cluster/kmeans_tfv_2.png">
+                <img style="width:47%" src="picture/cluster/kmeans_cv_4.png">
+                <img style="width:48%" src="picture/cluster/kmeans_tfv_4.png">
+                <img style="width:47%" src="picture/cluster/kmeans_cv_6.png">
+                <img style="width:48%" src="picture/cluster/kmeans_tfv_6.png">
+                <figurecaption>Figure: visualization of clusters in KMeans model with k=2,4,6 using CountVectorizer and
+                    TfidfVectorizer
+                </figurecaption>
+            </figure>
 
             <p>Also, confusion matrix are calculated using the topic labels. The confusion matrix of KMeans model with
                 k=2,4,6 using CountVectorizer are shown below.</p>
@@ -934,19 +957,23 @@
 
             <p>More than one Topic 1(GPU) cluster appear in these models indicates that this topic can be separated to some sub-topics. Wordclouds of two Topic 1 clusters in KMeans(6) is shown below.</p>
 
-            <img style="width:47%" src="picture/cluster/kmeans_wc_3.png">
-            <img style="width:48%" src="picture/cluster/kmeans_wc_5.png">
-            <figurecaption>Figure: wordclouds of Topic 1 clusters in KMeans model with k=6 using CountVectorizer
-            </figurecaption>
+            <figure style="width:90%">
+                <img style="width:47%" src="picture/cluster/kmeans_wc_3.png">
+                <img style="width:48%" src="picture/cluster/kmeans_wc_5.png">
+                <figurecaption>Figure: wordclouds of Topic 1 clusters in KMeans model with k=6 using CountVectorizer
+                </figurecaption>
+            </figure>
 
             <p>To determine the best k of KMeans model, a silhouette analysis is performed. The KMeans(6) model gives the largest silhouette coefficient 0.12. The results are shown below.</p>
 
-            <img style="width:90%" class="centerfig" src="picture/cluster/sil_cv_3.png">
-            <img style="width:90%" class="centerfig" src="picture/cluster/sil_cv_4.png">
-            <img style="width:90%" class="centerfig" src="picture/cluster/sil_cv_5.png">
-            <img style="width:90%" class="centerfig" src="picture/cluster/sil_cv_6.png">
-            <figurecaption>Figure: silhouette analysis of KMeans model with k=3~6 using CountVectorizer
-            </figurecaption>
+            <figure style="width:90%">
+                <img style="width:95%" class="centerfig" src="picture/cluster/sil_cv_3.png">
+                <img style="width:95%" class="centerfig" src="picture/cluster/sil_cv_4.png">
+                <img style="width:95%" class="centerfig" src="picture/cluster/sil_cv_5.png">
+                <img style="width:95%" class="centerfig" src="picture/cluster/sil_cv_6.png">
+                <figurecaption>Figure: silhouette analysis of KMeans model with k=3~6 using CountVectorizer
+                </figurecaption>
+            </figure>
 
         </section>
 
@@ -979,10 +1006,11 @@
 
             <p>A hierarchical model is trained by the DTM from TfidfVectorizer. The dendrogram is shown below.</p>
 
-            <img style="width:70%" class="centerfig" src="picture/cluster/hier_cv.png">
-
-            <figurecaption>Figure: dendrogram of hierarchical model using TfidfVectorizer
-            </figurecaption>
+            <figure style="width:90%">
+                <img style="width:90%" class="centerfig" src="picture/cluster/hier_cv.png">
+                <figurecaption>Figure: dendrogram of hierarchical model using TfidfVectorizer
+                </figurecaption>
+            </figure>
 
             <p>The confusion matrix is calculated based on the hierarchical model with 8 clusters.</p>
 
