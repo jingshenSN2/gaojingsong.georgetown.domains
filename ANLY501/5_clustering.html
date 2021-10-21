@@ -56,7 +56,7 @@
                 be easily converted into equal-interval time series. <b>After several attempts, the time interval for
                     resampling is assigned to 1 day</b>.</p>
 
-            <table width="100%">
+            <table class="center-table">
                 <caption>File prefix in pre-classified data and their meaning</caption>
                 <tr>
                     <th>File Prefix</th>
@@ -96,7 +96,7 @@
                 products only have data less than 6 months. A pre-classification is performed on the products, all data
                 are separated into different files based on their time span. The files are labeled by some suffixes.</p>
 
-            <table width="100%">
+            <table class="center-table">
                 <caption>File suffix in pre-classified data and their meaning</caption>
                 <tr>
                     <th>File Suffix</th>
@@ -164,7 +164,7 @@
                 can vary from 360(1 year) to 719(2 year).</p>
 
             <figure style="width:80%">
-                <img class="centerfig" src="picture/cluster/record_screenshot.png">
+                <img class="center-fig" src="picture/cluster/record_screenshot.png">
                 <figurecaption>Screenshot: quick look at data in BUY_BOX_ts_1y.txt</figurecaption>
             </figure>
 
@@ -179,7 +179,7 @@
                 The table of clustering
                 results shows below. </p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Type of products in each cluster of TimeSeriesKMeans model using DTW metric</caption>
                 <col width=25%>
                 <col width=25%>
@@ -244,7 +244,7 @@
             <p>The visualization of clusters shows below.</p>
 
             <figure style="width:80%">
-                <img class="centerfig" src="picture/cluster/new_1y_dtw_8.png">
+                <img class="center-fig" src="picture/cluster/new_1y_dtw_8.png">
                 <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using DTW metric</figurecaption>
             </figure>
 
@@ -261,7 +261,7 @@
                 smoother cluster centers. A TimeSeriesKMeans model using soft-DTW metric with n_clusters=6 is trained by
                 the same time series. The table of cluster result shows below.</p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Type of products in each cluster of TimeSeriesKMeans model using soft-DTW metric</caption>
                 <col width=25%>
                 <col width=25%>
@@ -314,7 +314,7 @@
             <p>The visualization of clusters shows below.</p>
 
             <figure style="width:80%">
-                <img class="centerfig" src="picture/cluster/new_1y_softdtw_6.png">
+                <img class="center-fig" src="picture/cluster/new_1y_softdtw_6.png">
                 <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using soft-DTW metric
                 </figurecaption>
             </figure>
@@ -345,7 +345,7 @@
                 <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/blob/master/data/amazon/NEW_eqts_1y.txt">NEW_eqts_1y.txt</a>.
                 The table of cluster result shows below.</p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Type of products in each cluster of TimeSeriesKMeans model using euclidean metric</caption>
                 <col width=25%>
                 <col width=25%>
@@ -398,7 +398,7 @@
             <p>The visualization of clusters shows below.</p>
 
             <figure style="width:80%">
-                <img class="centerfig" src="picture/cluster/new_1y_euclidean_6.png">
+                <img class="center-fig" src="picture/cluster/new_1y_euclidean_6.png">
                 <figurecaption>Figure: visualization of clusters in TimeSeriesKMeans model using euclidean metric
                 </figurecaption>
             </figure>
@@ -409,7 +409,7 @@
             <p>Then, a KShape model using cross-correlation metric with n_clusters=4 is trained by the same time series.
                 The table of cluster result shows below.</p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Type of products in each cluster of KShape model using cross-correlation metric</caption>
                 <col width=25%>
                 <col width=25%>
@@ -450,7 +450,7 @@
             <p>The visualization of clusters shows below.</p>
 
             <figure style="width:80%">
-                <img class="centerfig" src="picture/cluster/new_1y_kshape_4.png">
+                <img class="center-fig" src="picture/cluster/new_1y_kshape_4.png">
                 <figurecaption>Figure: visualization of clusters in KShape model using cross-correlation metric
                 </figurecaption>
             </figure>
@@ -503,7 +503,7 @@
                 result is shown below.</p>
 
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Validation parameters of KMeans models with k = 4:10</caption>
                 <thead>
                 <tr>
@@ -586,13 +586,13 @@
                 shown below. The clustering result is similar to the KMeans in Python.</p>
 
             <figure style="width:90%">
-                <img class="centerfig" src="picture/cluster/r_2y_kmeans5.png">
+                <img class="center-fig" src="picture/cluster/r_2y_kmeans5.png">
                 <figurecaption>Figure: visualization of clusters in KMeans model with k=5</figurecaption>
             </figure>
 
             <p>With k=5, cluster 1 is GPU-dominated that follow the abnormal increasing trend in prices. Cluster 2,3 are CPU-Drive mixed cluster, and cluster 4,5 are drive-dominated cluster that follow the normal decreasing trend in prices.</p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Type of products in each cluster of KMeans(5) model in R</caption>
                 <col width=25%>
                 <col width=25%>
@@ -641,7 +641,7 @@
             </p>
 
             <figure style="width:90%">
-                <img class="centerfig" src="picture/cluster/amazon_dend.png">
+                <img class="center-fig" src="picture/cluster/amazon_dend.png">
                 <figurecaption>Figure: dendrogram of hierarchical model with k=5 (color bar: red-gpu, gold-cpu,
                     blue-drive)
                 </figurecaption>
@@ -672,7 +672,7 @@
                 indicates a strong similarity between graphic cards' prices and cryptocurrencies' prices and an
                 auto-similarity among cryptocurrencies' prices themselves.</p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Predicted clusters of cryptocurrencies using KMeans model with k=5</caption>
                 <col width=12.5%>
                 <col width=12.5%>
@@ -711,7 +711,7 @@
             <p>A visualization of these time series is shown below.</p>
 
             <figure style="width:60%">
-                <img class="centerfig" src="picture/cluster/crypto.png">
+                <img class="center-fig" src="picture/cluster/crypto.png">
                 <figurecaption>Figure: visualization of 8 cryptocurrencies time series(color as their clusters)
                 </figurecaption>
             </figure>
@@ -721,7 +721,7 @@
             <p>KMeans model with k=5 trained in Part 2.2 is used to predict all 5 commodities time series. The
                 prediction is shown below. </p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Predicted clusters of commodities using KMeans model with k=5</caption>
                 <col width=20%>
                 <col width=20%>
@@ -751,7 +751,7 @@
             <p>A visualization of these time series is shown below.</p>
 
             <figure style="width:60%">
-                <img class="centerfig" src="picture/cluster/commodity.png">
+                <img class="center-fig" src="picture/cluster/commodity.png">
                 <figurecaption>Figure: visualization of 5 commodities time series(color as their clusters)</figurecaption>
             </figure>
 
@@ -796,7 +796,7 @@
                 the comments to create 2D data for plotting.</p>
 
             <figure style="width:80%">
-                <img class="centerfig" src="picture/cluster/text_screenshot.png">
+                <img class="center-fig" src="picture/cluster/text_screenshot.png">
                 <figurecaption>Screenshot: quick look at data in comments_labeled.csv</figurecaption>
             </figure>
 
@@ -824,7 +824,7 @@
             <p>Also, confusion matrix are calculated using the topic labels. The confusion matrix of KMeans model with
                 k=2,4,6 using CountVectorizer are shown below.</p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Confusion matrix of KMeans model with k=2</caption>
                 <thead>
                 <tr>
@@ -853,7 +853,7 @@
                 </tbody>
             </table>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Confusion matrix of KMeans model with k=4</caption>
                 <thead>
                 <tr>
@@ -896,7 +896,7 @@
                 </tbody>
             </table>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Confusion matrix of KMeans model with k=6</caption>
                 <thead>
                 <tr>
@@ -967,10 +967,10 @@
             <p>To determine the best k of KMeans model, a silhouette analysis is performed. The KMeans(6) model gives the largest silhouette coefficient 0.12. The results are shown below.</p>
 
             <figure style="width:90%">
-                <img style="width:95%" class="centerfig" src="picture/cluster/sil_cv_3.png">
-                <img style="width:95%" class="centerfig" src="picture/cluster/sil_cv_4.png">
-                <img style="width:95%" class="centerfig" src="picture/cluster/sil_cv_5.png">
-                <img style="width:95%" class="centerfig" src="picture/cluster/sil_cv_6.png">
+                <img style="width:95%" class="center-fig" src="picture/cluster/sil_cv_3.png">
+                <img style="width:95%" class="center-fig" src="picture/cluster/sil_cv_4.png">
+                <img style="width:95%" class="center-fig" src="picture/cluster/sil_cv_5.png">
+                <img style="width:95%" class="center-fig" src="picture/cluster/sil_cv_6.png">
                 <figurecaption>Figure: silhouette analysis of KMeans model with k=3~6 using CountVectorizer
                 </figurecaption>
             </figure>
@@ -983,7 +983,7 @@
 
             <p>A DBScan model is trained by the DTM from CountVectorizer. However, after multiple attempts on <b>eps</b>, <b>min_sample</b>, the model fails to give a reasonable clustering result. The result from a DBScan model with eps=0.13 and min_sample=20 is shown below.</p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Confusion matrix of DBScan model with eps=0.13 and min_sample=20</caption>
                 <thead>
                 <tr>
@@ -1007,14 +1007,14 @@
             <p>A hierarchical model is trained by the DTM from TfidfVectorizer. The dendrogram is shown below.</p>
 
             <figure style="width:90%">
-                <img style="width:90%" class="centerfig" src="picture/cluster/hier_cv.png">
+                <img style="width:90%" class="center-fig" src="picture/cluster/hier_cv.png">
                 <figurecaption>Figure: dendrogram of hierarchical model using TfidfVectorizer
                 </figurecaption>
             </figure>
 
             <p>The confusion matrix is calculated based on the hierarchical model with 8 clusters.</p>
 
-            <table style="text-align:center;width:100%">
+            <table style="text-align:center" class="center-table">
                 <caption>Confusion matrix of hierarchical model with 8 clusters</caption>
                 <thead>
                 <tr>
