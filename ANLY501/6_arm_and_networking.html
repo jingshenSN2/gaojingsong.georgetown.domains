@@ -10,11 +10,328 @@
 
 <body>
 <div class="headerpage-501"></div>
+<div class="main">
+    <div class="left-side">
+        <div class="left-navi">
+            <ul>
+                <li class="nav"><p>Links</p></li>
+                <li class="nav"><a href="#pre">Scripts</a></li>
+                <li class="nav"><a href="#data">Data</a></li>
+                <li class="nav"><p>ARM</p></li>
+                <li class="nav"><a href="#top-item">Top Itemsets</a></li>
+                <li class="nav"><a href="#top-rule">Top Rules</a></li>
+                <li class="nav"><a href="#more-rule">Specific Rules</a></li>
+                <li class="nav"><a href="#arm-summary">Summary</a></li>
+                <li class="nav"><p>Network Vis</p></li>
+                <li class="nav"><a href="#arulesVis">arulesVis</a></li>
+                <li class="nav"><a href="#networkD3">networkD3</a></li>
+                <li class="nav"><a href="#sankey">Sankey</a></li>
+                <li class="nav"><a href="#VisNetwork">VisNetwork</a></li>
+                <li class="nav"><a href="#nv-summary">Summary</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1 style="text-align:center"></h1>
+
+        <h2>1. Links</h2>
+
+        <h3>1.1 Scripts of Converting Transaction data and ARM</h3>
+            <section id="pre">
+                <p>Convert text data into transaction data: <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/transaction_converter.ipynb"
+                        target="_blank">transaction_converter.ipynb</a>.
+                <p>ARM and network visualization: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arm.Rmd" target="_blank">arm.Rmd</a>.</p>
+
+            </section>
+
+        <h3>1.2 Transaction Data and Mining Results Links</h3>
+        <section id="data">
+            <p>Transaction data: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/data/transaction.txt"
+                        target="_blank">data/transaction.txt</a>. Overview is shown below.</p>
+                <figure style="width:90%">
+                    <img class="center-fig" src="picture/arm/transaction.png">
+                    <figurecaption>Screenshot: Transaction data converted from YouTube Comments
+                    </figurecaption>
+                </figure>
+            <p>Frequent itemset: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/freqitem2.csv"
+                        target="_blank">arm/freqitem2.csv</a>(length = 2), <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/freqitem3.csv"
+                        target="_blank">arm/freqitem3.csv</a>(length >= 3)</p>
+            <p>All rules: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arule2.csv"
+                        target="_blank">arm/arules2.csv</a>(length = 2),  <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arules3.csv" target="_blank">arm/arules3.csv</a>(length >= 3)</p>
+            <p>Top 15 rules: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arules3_sup_top15.csv"
+                                target="_blank">arules3_sup_top15.csv</a>(by <b>support</b>),<a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arules3_conf_top15.csv"
+                                                                                                target="_blank">arules3_conf_top15.csv</a>(by <b>confidence</b>),<a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arules3_lift_top15.csv"
+                                                                                                                                                                    target="_blank">arules3_lift_top15.csv</a>(by <b>lift</b>).</p>
+            <p>Topic rules: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arules_company.csv"
+                                target="_blank">arules_company.csv</a> (<b>Tech companies</b>), <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arules_cpu.csv"
+                                target="_blank">arules_cpu.csv</a> (<b>CPU</b>), <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arules_gpu.csv"
+                                target="_blank">arules_gpu.csv</a> (<b>GPU</b>), <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/arm/arules_host.csv"
+                                target="_blank">arules_host.csv</a> (<b>Channel hosts</b>).</p>
+
+
+        </section>
+
+
+        <h2>2. Associated Rule Mining</h2>
+
+            <p>All rules are mined with min_support=20/120000, min_conf=0.5, min_len=2.</p>
+        <h3>2.1 Top 15 Itemsets by Support</h3>
+        <section id="top-item">
+
+            <table class="center-table">
+                <caption>Top 15 Itemsets sorted by support</caption>
+<thead><tr><th>items(len=2)</th><th>support</th><th>items(len>=3)</th><th>support</th></tr></thead><tbody>
+ <tr><td>{news,tech}</td><td>0.01715</td><td>{amd,intel,nvidia}</td><td>0.002531</td></tr>
+ <tr><td>{amd,intel}</td><td>0.01280</td><td>{amd,cpu,intel}</td><td>0.001927</td></tr>
+ <tr><td>{like,look}</td><td>0.01279</td><td>{news,riley,tech}</td><td>0.001795</td></tr>
+ <tr><td>{gon,na}</td><td>0.01227</td><td>{amd,card,nvidia}</td><td>0.001788</td></tr>
+ <tr><td>{amd,nvidia}</td><td>0.00752</td><td>{like,linus,look}</td><td>0.001757</td></tr>
+ <tr><td>{like,linus}</td><td>0.00749</td><td>{amd,intel,like}</td><td>0.001726</td></tr>
+ <tr><td>{like,video}</td><td>0.00668</td><td>{linus,tech,tip}</td><td>0.001602</td></tr>
+ <tr><td>{like,sound}</td><td>0.00653</td><td>{legend,raid,shadow}</td><td>0.001594</td></tr>
+ <tr><td>{good,like}</td><td>0.00629</td><td>{ad,get,linus}</td><td>0.001579</td></tr>
+ <tr><td>{linus,video}</td><td>0.00596</td><td>{ad,linus,video}</td><td>0.001548</td></tr>
+ <tr><td>{like,riley}</td><td>0.00577</td><td>{like,news,tech}</td><td>0.001540</td></tr>
+ <tr><td>{card,nvidia}</td><td>0.00577</td><td>{ad,linus,pulseway}</td><td>0.001509</td></tr>
+ <tr><td>{card,graphic}</td><td>0.00574</td><td>{amd,gpu,nvidia}</td><td>0.001509</td></tr>
+ <tr><td>{video,watch}</td><td>0.00564</td><td>{amd,good,intel}</td><td>0.001478</td></tr>
+ <tr><td>{like,people}</td><td>0.00553</td><td>{amd,intel,well}</td><td>0.001424</td></tr>
+</tbody></table>
+
+            <p>Comments here.</p>
+
+        </section>
+
+        <h3>2.2 Top 15 Rules by Support, Confidence, Lift</h3>
+        <section id="top-rule">
+
+            <table class="center-table">
+                <caption>Top 15 Rules sorted by support with length >= 3</caption>
+<thead><tr><th>LHS</th><th>RHS</th><th>support</th><th>confidence</th><th>lift</th></tr></thead><tbody>
+ <tr><td>{intel,nvidia}</td><td>{amd}</td><td>0.002531</td><td>0.6646</td><td>16.94</td></tr>
+ <tr><td>{cpu,intel}</td><td>{amd}</td><td>0.001928</td><td>0.5166</td><td>13.17</td></tr>
+ <tr><td>{amd,cpu}</td><td>{intel}</td><td>0.001928</td><td>0.5145</td><td>14.45</td></tr>
+ <tr><td>{news,riley}</td><td>{tech}</td><td>0.001796</td><td>0.7342</td><td>20.88</td></tr>
+ <tr><td>{riley,tech}</td><td>{news}</td><td>0.001796</td><td>0.6287</td><td>19.76</td></tr>
+ <tr><td>{amd,card}</td><td>{nvidia}</td><td>0.001788</td><td>0.5055</td><td>15.97</td></tr>
+ <tr><td>{tech,tip}</td><td>{linus}</td><td>0.001602</td><td>0.5321</td><td>8.27</td></tr>
+ <tr><td>{linus,tip}</td><td>{tech}</td><td>0.001602</td><td>0.7065</td><td>20.09</td></tr>
+ <tr><td>{legend,shadow}</td><td>{raid}</td><td>0.001595</td><td>0.9717</td><td>288.56</td></tr>
+ <tr><td>{raid,shadow}</td><td>{legend}</td><td>0.001595</td><td>0.9406</td><td>319.77</td></tr>
+ <tr><td>{legend,raid}</td><td>{shadow}</td><td>0.001595</td><td>0.9450</td><td>409.63</td></tr>
+ <tr><td>{ad,get}</td><td>{linus}</td><td>0.001579</td><td>0.5050</td><td>7.84</td></tr>
+ <tr><td>{ad,pulseway}</td><td>{linus}</td><td>0.001510</td><td>0.8405</td><td>13.05</td></tr>
+ <tr><td>{linus,pulseway}</td><td>{ad}</td><td>0.001510</td><td>0.7863</td><td>52.79</td></tr>
+ <tr><td>{good,intel}</td><td>{amd}</td><td>0.001479</td><td>0.5247</td><td>13.37</td></tr>
+</tbody></table>
+
+            <p>Comments here.</p>
+
+             <table class="center-table">
+                <caption>Top 15 Rules sorted by confidence with length >= 3</caption>
+<thead><tr><th>LHS</th><th>RHS</th><th>support</th><th>confidence</th><th>lift</th></tr></thead><tbody>
+ <tr><td>{microsoft,simulator}</td><td>{flight}</td><td>0.0002013</td><td>1</td><td>1123.30</td></tr>
+ <tr><td>{dead,moore}</td><td>{law}</td><td>0.0002400</td><td>1</td><td>448.54</td></tr>
+ <tr><td>{ray,rt}</td><td>{trace}</td><td>0.0001703</td><td>1</td><td>237.46</td></tr>
+ <tr><td>{jedi,star}</td><td>{war}</td><td>0.0001780</td><td>1</td><td>158.12</td></tr>
+ <tr><td>{disney,star}</td><td>{war}</td><td>0.0003174</td><td>1</td><td>158.12</td></tr>
+ <tr><td>{cost,leg}</td><td>{arm}</td><td>0.0001780</td><td>1</td><td>117.12</td></tr>
+ <tr><td>{dlss,trace}</td><td>{ray}</td><td>0.0002322</td><td>1</td><td>217.11</td></tr>
+ <tr><td>{rant,war}</td><td>{star}</td><td>0.0006270</td><td>1</td><td>150.03</td></tr>
+ <tr><td>{green,rgb}</td><td>{red}</td><td>0.0002322</td><td>1</td><td>261.50</td></tr>
+ <tr><td>{history,king}</td><td>{world}</td><td>0.0001703</td><td>1</td><td>122.21</td></tr>
+ <tr><td>{shadow,sponsor}</td><td>{legend}</td><td>0.0002555</td><td>1</td><td>339.95</td></tr>
+ <tr><td>{shadow,sponsor}</td><td>{raid}</td><td>0.0002555</td><td>1</td><td>296.97</td></tr>
+ <tr><td>{dream,true}</td><td>{come}</td><td>0.0002013</td><td>1</td><td>41.87</td></tr>
+ <tr><td>{gon,lie}</td><td>{na}</td><td>0.0004645</td><td>1</td><td>79.50</td></tr>
+ <tr><td>{lie,na}</td><td>{gon}</td><td>0.0004645</td><td>1</td><td>81.19</td></tr>
+</tbody></table>
+            <p>Comments here.</p>
+
+        <table class="center-table">
+                <caption>Top 15 Rules sorted by lift with length >= 3</caption>
+<thead><tr><th>LHS</th><th>RHS</th><th>support</th><th>confidence</th><th>lift</th></tr></thead><tbody>
+ <tr><td>{tencent,tiktok}</td><td>{bytedance}</td><td>0.0001703</td><td>0.8462</td><td>3769.18</td></tr>
+ <tr><td>{own,tiktok}</td><td>{bytedance}</td><td>0.0001780</td><td>0.7419</td><td>3304.94</td></tr>
+ <tr><td>{dead,law}</td><td>{moore}</td><td>0.0002400</td><td>0.9118</td><td>2355.64</td></tr>
+ <tr><td>{carbon,tube}</td><td>{nano}</td><td>0.0002787</td><td>0.9231</td><td>2055.92</td></tr>
+ <tr><td>{geep,war}</td><td>{scrapyard}</td><td>0.0003561</td><td>0.9388</td><td>1924.94</td></tr>
+ <tr><td>{geep,linus}</td><td>{scrapyard}</td><td>0.0001780</td><td>0.9200</td><td>1886.44</td></tr>
+ <tr><td>{ad,linus,way}</td><td>{pulse}</td><td>0.0002477</td><td>0.9412</td><td>1736.87</td></tr>
+ <tr><td>{scrapyard,war}</td><td>{geep}</td><td>0.0003561</td><td>0.7931</td><td>1679.56</td></tr>
+ <tr><td>{linus,scrapyard}</td><td>{geep}</td><td>0.0001780</td><td>0.7931</td><td>1679.56</td></tr>
+ <tr><td>{der,farmer,german}</td><td>{bauer}</td><td>0.0001780</td><td>1.0000</td><td>1484.83</td></tr>
+ <tr><td>{der,farmer,mean}</td><td>{bauer}</td><td>0.0002555</td><td>1.0000</td><td>1484.83</td></tr>
+ <tr><td>{der,farmer}</td><td>{bauer}</td><td>0.0004335</td><td>0.9825</td><td>1458.78</td></tr>
+ <tr><td>{der,mean}</td><td>{bauer}</td><td>0.0003484</td><td>0.9783</td><td>1452.55</td></tr>
+ <tr><td>{builder,der}</td><td>{bauer}</td><td>0.0002477</td><td>0.9697</td><td>1439.83</td></tr>
+ <tr><td>{flight,microsoft}</td><td>{simulator}</td><td>0.0002013</td><td>0.8387</td><td>1425.59</td></tr>
+</tbody></table>
+            <p>Comments here.</p>
+
+        </section>
+
+        <h3>2.3 More rules in Specific Categories</h3>
+        <section id="more-rule">
+            <p>This part shows top 15 rules selected by 4 topics, and discussion of these rules will be in Part 3 as comments of networks.</p>
+
+            <table class="center-table">
+                <caption>Top 15 Rules in CPU topic (sorted by support)</caption>
+<thead><tr><th>LHS</th><th>RHS</th><th>support</th><th>confidence</th><th>lift</th></tr></thead><tbody>
+ <tr><td>{cpu,intel}</td><td>{amd}</td><td>0.001928</td><td>0.5166</td><td>13.17</td></tr>
+ <tr><td>{amd,cpu}</td><td>{intel}</td><td>0.001928</td><td>0.5145</td><td>14.45</td></tr>
+ <tr><td>{intel,processor}</td><td>{amd}</td><td>0.000805</td><td>0.5361</td><td>13.66</td></tr>
+ <tr><td>{amd,processor}</td><td>{intel}</td><td>0.000805</td><td>0.5253</td><td>14.76</td></tr>
+ <tr><td>{cpu,nvidia}</td><td>{gpu}</td><td>0.000782</td><td>0.5101</td><td>25.73</td></tr>
+ <tr><td>{processor,x86}</td><td>{arm}</td><td>0.000635</td><td>0.9647</td><td>112.98</td></tr>
+ <tr><td>{arm,processor}</td><td>{x86}</td><td>0.000635</td><td>0.6308</td><td>339.51</td></tr>
+ <tr><td>{arm,processor}</td><td>{base}</td><td>0.000581</td><td>0.5769</td><td>110.41</td></tr>
+ <tr><td>{base,processor}</td><td>{arm}</td><td>0.000581</td><td>0.8929</td><td>104.57</td></tr>
+ <tr><td>{processor,x86}</td><td>{base}</td><td>0.000565</td><td>0.8588</td><td>164.36</td></tr>
+ <tr><td>{base,x86}</td><td>{processor}</td><td>0.000565</td><td>0.6518</td><td>137.35</td></tr>
+ <tr><td>{base,processor}</td><td>{x86}</td><td>0.000565</td><td>0.8690</td><td>467.76</td></tr>
+ <tr><td>{arm,processor,x86}</td><td>{base}</td><td>0.000557</td><td>0.8780</td><td>168.04</td></tr>
+ <tr><td>{base,processor,x86}</td><td>{arm}</td><td>0.000557</td><td>0.9863</td><td>115.51</td></tr>
+ <tr><td>{arm,base,x86}</td><td>{processor}</td><td>0.000557</td><td>0.6486</td><td>136.69</td></tr>
+</tbody></table>
+
+            <table class="center-table">
+                <caption>Top 15 Rules in GPU topic (sorted by support)</caption>
+<thead><tr><th>LHS</th><th>RHS</th><th>support</th><th>confidence</th><th>lift</th></tr></thead><tbody>
+ <tr><td>{graphic}</td><td>{card}</td><td>0.005736</td><td>0.6652</td><td>27.35</td></tr>
+ <tr><td>{intel,nvidia}</td><td>{amd}</td><td>0.002531</td><td>0.6646</td><td>16.94</td></tr>
+ <tr><td>{amd,card}</td><td>{nvidia}</td><td>0.001788</td><td>0.5055</td><td>15.97</td></tr>
+ <tr><td>{graphic,nvidia}</td><td>{card}</td><td>0.001122</td><td>0.7436</td><td>30.57</td></tr>
+ <tr><td>{buy,graphic}</td><td>{card}</td><td>0.000960</td><td>0.8493</td><td>34.92</td></tr>
+ <tr><td>{amd,graphic}</td><td>{card}</td><td>0.000867</td><td>0.6667</td><td>27.41</td></tr>
+ <tr><td>{graphic,new}</td><td>{card}</td><td>0.000867</td><td>0.7671</td><td>31.54</td></tr>
+ <tr><td>{cpu,nvidia}</td><td>{gpu}</td><td>0.000782</td><td>0.5101</td><td>25.73</td></tr>
+ <tr><td>{nvidia,trace}</td><td>{ray}</td><td>0.000712</td><td>0.9583</td><td>208.06</td></tr>
+ <tr><td>{nvidia,ray}</td><td>{trace}</td><td>0.000712</td><td>0.9109</td><td>216.30</td></tr>
+ <tr><td>{gon,nvidia}</td><td>{na}</td><td>0.000704</td><td>1.0000</td><td>79.50</td></tr>
+ <tr><td>{na,nvidia}</td><td>{gon}</td><td>0.000704</td><td>0.9681</td><td>78.60</td></tr>
+ <tr><td>{graphic,like}</td><td>{card}</td><td>0.000697</td><td>0.6667</td><td>27.41</td></tr>
+ <tr><td>{rtx,trace}</td><td>{ray}</td><td>0.000681</td><td>0.9167</td><td>199.02</td></tr>
+ <tr><td>{ray,rtx}</td><td>{trace}</td><td>0.000681</td><td>0.9263</td><td>219.97</td></tr>
+</tbody></table>
+
+            <table class="center-table">
+                <caption>Top 15 Rules in Channel Host topic (sorted by support)</caption>
+<thead><tr><th>LHS</th><th>RHS</th><th>support</th><th>confidence</th><th>lift</th></tr></thead><tbody>
+ <tr><td>{tip}</td><td>{linus}</td><td>0.002268</td><td>0.5232</td><td>8.13</td></tr>
+ <tr><td>{beard}</td><td>{linus}</td><td>0.002206</td><td>0.5347</td><td>8.31</td></tr>
+ <tr><td>{pulseway}</td><td>{linus}</td><td>0.001920</td><td>0.8239</td><td>12.80</td></tr>
+ <tr><td>{news,riley}</td><td>{tech}</td><td>0.001796</td><td>0.7342</td><td>20.88</td></tr>
+ <tr><td>{riley,tech}</td><td>{news}</td><td>0.001796</td><td>0.6287</td><td>19.76</td></tr>
+ <tr><td>{tech,tip}</td><td>{linus}</td><td>0.001602</td><td>0.5321</td><td>8.27</td></tr>
+ <tr><td>{linus,tip}</td><td>{tech}</td><td>0.001602</td><td>0.7065</td><td>20.09</td></tr>
+ <tr><td>{ad,get}</td><td>{linus}</td><td>0.001579</td><td>0.5050</td><td>7.84</td></tr>
+ <tr><td>{ad,pulseway}</td><td>{linus}</td><td>0.001510</td><td>0.8405</td><td>13.05</td></tr>
+ <tr><td>{linus,pulseway}</td><td>{ad}</td><td>0.001510</td><td>0.7863</td><td>52.79</td></tr>
+ <tr><td>{linus,star}</td><td>{war}</td><td>0.000913</td><td>0.7564</td><td>119.60</td></tr>
+ <tr><td>{linus,war}</td><td>{star}</td><td>0.000913</td><td>0.7375</td><td>110.65</td></tr>
+ <tr><td>{get,pulseway}</td><td>{linus}</td><td>0.000890</td><td>0.8779</td><td>13.63</td></tr>
+ <tr><td>{linus,news}</td><td>{tech}</td><td>0.000844</td><td>0.5619</td><td>15.98</td></tr>
+ <tr><td>{linus,sound}</td><td>{like}</td><td>0.000828</td><td>0.7039</td><td>7.83</td></tr>
+</tbody></table>
+
+            <table class="center-table">
+                <caption>Top 15 Rules in Tech Company topic (sorted by support)</caption>
+<thead><tr><th>LHS</th><th>RHS</th><th>support</th><th>confidence</th><th>lift</th></tr></thead><tbody>
+ <tr><td>{assistant}</td><td>{google}</td><td>0.0008515</td><td>0.6548</td><td>42.78</td></tr>
+ <tr><td>{amd,apple}</td><td>{intel}</td><td>0.0005032</td><td>0.5118</td><td>14.38</td></tr>
+ <tr><td>{vance}</td><td>{youtube}</td><td>0.0004722</td><td>0.7722</td><td>69.75</td></tr>
+ <tr><td>{view,youtube}</td><td>{like}</td><td>0.0004412</td><td>0.6552</td><td>7.28</td></tr>
+ <tr><td>{apple,gon}</td><td>{na}</td><td>0.0004180</td><td>0.9818</td><td>78.05</td></tr>
+ <tr><td>{apple,na}</td><td>{gon}</td><td>0.0004180</td><td>1.0000</td><td>81.19</td></tr>
+ <tr><td>{ad,premium}</td><td>{youtube}</td><td>0.0003406</td><td>0.8000</td><td>72.27</td></tr>
+ <tr><td>{qualcomm}</td><td>{apple}</td><td>0.0003174</td><td>0.5694</td><td>25.28</td></tr>
+ <tr><td>{collect,google}</td><td>{datum}</td><td>0.0002632</td><td>0.8718</td><td>154.91</td></tr>
+ <tr><td>{news,youtube}</td><td>{tech}</td><td>0.0002632</td><td>0.5484</td><td>15.59</td></tr>
+ <tr><td>{arm,mac}</td><td>{apple}</td><td>0.0002245</td><td>0.5918</td><td>26.27</td></tr>
+ <tr><td>{apple,arm,buy}</td><td>{nvidia}</td><td>0.0002245</td><td>0.6304</td><td>19.92</td></tr>
+ <tr><td>{apple,buy,nvidia}</td><td>{arm}</td><td>0.0002245</td><td>0.8056</td><td>94.34</td></tr>
+ <tr><td>{dark,facebook}</td><td>{mode}</td><td>0.0002168</td><td>0.9032</td><td>386.35</td></tr>
+ <tr><td>{facebook,mode}</td><td>{dark}</td><td>0.0002168</td><td>0.9032</td><td>478.19</td></tr>
+</tbody></table>
+
+        </section>
+
+        <h3>2.4 Summary of Associated Rule Mining</h3>
+        <section id="arm-summary">
+
+            <p>Summary here.</p>
+
+        </section>
+
+        <h2>3. Network Visualization</h2>
+
+        <h3>3.1 Tech Companies Rules by (arulesVis)</h3>
+        <section id="arulesVis">
+
+            <iframe src="html/igraph.html" width="100%" height="500"
+                style="background: transparent; border: 1px solid #ccc;">
+            </iframe>
+            <figurecaption>Click <a href="html/igraph.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
+            <p>Comments here.</p>
+
+
+        </section>
+
+        <h3>3.2 GPU-related Rules (networkD3)</h3>
+        <section id="networkD3">
+
+            <iframe src="html/networkD3.html" width="100%" height="500"
+                style="background: transparent; border: 1px solid #ccc;">
+            </iframe>
+            <figurecaption>Click <a href="html/networkD3.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
+            <p>Comments here.</p>
+
+
+        </section>
+
+        <h3>3.3 CPU-related Rules (Sankey)</h3>
+        <section id="sankey">
+
+            <iframe src="html/Sankey.html" width="100%" height="500"
+                style="background: transparent; border: 1px solid #ccc;">
+            </iframe>
+            <figurecaption>Click <a href="html/Sankey.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
+            <p>Comments here.</p>
+
+
+        </section>
+
+        <h3>3.4 Channel Host Rules (VisNetwork)</h3>
+        <section id="VisNetwork">
+
+            <iframe src="html/VisNetwork.html" width="100%" height="500"
+                style="background: transparent; border: 1px solid #ccc;">
+            </iframe>
+            <figurecaption>Click <a href="html/VisNetwork.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
+            <p>Comments here.</p>
+
+
+        </section>
+
+        <h3>3.5 Summary of Network Visualization</h3>
+        <section id="nv-summary">
+
+            <p>Summary here.</p>
+
+        </section>
+
+    </div>
+
+</div>
 
 
 <script src="jquery-3.5.1.min.js"></script>
 <script>$(function () {
     $(".headerpage-501").load("header.html");
 });</script>
+<script src="nav_scroll.js"></script>
 </body>
 </html>
