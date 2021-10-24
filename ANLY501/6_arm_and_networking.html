@@ -100,7 +100,9 @@
  <tr><td>{like,people}</td><td>0.00553</td><td>{amd,intel,well}</td><td>0.001424</td></tr>
 </tbody></table>
 
-            <p>Comments here.</p>
+            <p>By sorting items by their supports, the most common combinations of words are extracted from the data. When len=2, most itemsets are just common english words pair like {gon,na}, {good, like}. But there are some useful pairs related to tech topics like the CPU competitors:{amd,intel}, the GPU competitors: {amd,nvidia}. </p>
+
+            <p>When len>=3, more intuitive word pairs appear in the frequent itemsets. For example, {amd,cpu,intel} and {amd,card,nvidia} / {amd,gpu,nvidia} perfectly describe the relationship between these companies. Also, words 'linus', 'riley', 'ad' indicate that many comments are talking about the channel owner, the host, and advertisements in their video.</p>
 
         </section>
 
@@ -127,7 +129,7 @@
  <tr><td>{good,intel}</td><td>{amd}</td><td>0.001479</td><td>0.5247</td><td>13.37</td></tr>
 </tbody></table>
 
-            <p>Comments here.</p>
+            <p>The results are similar to frequent itemsets when rules are sorted by their support. </p>
 
              <table class="center-table">
                 <caption>Top 15 Rules sorted by confidence with length >= 3</caption>
@@ -148,7 +150,7 @@
  <tr><td>{gon,lie}</td><td>{na}</td><td>0.0004645</td><td>1</td><td>79.50</td></tr>
  <tr><td>{lie,na}</td><td>{gon}</td><td>0.0004645</td><td>1</td><td>81.19</td></tr>
 </tbody></table>
-            <p>Comments here.</p>
+            <p>When sorting by their confidence, top 15 rules all have a 100% confidence. Some new words appear in these rules, like {microsoft,simulator}=>{flight} refers to the famous flight simulation game "Microsoft Flight Simulator 2021", {dead,moore}=>{law} refers to the famous moore law which kind of dying these years since the size of silicon nano-transistor is close to its physical limit.</p>
 
         <table class="center-table">
                 <caption>Top 15 Rules sorted by lift with length >= 3</caption>
@@ -169,7 +171,7 @@
  <tr><td>{builder,der}</td><td>{bauer}</td><td>0.0002477</td><td>0.9697</td><td>1439.83</td></tr>
  <tr><td>{flight,microsoft}</td><td>{simulator}</td><td>0.0002013</td><td>0.8387</td><td>1425.59</td></tr>
 </tbody></table>
-            <p>Comments here.</p>
+            <p>Top 15 rules sorted by lift all have extremely high lifts. These high lifts doesn't mean a strong relation, but only because their coverages(P(RHS)) are extremely low. But there are some intuitive pairs like {own,tiktok}=>{bytedance} describes the relationship between ByteDance and TikTok, {carbon,tube}=>{nano} refers to a new approach on making smaller and more efficient transistor using carbon tube.</p>
 
         </section>
 
@@ -207,7 +209,6 @@
  <tr><td>{buy,graphic}</td><td>{card}</td><td>0.000960</td><td>0.8493</td><td>34.92</td></tr>
  <tr><td>{amd,graphic}</td><td>{card}</td><td>0.000867</td><td>0.6667</td><td>27.41</td></tr>
  <tr><td>{graphic,new}</td><td>{card}</td><td>0.000867</td><td>0.7671</td><td>31.54</td></tr>
- <tr><td>{cpu,nvidia}</td><td>{gpu}</td><td>0.000782</td><td>0.5101</td><td>25.73</td></tr>
  <tr><td>{nvidia,trace}</td><td>{ray}</td><td>0.000712</td><td>0.9583</td><td>208.06</td></tr>
  <tr><td>{nvidia,ray}</td><td>{trace}</td><td>0.000712</td><td>0.9109</td><td>216.30</td></tr>
  <tr><td>{gon,nvidia}</td><td>{na}</td><td>0.000704</td><td>1.0000</td><td>79.50</td></tr>
@@ -215,6 +216,7 @@
  <tr><td>{graphic,like}</td><td>{card}</td><td>0.000697</td><td>0.6667</td><td>27.41</td></tr>
  <tr><td>{rtx,trace}</td><td>{ray}</td><td>0.000681</td><td>0.9167</td><td>199.02</td></tr>
  <tr><td>{ray,rtx}</td><td>{trace}</td><td>0.000681</td><td>0.9263</td><td>219.97</td></tr>
+ <tr><td>{vii}</td><td>{radeon}</td><td>0.000588</td><td>0.7238</td><td>300.65</td></tr>
 </tbody></table>
 
             <table class="center-table">
@@ -262,7 +264,7 @@
         <h3>2.4 Summary of Associated Rule Mining</h3>
         <section id="arm-summary">
 
-            <p>Summary here.</p>
+            <p>Many underlying relationships between words in the YouTube comments dataset are found by the associate rule mining, which gives a more complete view of the dataset. But some relationships indicate that the keywords and categories used in auto-labeling procedure in previous section are inaccurate. For example, some keywords have low support and should not be used as labeling standard. Also, a host/channel-related category is needed because many comments are about thar topic.</p>
 
         </section>
 
@@ -275,8 +277,12 @@
                 style="background: transparent; border: 1px solid #ccc;">
             </iframe>
             <figurecaption>Click <a href="html/igraph.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
-            <p>Comments here.</p>
+            <p>This subset of rules is selected by keywords "apple", "facebook", "google", "microsoft", "youtube". There are 4 main centers of nodes:  </p>
 
+            <p>"apple": surrounded by "arm", "iphone", "qualcomm", "intel", "nvidia";</p>
+            <p>"google": surrounded by "search", "engine", "assistant", "store", "app"; </p>
+            <p>"facebook": surrounded by "start_change", "dark_mode", "sell", "datum"; </p>
+            <p>"youtube": surrounded by "comment", "like", "view", "ad", "premium".</p>
 
         </section>
 
@@ -287,7 +293,7 @@
                 style="background: transparent; border: 1px solid #ccc;">
             </iframe>
             <figurecaption>Click <a href="html/networkD3.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
-            <p>Comments here.</p>
+            <p>This subset of rules is selected by keywords "nvidia", "graphic", "gpu", "rtx", "gtx", "radeon". It seems like there are too many rules in this topic which causes significant lagging when loading this graph. There are at least 6 main centers of nodes: "graphic", "card", "gpu", "nvidia", "amd", "intel", and some small centers: "ray_trace", "buy", "good", "price".</p>
 
 
         </section>
@@ -299,7 +305,7 @@
                 style="background: transparent; border: 1px solid #ccc;">
             </iframe>
             <figurecaption>Click <a href="html/Sankey.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
-            <p>Comments here.</p>
+            <p>This subset of rules is selected by keywords "cpu", "processor", "ryzen", "core", "i5", "i7", "i9". Due to the limitation of networkD3 package, only top 20 rules are shown in this sankey graph. </p>
 
 
         </section>
@@ -311,7 +317,7 @@
                 style="background: transparent; border: 1px solid #ccc;">
             </iframe>
             <figurecaption>Click <a href="html/VisNetwork.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
-            <p>Comments here.</p>
+            <p>This subset of rules is selected by keywords "linus", "riley". It's obvious that Linus - the channel owner is widely mentioned in comments. The words associated to "linus" are "pulseway_ad"(an advertisement), "star_war", "video", "channel", "tip". Also, there are some other big centers like "tech", "news", "riley", "quick_bit"(a section of their video).</p>
 
 
         </section>
