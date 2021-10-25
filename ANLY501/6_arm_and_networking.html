@@ -261,10 +261,10 @@
 
         </section>
 
-        <h3>2.4 Summary of Associated Rule Mining</h3>
+        <h3>2.4 Summary of Associated Rule Mining (Non-technical)</h3>
         <section id="arm-summary">
 
-            <p>Many underlying relationships between words in the YouTube comments dataset are found by the associate rule mining, which gives a more complete view of the dataset. But some relationships indicate that the keywords and categories used in auto-labeling procedure in previous section are inaccurate. For example, some keywords have low support and should not be used as labeling standard. Also, a host/channel-related category is needed because many comments are about thar topic.</p>
+            <p>ARM is a powerful machine learning method. Many underlying relationships between words in the YouTube comments dataset are found by the associate rule mining, which definitely gives a more complete view of the dataset. But some relationships indicate that the keywords and categories used in previous section are inaccurate. For example, some keywords' occurrences are very low and should not be used as labeling standard. Also, a host/channel-related category is needed because many comments are about thar topic.</p>
 
         </section>
 
@@ -277,11 +277,12 @@
                 style="background: transparent; border: 1px solid #ccc;">
             </iframe>
             <figurecaption>Click <a href="html/igraph.html" target="_blank">HERE</a> to open in a new tab. </figurecaption>
-            <p>This subset of rules is selected by keywords "apple", "facebook", "google", "microsoft", "youtube". There are 4 main centers of nodes:  </p>
+            <p>This subset of rules is selected by keywords "apple", "facebook", "google", "microsoft", "youtube". There are 5 main centers of nodes:  </p>
 
             <p>"apple": surrounded by "arm", "iphone", "qualcomm", "intel", "nvidia";</p>
-            <p>"google": surrounded by "search", "engine", "assistant", "store", "app"; </p>
             <p>"facebook": surrounded by "start_change", "dark_mode", "sell", "datum"; </p>
+            <p>"google": surrounded by "search", "engine", "assistant", "store", "app"; </p>
+            <p>"microsoft": surrounded by "win_10", "flight_simulation";</p>
             <p>"youtube": surrounded by "comment", "like", "view", "ad", "premium".</p>
 
         </section>
@@ -322,10 +323,16 @@
 
         </section>
 
-        <h3>3.5 Summary of Network Visualization</h3>
+        <h3>3.5 Summary of Network Visualization (Non-technical)</h3>
         <section id="nv-summary">
 
-            <p>Summary here.</p>
+            <p>When auto-labeling text data by keywords, the choices of keyword set can significantly affect the labeling result. For example, when using "amd" as the keyword of the GPU topic, the fact that AMD also manufactures CPU has being ignored, so the labeling result will be inaccurate. By combining associate rule mining and network visualization, this problem can be solved.</p>
+
+            <p>First, network visualization provides how keywords are related to each other, the central words(surrounded by many other words) can be a good choice of labeling standard. For example, ("iphone", "android", "xiaomi", "huawei") were chosen empirically to labeling a cell phone topic in the previous part. Usually people assume that a tech channel should talk about cell phone, right?</p>
+
+            <p>No, according to the result from ARM and Network, they are not central words and some of them even appear less than 5 times in the dataset. Actually, the result suggests that there should be a channel topic(channel owner, channel host, channel advertisement) instead of the non-existed cell phone topic.</p>
+
+            <p>Also, back to the problem of "amd" in two topics, instead of simply judging the topic based on whether a keyword exists, the frequent itemsets and rules from by ARM and network visualization can be used as labeling criterion. For example,"amd" always associates with "nvidia", "rx" in GPU topic, but in CPU topic, "amd" always associates with "intel", "ryzen". It should have a better labeling result when these rules are applied.</p>
 
         </section>
 
