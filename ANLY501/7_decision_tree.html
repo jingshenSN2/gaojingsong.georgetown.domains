@@ -121,6 +121,10 @@
                     <img class="center-fig" src="picture/decision_tree/cls_arm.png">
                     <figurecaption>Figure: decision tree using frequent-itemset-based DTM data(acc=0.5884)</figurecaption>
                 </figure>
+                <figure style="width:90%">
+                    <img class="center-fig" src="picture/decision_tree/df_fi.png">
+                    <figurecaption>Figure: top20 important features of decision tree </figurecaption>
+                </figure>
 
                 <p>The confusion matrix is shown below.</p>
                 <table class="center-table">
@@ -137,9 +141,14 @@
 
         <h3>2.4 Random Forest built by Item Sets Tokenizer</h3>
             <section id="yt-rf">
-                <p>A random forest contains 100 decision trees using gini criterion with max_dept=35 is trained by itemset-tokenized data. Other parameters are max_features=50, max_samples=1000, min_samples_split=10. The confusion matrix is shown below.</p>
+                <p>A random forest contains 100 decision trees using gini criterion with max_dept=35 is trained by itemset-tokenized data. Other parameters are max_features=50, max_samples=1000, min_samples_split=10. The visualization of the entire random forest is almost impossible, so only a feature importance plot is shown below.</p>
+                <figure style="width:90%">
+                    <img class="center-fig" src="picture/decision_tree/rf_fi.png">
+                    <figurecaption>Figure: top20 important features of random forest</figurecaption>
+                </figure>
+                <p>The confusion matrix is shown below.</p>
                 <table class="center-table">
-                <caption>Confusion matrix of decision tree using GINI criterion and item set tokenizer</caption>
+                <caption>Confusion matrix of random forest using GINI criterion and item set tokenizer</caption>
 <thead><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody>   <tr><td>1:GPU</td><td>2233</td><td>0</td><td>0</td><td>0</td><td>6342</td></tr>
  <tr><td>2:CPU</td><td>0</td><td>1751</td><td>0</td><td>0</td><td>3628</td></tr>
  <tr><td>3:Phone</td><td>0</td><td>0</td><td>518</td><td>0</td><td>4247</td></tr>
@@ -147,13 +156,13 @@
  <tr><td>5:Channel</td><td>2</td><td>0</td><td>0</td><td>0</td><td>21529</td></tr>
 </tbody></table>
 
-                <p>The accuracy of this random forest is 0.5865, which is very close to a single decision tree.</p>
+                <p>The accuracy of this random forest is 0.5865, which is very close to a single decision tree. The important features are similar to the single decision tree, for example, the top 1 feature are {amd, intel} in both models.</p>
 
             </section>
 
         <h3>2.5 Summary of Decision Trees from YouTube Comments</h3>
             <section id="yt-summary">
-                <p>In this section, first, the labels automatically assigned by keywords are examined by decision tree. Then, the frequent itemsets in ARM are used to tokenize the text data and train a decision tree and a random forest.</p>
+                <p>In this section, first, the labels automatically assigned by keywords are examined by decision tree. Then, the frequent itemsets in ARM are used to tokenize the text data and train a decision tree and a random forest. The trees all have the linkedlist shape and an impure leaf node indicates a deeper tree is needed in this YouTube comments dataset. The attempt of using frequent itemsets as tokenizer doesn't work well because many comments don't contain any frequent itemset. But it does provide people a new way of feature generation in text data.</p>
 
             </section>
 
@@ -221,7 +230,8 @@
 
         <h3>3.4 Summary of Decision Trees in Time Series</h3>
             <section id="ts-summary">
-                <p></p>
+                <p>In this section, three decision trees are used to classify CPU products from Intel/AMD and answer whether AMD/Intel would reduce their price after Intel/AMD released new products. By using the relative monthly prices in 2020 and two release indicator as features, the labels(manufacture of products) can be predicted accurately.</p>
+                <p>From the nodes in the decision trees, it indicates that the prices of Intel's CPUs are <b>lower</b> after AMD released their Zen3 CPUs, but the prices of AMD's CPUs are <b>higher</b> after Intel released their 10th gen CPUs.</p>
             </section>
     </div>
 
