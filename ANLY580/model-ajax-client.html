@@ -100,7 +100,7 @@
       $("#loading").toggle();
 
       $.ajax({
-        url: "http://us-la-cn2-1.natfrp.cloud:15432/v1/ELI5CModel",
+        url: "https://us-la-cn2-1.natfrp.cloud:15432/v1/ELI5CModel",
         method: "POST",
         contentType: "application/json; charset=UTF-8",
         data: JSON.stringify({"question": $("#question").val()}),
