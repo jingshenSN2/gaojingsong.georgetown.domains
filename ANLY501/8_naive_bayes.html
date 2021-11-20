@@ -158,32 +158,39 @@
                     <figurecaption>Figure: confusion matrix of naive bayes model on drives(0 as no impact, 1 as impact, acc=0.967) </figurecaption>
                 </figure>
 
+                <p>The accuracy of model is 96.7%, which shows a great classification power of CHIA IMPACT. Then the model is used on the test set to predict whether a drive was impacted by Chia. As a result, 175 drives in test set are labeled as 1 (IMPACT) and 81 drives are labeled as 0 (NO IMPACT). </p>
+                <p>Next, some factors of drives are visualized according to the label CHIA_IMPACT. </p>
+                <p>First is the type of drives, there are 2 main types: HDD(hard disk drive) and SSD(solid state drive). HDD has two disk sizes as subtypes: 2.5 inches(as 25) and 3.5 inches(as 35). SSD has three socket sizes as subtypes: SATA(as sata), m.2 SATA(as m2), and m.2 NVME(as nvme). </p>
                 <figure style="width:70%">
                     <img class="center-fig" src="picture/naive_bayes/nb_drive_type.png">
                     <figurecaption>Figure: relation between drive type and CHIA IMPACT</figurecaption>
                 </figure>
-
+                <p>From the jitter plot, 3.5 inches HDD and SATA SSD are mostly impacted by Chia. Other three subtypes are 50-50 impacted by Chia.</p>
                 <figure style="width:70%">
                     <img class="center-fig" src="picture/naive_bayes/nb_drive_brand.png">
                     <figurecaption>Figure: relation between drive brand and CHIA IMPACT</figurecaption>
                 </figure>
-
+                <p>When coming to the brand of drives, the plot shows that drives are impacted by Chia no matter the brand. But there are still some small different in the distribution, for example, all Crucial SSD, WD_BLACK HDD are impacted by Chia, while none of WD_BLACK SSD are impacted by Chia.</p>
                 <figure style="width:70%">
                     <img class="center-fig" src="picture/naive_bayes/nb_drive_price.png">
                     <figurecaption>Figure: relation between drive price and CHIA IMPACT</figurecaption>
                 </figure>
-
+                <p>For the price of drives(at January 2021), the drives which are impacted have a lower average prices.</p>
                 <figure style="width:70%">
                     <img class="center-fig" src="picture/naive_bayes/nb_drive_cap.png">
                     <figurecaption>Figure: relation between drive capacity and CHIA IMPACT</figurecaption>
                 </figure>
-                <p></p>
+                <p>From the aspect of capacity, the bar plot shows that drives with very small capacities(128gb, 256gb) and drives with very large capacities(8tb, 10tb+) are mostly impacted.</p>
             </section>
 
         <h3>3.4 Summary of Effect Analysis on Drive & Chia using Naive Bayes</h3>
             <section id="chia-summary">
-                <p>In this section, three decision trees are used to classify CPU products from Intel/AMD and answer whether AMD/Intel would reduce their price after Intel/AMD released new products. By using the relative monthly prices in 2020 and two release indicator as features, the labels(manufacture of products) can be predicted accurately.</p>
-                <p>From the nodes in the decision trees, it indicates that the prices of Intel's CPUs are <b>lower</b> after AMD released their Zen3 CPUs, but the prices of AMD's CPUs are <b>higher</b> after Intel released their 10th gen CPUs.</p>
+                <p>In this section, naive bayes model is used to predict whether a drive is impacted by Chia coin. From the visualization and analysis above, the conclusion is listed below:</p>
+                <p>1. Around <b>2/3</b> drives are impacted by Chia. Their prices spiked during April~August in 2021. </p>
+                <p>2. All types of drives are somehow impacted by Chia, especially the SATA SSD and 3.5 inches HDD. </p>
+                <p>3. Drives are impacted no matter which manufacturer sells them. But some certain brands have more drives that been impacted.</p>
+                <p>4. Average price of the impacted drives is smaller than not impacted ones.</p>
+                <p>5. Drives with small capacity(128~256gb) and very large capacity(8tb, 10tb+) are mostly impacted by Chia.</p>
             </section>
     </div>
 
