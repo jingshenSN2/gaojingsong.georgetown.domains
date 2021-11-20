@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <title>Jingsong Gao - 501 Portfolio</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css"/>
     <link rel="shortcut icon" href="/icon.png"/>
@@ -9,11 +10,189 @@
 
 <body>
 <div class="headerpage-501"></div>
+<div class="main">
+    <div class="left-side">
+        <div class="left-navi">
+            <ul>
+                <li class="nav"><p>Links</p></li>
+                <li class="nav"><a href="#scripts">Scripts</a></li>
+                <li class="nav"><a href="#data">Data</a></li>
+                <li class="nav"><p>YouTube Comments</p></li>
+                <li class="nav"><a href="#yt-pre">Preparation</a></li>
+                <li class="nav"><a href="#yt-word">Sentiment Analysis</a></li>
+                <li class="nav"><a href="#yt-summary">Summary</a></li>
+                <li class="nav"><p>Drive Price vs Chia</p></li>
+                <li class="nav"><a href="#chia-pur">Purpose</a></li>
+                <li class="nav"><a href="#chia-pre">Feature Engineering</a></li>
+                <li class="nav"><a href="#chia-anly">Effect Analysis</a></li>
+                <li class="nav"><a href="#chia-summary">Summary</a></li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="content">
+        <h1 style="text-align:center">Naive Bayes</h1>
+
+        <h2>1. Links</h2>
+
+        <h3>1.1 Scripts</h3>
+            <section id="scripts">
+                <p><b>YouTube Comments:</b></p>
+                <p>1. Preprocessing and Filtering: <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/text/text_filter.ipynb"
+                        target="_blank">text_filter.ipynb</a>.</p>
+                <p>2. WordCloud Visualization: <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/text/text_wordcloud.ipynb"
+                        target="_blank">text_wordcloud.ipynb</a>. </p>
+                <p>3. Naive Bayes modeling: <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/text/text_nb.ipynb"
+                        target="_blank">text_nb.ipynb</a>. </p>
+                <p><b>Drive & Chia:</b></p>
+                <p>1. Feature Generation : <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/record/drive_ts.ipynb"
+                        target="_blank">drive_ts.ipynb</a>.</p>
+                <p>2. Naive Bayes modeling: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/record/drive.R" target="_blank">drive.R</a>.</p>
+            </section>
+
+        <h3>1.2 Data</h3>
+            <section id="data">
+                <p><b>YouTube Comments:</b></p>
+                <p>1. Labeled GPU-related Comments (Training Set): <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/text/text_train_labelled.csv"
+                        target="_blank">text_train_labeled.csv</a>.</p>
+                <p>2. Unlabeled GPU-related Comments (Test Set): <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/text/text_test.csv"
+                        target="_blank">text_test.csv</a>.</p>
+                <figure style="width:90%">
+                    <img class="center-fig" src="picture/naive_bayes/wordcloud.png">
+                    <figurecaption>Figure: wordcould of [Negative, Neutral, Positive] YouTube comments (Training Set)</figurecaption>
+                </figure>
+
+                <p><b>Drive & Chia:</b></p>
+                <p>1. Labeled Product Info & Monthly Prices(Training & Validation Set): <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/record/drive_train_labeled.csv" target="_blank">drive_train_labeled.csv</a>.</p>
+                <figure style="width:90%">
+                    <img style="width:58%" src="picture/naive_bayes/overview1.png">
+                    <img style="width:38%" src="picture/naive_bayes/overview2.png">
+                    <figurecaption>Screenshot: A Quick view of drives dataset (Training Set)</figurecaption>
+                </figure>
+                <p>2. Unlabeled Product Info & Monthly Prices (Test Set): <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/record/drive_test.csv" target="_blank">drive_test.csv</a>.</p>
+                <p>2. Test Set labeled by naive bayes: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/naive_bayes/record/drive_test_nb.csv" target="_blank">drive_test_nb.csv</a>.</p>
+            </section>
+
+        <h2>2. YouTube Comments Sentiment Analysis</h2>
+
+        <h3>2.1 Preparation and Filtering GPU-related Comments</h3>
+            <section id="yt-pre">
+                <p>In the previous parts, YouTube comments are classified into 5 topics using different models. In this part, the project will focus on only one topic: <b>GPU topic</b>. A simple sentiment classification and analysis will be performed on these comments to see how do the public react to the GPU shortage.</p>
+                <p>First, 3363 comments under GPU topic are filtered from the origin YouTube comments dataset. Then a small subset contains 300 comments is selected as training set and manually labeled. The labels are 0 as Neutral(126 in this class), 1 as Negative(96 in this class), 2 as Positive(78 in this class). The rest 3063 GPU topic comments are used as test set.</p>
+            </section>
+
+        <h3>2.2 Sentiment Analysis</h3>
+            <section id="yt-word">
+                <p>A naive bayes model is trained by word-tokenized (TfidfVectorizer) training set. The confusion matrices are shown below.</p>
+                <figure style="width:90%">
+                    <img class="center-fig" style="width:40%" src="picture/naive_bayes/conf_mat.png">
+                    <figurecaption>Figure: confusion matrix of naive bayes model on YouTube comments(0 as Neutral, 1 as Negative, 2 as Positive, acc=0.89)
+                    </figurecaption>
+                </figure>
+                <p>From the confusion matrix, this model has a tendency to label positive comments as neutral, but it can distinguish positive and negative well. </p>
+                <p>This model is used to predict the label of test set. As a result, 2583 comments are labeled as Neutral(0), 469 comments are labeled as Negative(1), and only 11 comments are labeled Positive(2). Then, all comments (both training and test set) are separated based on the published month. The visualization of comments' counts is shown below.</p>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/count.png">
+                    <figurecaption>Figure: Number of comments with different sentiment from June 2018 to Sept 2021
+                    </figurecaption>
+                </figure>
+                <p>Also, a percentage plot is shown below.</p>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/percentage.png">
+                    <figurecaption>Figure: Percentage of comments with different sentiment from June 2018 to Sept 2021
+                    </figurecaption>
+                </figure>
+                <p>Then, define sentiment score as positive comments - negative comments, the monthly sentiment score is shown below.</p>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/sentiment_score.png">
+                    <figurecaption>Figure: monthly sentiment score of comments from 2018 to Sept
+                    </figurecaption>
+                </figure>
+
+                <p>Let's compare the price history of crypto ETH. </p>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/eth.png">
+                    <figurecaption>Screenshot: historical price of ETH from 2018 to 2021
+                    </figurecaption>
+                </figure>
+
+            </section>
+
+        <h3>2.3 Summary of Sentiment Analysis by Naive Bayes</h3>
+            <section id="yt-summary">
+                <p>These plots show a trend of public view about graphic cards. Three main findings are shown below: </p>
+                <p>1. It is very obvious that since June 2020, when the crypto market began to skyrocket, the public began to hold very negative view of the GPU to complain about the shortage.</p>
+                <p>2. An interesting find is that there is another peak of negative view occurred in 2018, which is also a small boom of crypto ETH, the price of ETH risen from $100 at January to over $300 at June. </p>
+                <p>3. During later 2018 to early 2020, the public view of the GPU were kind of neutral and even positive for a few months. In this period, the market of crypto was also kind of slump, which the price of ETH was struggling and bouncing between $100 to $300 many times. </p>
+                <p>Based on these observations, there's a <b>correlation between the public view and the market of cryptocurrencies</b>, which can be explained by the following event chain:  </p>
+                <p>The price of crypto rises => more miners buy graphic cards to mine crypto => scalpers buy cards and sell them at high price to those miners => graphic cards are out of stock & the price of graphic cards skyrocket => people complain about the shortage and high price.</p>
+
+            </section>
+
+        <h2>3. Impact from Chia on PC Hardware: Drives</h2>
+
+        <h3>3.1 Why drive & chia?</h3>
+            <section id="chia-pur">
+                <p>As mentioned in the introduction, Chia is a special cryptocurrency which uses the storage of drives (hdd or ssd) instead of graphic cards to mine. So, after it opened for public trading in April 2021, instead of affect the graphic card market, it has an impact on drive storage market. In this part, the impact of Chia will be evaluated using the historical price of more than 200 drives on Amazon since 2021.</p>
+            </section>
+
+        <h3>3.2 Feature Extraction</h3>
+            <section id="chia-pre">
+                <p>Since most drives have already been on the market for many years, the prices of them change very slow, even during the Chia Impact period. So, a monthly price is used for tracking the price trend in 2021. </p>
+                <p>Monthly prices <b>from February to October</b> are extracted from the Amazon database and normalized by divide by the price in January. The <b>brand</b>, <b>drive_type</b>, <b>drive_subtype</b>, and <b>capacity</b> are also extracted from database and used as features.</p>
+                <p>Then, 60 drives are selected as training set and manually labeled whether their prices are affected by Chia (by looking at the entire daily price history using Keepa API). As a result, 32 drives are labeled as 1 (IMPACT) and 28 drives are labeled as 0 (NO IMPACT). </p>
+
+            </section>
+
+        <h3>3.3 Model Training & Effect Analysis</h3>
+            <section id="chia-anly">
+                <p>First, a naive bayes model is then trained by the training set, the confusion matrix is shown below.</p>
+                <figure style="width:90%">
+                    <img class="center-fig" style="width:60%" src="picture/naive_bayes/nb_train.png">
+                    <figurecaption>Figure: confusion matrix of naive bayes model on drives(0 as no impact, 1 as impact, acc=0.967) </figurecaption>
+                </figure>
+
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/nb_drive_type.png">
+                    <figurecaption>Figure: relation between drive type and CHIA IMPACT</figurecaption>
+                </figure>
+
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/nb_drive_brand.png">
+                    <figurecaption>Figure: relation between drive brand and CHIA IMPACT</figurecaption>
+                </figure>
+
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/nb_drive_price.png">
+                    <figurecaption>Figure: relation between drive price and CHIA IMPACT</figurecaption>
+                </figure>
+
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/nb_drive_cap.png">
+                    <figurecaption>Figure: relation between drive capacity and CHIA IMPACT</figurecaption>
+                </figure>
+                <p></p>
+            </section>
+
+        <h3>3.4 Summary of Effect Analysis on Drive & Chia using Naive Bayes</h3>
+            <section id="chia-summary">
+                <p>In this section, three decision trees are used to classify CPU products from Intel/AMD and answer whether AMD/Intel would reduce their price after Intel/AMD released new products. By using the relative monthly prices in 2020 and two release indicator as features, the labels(manufacture of products) can be predicted accurately.</p>
+                <p>From the nodes in the decision trees, it indicates that the prices of Intel's CPUs are <b>lower</b> after AMD released their Zen3 CPUs, but the prices of AMD's CPUs are <b>higher</b> after Intel released their 10th gen CPUs.</p>
+            </section>
+    </div>
+
+</div>
 
 <script src="jquery-3.5.1.min.js"></script>
 <script>$(function () {
     $(".headerpage-501").load("header.html");
 });</script>
+<script src="nav_scroll.js"></script>
 </body>
 </html>
