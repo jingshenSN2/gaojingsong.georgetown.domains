@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <title>Jingsong Gao - 501 Portfolio</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css"/>
     <link rel="shortcut icon" href="/icon.png"/>
@@ -9,11 +10,180 @@
 
 <body>
 <div class="headerpage-501"></div>
+<div class="main">
+    <div class="left-side">
+        <div class="left-navi">
+            <ul>
+                <li class="nav"><p>Links</p></li>
+                <li class="nav"><a href="#scripts">Scripts</a></li>
+                <li class="nav"><a href="#data">Data</a></li>
+                <li class="nav"><p>Drive Stock vs Chia</p></li>
+                <li class="nav"><a href="#chia-pre">Feature Engineering</a></li>
+                <li class="nav"><a href="#chia-anly">Effect Analysis</a></li>
+                <li class="nav"><a href="#chia-summary">Summary</a></li>
+                <li class="nav"><p>Second-hand Drive</p></li>
+                <li class="nav"><a href="#sc-pur">Purpose</a></li>
+                <li class="nav"><a href="#sc-anly">Model&Analysis</a></li>
+                <li class="nav"><a href="#sc-summary">Summary</a></li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="content">
+        <h1 style="text-align:center">Support Vector Machine</h1>
+
+        <h2>1. Links</h2>
+
+        <h3>1.1 Scripts</h3>
+            <section id="scripts">
+                <p><b>Drive Stock & Chia:</b></p>
+                <p>1. Feature Generation : <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/stock/drive_ts.ipynb"
+                        target="_blank">drive_ts.ipynb</a>.</p>
+                <p>2. SVM modeling: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/stock/drive.R" target="_blank">drive.R</a>.</p>
+                <p><b>Second-hand Drive:</b></p>
+                <p>1. Feature Generation : <a
+                        href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/second-hand/drive_used_ts.ipynb"
+                        target="_blank">drive_used_ts.ipynb</a>.</p>
+                <p>2. SVM modeling: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/second-hand/drive_used.ipynb" target="_blank">drive_used.ipynb</a>.</p>
+            </section>
+
+        <h3>1.2 Data</h3>
+            <section id="data">
+                <p><b>Drive Stock & Chia:</b></p>
+                <p>1. Labeled Monthly Stocks(Training & Validation Set): <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/stock/drive_stock_train_labeled.csv" target="_blank">drive_stock_train_labeled.csv</a>.</p>
+                <figure style="width:90%">
+                    <img style="width:61%" src="picture/svm/overview1.png">
+                    <img style="width:35.5%" src="picture/svm/overview2.png">
+                    <figurecaption>Screenshot: A Quick view of drives dataset (Training Set)</figurecaption>
+                </figure>
+                <p>2. Unlabeled Monthly Prices (Test Set): <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/stock/drive_stock_test.csv" target="_blank">drive_stock_test.csv</a>.</p>
+                <p>3. Test Set labeled by SVM: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/stock/drive_test_svm.csv" target="_blank">drive_test_svm.csv</a>.</p>
+
+                <p><b>Second-hand Drive:</b></p>
+                <p>1. Labeled Monthly Second-hand Prices: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/second-hand/drive_used_labeled.csv" target="_blank">drive_used_labeled.csv</a>.</p>
+            </section>
+
+
+        <h2>2. Impact from Chia on Drives Stock</h2>
+
+        <h3>2.1 Feature Extraction</h3>
+            <section id="chia-pre">
+                <p>A monthly offer count is used for tracking the stock trend in 2021.  Monthly offer counts <b>from February to October</b> are extracted from the Amazon database and normalized by divide by the offer count in January. The <b>brand</b>, <b>drive_type</b>, <b>drive_subtype</b>, and <b>capacity</b> are also extracted from database and used for further analysis.</p>
+                <p>Then, 60 drives are selected as training set and manually labeled whether their stocks are affected by Chia (by looking at the entire daily offer count history using Keepa API). As a result, 25 drives are labeled as 1 (IMPACT) and 35 drives are labeled as 0 (NO IMPACT). </p>
+
+            </section>
+
+        <h3>2.2 Model Training & Effect Analysis</h3>
+            <section id="chia-anly">
+                <p>First, three SVM with different kernels are trained by the training set. Costs of the models are selected based on validation set accuracy. The final models are <b>linear kernel with cost=0.01</b>, <b>radial kernel with cost=2</b>, and <b>sigmoid kernel with cost=0.05</b>. The confusion matrices are shown below.</p>
+                <figure style="width:80%">
+                    <img style="width:48%" src="picture/svm/svm_linear_train.png">
+                    <img style="width:48%" src="picture/svm/svm_linear_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with linear kernel (cost=0.01, val acc=0.917) </figurecaption>
+                </figure>
+                <figure style="width:80%">
+                    <img style="width:48%" src="picture/svm/svm_radial_train.png">
+                    <img style="width:48%" src="picture/svm/svm_radial_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with radial kernel (cost=2, val acc=0.583) </figurecaption>
+                </figure>
+                <figure style="width:80%">
+                    <img style="width:48%" src="picture/svm/svm_sigmoid_train.png">
+                    <img style="width:48%" src="picture/svm/svm_sigmoid_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with sigmoid kernel (cost=0.05, val acc=0.917) </figurecaption>
+                </figure>
+
+                <p>The final model used to label the test set is the linear kernel model with cost=0.01, which shows a great classification power of CHIA IMPACT. As a result, 81 drives in test set are labeled as 1 (IMPACT) and 147 drives are labeled as 0 (NO IMPACT). </p>
+                <p>Next, the offer count time series of drives are visualized according to the label CHIA_IMPACT. </p>
+
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/stock_chia0.png">
+                    <figurecaption>Figure: Offer Count Time Series with CHIA IMPACT = 0</figurecaption>
+                </figure>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/stock_chia1.png">
+                    <figurecaption>Figure: Offer Count Time Series with CHIA IMPACT = 1</figurecaption>
+                </figure>
+                <p>Also, the distribution of stocks at January 2021 is visualized based on CHIA_IMPACT. </p>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/svm_drive_price.png">
+                    <figurecaption>Figure: relation between drive stock and CHIA IMPACT</figurecaption>
+                </figure>
+
+            </section>
+
+        <h3>2.3 Summary of Effect Analysis on Drive & Chia using SVM</h3>
+            <section id="chia-summary">
+                <p>In this section, svm model is used to predict whether the stock(offer count) of drive is impacted by Chia coin. From the visualization and analysis above, the conclusion is listed below:</p>
+                <p>1. Around <b>40%</b> drives are impacted on stock by Chia. </p>
+                <p>2. Their marketplace offer counts slumped during April~August in 2021. </p>
+                <p>3. Average stocks of the impacted drives is significantly larger than not impacted ones.</p>
+            </section>
+
+
+
+        <h2>3. Reexamine Second-hand Price of Drive</h2>
+
+        <h3>3.1 Why second-hand price?</h3>
+            <section id="sc-pur">
+                <p>A monthly offer count is used for tracking the stock trend in 2021.  Monthly offer counts <b>from February to October</b> are extracted from the Amazon database and normalized by divide by the offer count in January. The <b>brand</b>, <b>drive_type</b>, <b>drive_subtype</b>, and <b>capacity</b> are also extracted from database and used for further analysis.</p>
+                <p>Then, 60 drives are selected as training set and manually labeled whether their stocks are affected by Chia (by looking at the entire daily offer count history using Keepa API). As a result, 25 drives are labeled as 1 (IMPACT) and 35 drives are labeled as 0 (NO IMPACT). </p>
+
+            </section>
+
+        <h3>3.2 Model Training & Effect Analysis</h3>
+            <section id="sc-anly">
+                <p>First, three SVM with different kernels are trained by the training set. Costs of the models are selected based on validation set accuracy. The final models are <b>linear kernel with cost=0.01</b>, <b>radial kernel with cost=2</b>, and <b>sigmoid kernel with cost=0.05</b>. The confusion matrices are shown below.</p>
+                <figure style="width:80%">
+                    <img style="width:48%" src="picture/svm/svm_linear_train.png">
+                    <img style="width:48%" src="picture/svm/svm_linear_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with linear kernel (cost=0.01, val acc=0.917) </figurecaption>
+                </figure>
+                <figure style="width:80%">
+                    <img style="width:48%" src="picture/svm/svm_radial_train.png">
+                    <img style="width:48%" src="picture/svm/svm_radial_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with radial kernel (cost=2, val acc=0.583) </figurecaption>
+                </figure>
+                <figure style="width:80%">
+                    <img style="width:48%" src="picture/svm/svm_sigmoid_train.png">
+                    <img style="width:48%" src="picture/svm/svm_sigmoid_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with sigmoid kernel (cost=0.05, val acc=0.917) </figurecaption>
+                </figure>
+
+                <p>The final model used to label the test set is the linear kernel model with cost=0.01, which shows a great classification power of CHIA IMPACT. As a result, 81 drives in test set are labeled as 1 (IMPACT) and 147 drives are labeled as 0 (NO IMPACT). </p>
+                <p>Next, the offer count time series of drives are visualized according to the label CHIA_IMPACT. </p>
+
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/stock_chia0.png">
+                    <figurecaption>Figure: Offer Count Time Series with CHIA IMPACT = 0</figurecaption>
+                </figure>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/stock_chia1.png">
+                    <figurecaption>Figure: Offer Count Time Series with CHIA IMPACT = 1</figurecaption>
+                </figure>
+                <p>Also, the distribution of stocks at January 2021 is visualized based on CHIA_IMPACT. </p>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/svm_drive_price.png">
+                    <figurecaption>Figure: relation between drive stock and CHIA IMPACT</figurecaption>
+                </figure>
+
+            </section>
+
+        <h3>3.3 Summary of Effect Analysis on Second-hand Drive</h3>
+            <section id="sc-summary">
+                <p>In this section, svm model is used to predict whether the stock(offer count) of drive is impacted by Chia coin. From the visualization and analysis above, the conclusion is listed below:</p>
+                <p>1. Around <b>40%</b> drives are impacted on stock by Chia. </p>
+                <p>2. Their marketplace offer counts slumped during April~August in 2021. </p>
+                <p>3. Average stocks of the impacted drives is significantly larger than not impacted ones.</p>
+            </section>
+    </div>
+
+</div>
 
 <script src="jquery-3.5.1.min.js"></script>
 <script>$(function () {
     $(".headerpage-501").load("header.html");
 });</script>
+<script src="nav_scroll.js"></script>
 </body>
 </html>
