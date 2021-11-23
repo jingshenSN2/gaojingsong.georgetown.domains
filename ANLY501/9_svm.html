@@ -45,7 +45,7 @@
                 <p>1. Feature Generation : <a
                         href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/second-hand/drive_used_ts.ipynb"
                         target="_blank">drive_used_ts.ipynb</a>.</p>
-                <p>2. SVM modeling: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/second-hand/drive_used.ipynb" target="_blank">drive_used.ipynb</a>.</p>
+                <p>2. SVM modeling: <a href="https://github.com/jingshenSN2/GU-ANLY-501-FALL-2021/tree/master/svm/second-hand/drive_used_svm.ipynb" target="_blank">drive_used_svm.ipynb</a>.</p>
             </section>
 
         <h3>1.2 Data</h3>
@@ -69,14 +69,21 @@
 
         <h3>2.1 Feature Extraction</h3>
             <section id="chia-pre">
-                <p>A monthly offer count is used for tracking the stock trend in 2021.  Monthly offer counts <b>from February to October</b> are extracted from the Amazon database and normalized by divide by the offer count in January. The <b>brand</b>, <b>drive_type</b>, <b>drive_subtype</b>, and <b>capacity</b> are also extracted from database and used for further analysis.</p>
+                <p>A monthly offer count is used for tracking the stock trend in 2021.  Monthly offer counts <b>from February to October</b> are extracted from the Amazon database and normalized by divide by the offer count in January.</p>
                 <p>Then, 60 drives are selected as training set and manually labeled whether their stocks are affected by Chia (by looking at the entire daily offer count history using Keepa API). As a result, 25 drives are labeled as 1 (IMPACT) and 35 drives are labeled as 0 (NO IMPACT). </p>
 
             </section>
 
         <h3>2.2 Model Training & Effect Analysis</h3>
             <section id="chia-anly">
-                <p>First, three SVM with different kernels are trained by the training set. Costs of the models are selected based on validation set accuracy. The final models are <b>linear kernel with cost=0.01</b>, <b>radial kernel with cost=2</b>, and <b>sigmoid kernel with cost=0.05</b>. The confusion matrices are shown below.</p>
+                <p>First, three SVM with different kernels and different costs are trained by the training set. </p>
+
+                <figure style="width:50%">
+                    <img class="center-fig" src="picture/svm/stock_kernel_cost.png">
+                    <figurecaption>Figure: Validation accuracy for different kernels and costs</figurecaption>
+                </figure>
+
+                <p>Costs of the models are selected based on validation set accuracy. The selected models are <b>linear kernel with cost=0.01</b>, <b>radial kernel with cost=2</b>, and <b>sigmoid kernel with cost=0.05</b>. The confusion matrices are shown below.</p>
                 <figure style="width:80%">
                     <img style="width:48%" src="picture/svm/svm_linear_train.png">
                     <img style="width:48%" src="picture/svm/svm_linear_test.png">
@@ -93,7 +100,7 @@
                     <figurecaption>Figure: confusion matrix of SVM model with sigmoid kernel (cost=0.05, val acc=0.917) </figurecaption>
                 </figure>
 
-                <p>The final model used to label the test set is the linear kernel model with cost=0.01, which shows a great classification power of CHIA IMPACT. As a result, 81 drives in test set are labeled as 1 (IMPACT) and 147 drives are labeled as 0 (NO IMPACT). </p>
+                <p>The linear model is the simplest model but also has the highest test score. So, the final model used to label the test set is the linear kernel model with cost=0.01, which shows a great classification power of CHIA IMPACT. As a result, 81 drives in test set are labeled as 1 (IMPACT) and 147 drives are labeled as 0 (NO IMPACT). </p>
                 <p>Next, the offer count time series of drives are visualized according to the label CHIA_IMPACT. </p>
 
                 <figure style="width:70%">
@@ -104,11 +111,14 @@
                     <img class="center-fig" src="picture/svm/stock_chia1.png">
                     <figurecaption>Figure: Offer Count Time Series with CHIA IMPACT = 1</figurecaption>
                 </figure>
+                <p>From the plots, there is obvious difference between impacted drives and non-impacted drives. The impacted drives have a valley around May~June, which shows that Chia coin caused a shortage of the drives.</p>
+
                 <p>Also, the distribution of stocks at January 2021 is visualized based on CHIA_IMPACT. </p>
                 <figure style="width:70%">
                     <img class="center-fig" src="picture/svm/svm_drive_price.png">
                     <figurecaption>Figure: relation between drive stock and CHIA IMPACT</figurecaption>
                 </figure>
+                <p>This distribution plot shows that impacted drives have a significantly larger baseline offer count at January compares to non-impacted drives. It does make sense since the best-seller drives were easier to be bought by the scalpers and miners.</p>
 
             </section>
 
@@ -117,7 +127,7 @@
                 <p>In this section, svm model is used to predict whether the stock(offer count) of drive is impacted by Chia coin. From the visualization and analysis above, the conclusion is listed below:</p>
                 <p>1. Around <b>40%</b> drives are impacted on stock by Chia. </p>
                 <p>2. Their marketplace offer counts slumped during April~August in 2021. </p>
-                <p>3. Average stocks of the impacted drives is significantly larger than not impacted ones.</p>
+                <p>3. Popular drives are more likely to impacted by Chia and suffer from the shortage.</p>
             </section>
 
 
@@ -126,55 +136,49 @@
 
         <h3>3.1 Why second-hand price?</h3>
             <section id="sc-pur">
-                <p>A monthly offer count is used for tracking the stock trend in 2021.  Monthly offer counts <b>from February to October</b> are extracted from the Amazon database and normalized by divide by the offer count in January. The <b>brand</b>, <b>drive_type</b>, <b>drive_subtype</b>, and <b>capacity</b> are also extracted from database and used for further analysis.</p>
-                <p>Then, 60 drives are selected as training set and manually labeled whether their stocks are affected by Chia (by looking at the entire daily offer count history using Keepa API). As a result, 25 drives are labeled as 1 (IMPACT) and 35 drives are labeled as 0 (NO IMPACT). </p>
+                <p>In previous parts, the new price and stock of drives are examined by Naive Bayes model and SVM. The results all show that Chia coin significantly affected the market of drive. But there is still one more indicator we didn't check yet, the second-hand price. </p>
+
+                <p>The second-hand market has a much higher response-rate than new product market, since most second-hand sellers are individual or small companies that can change their prices immediately to keep up with the market. So, a question is: does second-hand market reacts faster/stronger than new product market?</p>
 
             </section>
 
         <h3>3.2 Model Training & Effect Analysis</h3>
             <section id="sc-anly">
-                <p>First, three SVM with different kernels are trained by the training set. Costs of the models are selected based on validation set accuracy. The final models are <b>linear kernel with cost=0.01</b>, <b>radial kernel with cost=2</b>, and <b>sigmoid kernel with cost=0.05</b>. The confusion matrices are shown below.</p>
-                <figure style="width:80%">
-                    <img style="width:48%" src="picture/svm/svm_linear_train.png">
-                    <img style="width:48%" src="picture/svm/svm_linear_test.png">
-                    <figurecaption>Figure: confusion matrix of SVM model with linear kernel (cost=0.01, val acc=0.917) </figurecaption>
-                </figure>
-                <figure style="width:80%">
-                    <img style="width:48%" src="picture/svm/svm_radial_train.png">
-                    <img style="width:48%" src="picture/svm/svm_radial_test.png">
-                    <figurecaption>Figure: confusion matrix of SVM model with radial kernel (cost=2, val acc=0.583) </figurecaption>
-                </figure>
-                <figure style="width:80%">
-                    <img style="width:48%" src="picture/svm/svm_sigmoid_train.png">
-                    <img style="width:48%" src="picture/svm/svm_sigmoid_test.png">
-                    <figurecaption>Figure: confusion matrix of SVM model with sigmoid kernel (cost=0.05, val acc=0.917) </figurecaption>
+                <p>First, three SVM with different kernels are trained by the training set. Costs of the models are selected based on validation set accuracy. The selected models are <b>linear kernel with cost=1</b>, <b>radial kernel with cost=1</b>, and <b>sigmoid kernel with cost=0.5</b>. </p>
+
+                <figure style="width:50%">
+                    <img class="center-fig" src="picture/svm/sc_kernel_cost.png">
+                    <figurecaption>Figure: Validation accuracy for different kernels and costs</figurecaption>
                 </figure>
 
-                <p>The final model used to label the test set is the linear kernel model with cost=0.01, which shows a great classification power of CHIA IMPACT. As a result, 81 drives in test set are labeled as 1 (IMPACT) and 147 drives are labeled as 0 (NO IMPACT). </p>
-                <p>Next, the offer count time series of drives are visualized according to the label CHIA_IMPACT. </p>
+                <p>Since the radial model has the highest test accuracy, it's chosen to be the final model for prediction on test set. The confusion matrix of training set is shown below.</p>
+                <table class="center-table" style="width: 80%">
+                <caption>Confusion matrix of SVC with radial kernel and cost=1 (all_train_acc=0.900)</caption>
+<thead><tr><th></th><th>CHIA_IMPACT=0</th><th>CHIA_IMPACT=1</th></thead><tbody>
+ <tr><td>CHIA_IMPACT=0</td><td><b>36</b></td><td>0</td></tr>
+ <tr><td>CHIA_IMPACT=1</td><td>6</td><td><b>18</b></td></tr>
+</tbody></table>
+
+                <p>The visualization of time series according to the label CHIA_IMPACT is shown below.</p>
 
                 <figure style="width:70%">
-                    <img class="center-fig" src="picture/svm/stock_chia0.png">
-                    <figurecaption>Figure: Offer Count Time Series with CHIA IMPACT = 0</figurecaption>
+                    <img class="center-fig" src="picture/svm/sc_chia0.png">
+                    <figurecaption>Figure: Second-hand Price Time Series with CHIA IMPACT = 0</figurecaption>
                 </figure>
+                <p>In non-impacted group, the prices do not have a clear pattern, most relative prices are fluctuating around 1.</p>
                 <figure style="width:70%">
-                    <img class="center-fig" src="picture/svm/stock_chia1.png">
-                    <figurecaption>Figure: Offer Count Time Series with CHIA IMPACT = 1</figurecaption>
+                    <img class="center-fig" src="picture/svm/sc_chia1.png">
+                    <figurecaption>Figure: Second-hand Price Time Series with CHIA IMPACT = 1</figurecaption>
                 </figure>
-                <p>Also, the distribution of stocks at January 2021 is visualized based on CHIA_IMPACT. </p>
-                <figure style="width:70%">
-                    <img class="center-fig" src="picture/svm/svm_drive_price.png">
-                    <figurecaption>Figure: relation between drive stock and CHIA IMPACT</figurecaption>
-                </figure>
-
+                <p>In impacted group, there's a clear pattern: prices peak at May~June, which shows the impact from Chia. Remember most new product prices have a 5~15% increment during Chia impact, for this second-hand market, it does react stronger(25~50%, even 100%+) than new product market.</p>
             </section>
 
         <h3>3.3 Summary of Effect Analysis on Second-hand Drive</h3>
             <section id="sc-summary">
-                <p>In this section, svm model is used to predict whether the stock(offer count) of drive is impacted by Chia coin. From the visualization and analysis above, the conclusion is listed below:</p>
-                <p>1. Around <b>40%</b> drives are impacted on stock by Chia. </p>
-                <p>2. Their marketplace offer counts slumped during April~August in 2021. </p>
-                <p>3. Average stocks of the impacted drives is significantly larger than not impacted ones.</p>
+                <p>In this section, svm model is used to predict whether the price of second-hand drive is impacted by Chia coin. From the visualization and analysis above, the conclusion is listed below:</p>
+                <p>1. Around <b>40%</b> second-hand drives are impacted on stock by Chia. </p>
+                <p>2. Comparing to new prices, second-hand prices of drives are more sensitive to Chia. </p>
+                <p>3. Overall, Chia coin significantly affected the drive market on the aspect of new prices, second-hand prices, and stocks.</p>
             </section>
     </div>
 
