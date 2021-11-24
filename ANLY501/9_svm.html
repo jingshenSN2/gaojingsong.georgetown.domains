@@ -151,15 +151,21 @@
                     <figurecaption>Figure: Validation accuracy for different kernels and costs</figurecaption>
                 </figure>
 
-                <p>Since the radial model has the highest test accuracy, it's chosen to be the final model for prediction on test set. The confusion matrix of training set is shown below.</p>
-                <table class="center-table" style="width: 80%">
-                <caption>Confusion matrix of SVC with radial kernel and cost=1 (all_train_acc=0.900)</caption>
-<thead><tr><th></th><th>CHIA_IMPACT=0</th><th>CHIA_IMPACT=1</th></thead><tbody>
- <tr><td>CHIA_IMPACT=0</td><td><b>36</b></td><td>0</td></tr>
- <tr><td>CHIA_IMPACT=1</td><td>6</td><td><b>18</b></td></tr>
-</tbody></table>
+                <p>The confusion matrix of training set are shown below.</p>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/u_svm_linear_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with linear kernel (cost=1, acc=0.833) </figurecaption>
+                </figure>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/u_svm_radial_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with radial kernel (cost=1, acc=0.900) </figurecaption>
+                </figure>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/u_svm_sigmoid_test.png">
+                    <figurecaption>Figure: confusion matrix of SVM model with sigmoid kernel (cost=0.5, acc=0.600) </figurecaption>
+                </figure>
 
-                <p>The visualization of time series according to the label CHIA_IMPACT is shown below.</p>
+                <p>Since the radial model has the highest test accuracy, it's chosen to be the final model for prediction on test set. The visualization of time series according to the label CHIA_IMPACT is shown below.</p>
 
                 <figure style="width:70%">
                     <img class="center-fig" src="picture/svm/sc_chia0.png">
