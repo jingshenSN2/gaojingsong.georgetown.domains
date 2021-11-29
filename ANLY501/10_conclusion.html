@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <title>Jingsong Gao - 501 Portfolio</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css"/>
     <link rel="shortcut icon" href="/icon.png"/>
@@ -9,11 +10,153 @@
 
 <body>
 <div class="headerpage-501"></div>
+<div class="main">
+    <div class="left-side">
+        <div class="left-navi">
+            <ul>
+                <li class="nav"><p>Summary</p></li>
+                <li class="nav"><a href="#summary">What we did?</a></li>
+                <li class="nav"><p>Conclusion</p></li>
+                <li class="nav"><a href="#conclusion">What we found?</a></li>
+                <li class="nav"><a href="#ans-q1">Q1</a></li>
+                <li class="nav"><a href="#ans-q2">Q2</a></li>
+                <li class="nav"><a href="#ans-q3">Q3</a></li>
+                <li class="nav"><a href="#ans-q4">Q4</a></li>
+                <li class="nav"><a href="#ans-q5">Q5</a></li>
+                <li class="nav"><a href="#ans-q6">Q6</a></li>
+                <li class="nav"><a href="#ans-q7">Q7</a></li>
+                <li class="nav"><a href="#ans-q8">Q8</a></li>
+                <li class="nav"><a href="#ans-q9">Q9</a></li>
+                <li class="nav"><a href="#ans-q10">Q10</a></li>
+                <li class="nav"><p>Further Research</p></li>
+                <li class="nav"><a href="#cpu">CPU-mined Crypto?</a></li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="content">
+        <h1 style="text-align:center">Conclusion</h1>
+
+        <section id="summary">
+        <h2>1. What we did in this portfolio?</h2>
+            <p>In this portfolio, the PC hardware shortage has been studied.</p>
+            <p><b>Data collected from multiple sources</b>: Amazon - price&supply history of PC hardware; CoinMetrics - prices history of cryptocurrencies; Yahoo Finance - prices history of raw materials; YouTube - comments in TechLinked channel.</p>
+            <p><b>Three programming languages</b>: Python & R, a little SQL.</p>
+            <p><b>Multiple package used</b>: sqlite3; numpy, pandas, scikit-learn, nltk, spacy, matplotlib, seaborn, tslearn; tidyverse, ggplot, e1071, caret, rpart, vip.</p>
+            <p><b>Multiple analysis method used</b>: EDA, Clustering, Associate Rule Mining, Networking Visualization, Decision Tree Classifier, Naive Bayes Classifier, Support Vector Machine.</p>
+        </section>
+
+        <h2>2. Conclusion</h2>
+        <h2>2.1 What we found in this portfolio?</h2>
+        <section id="conclusion">
+
+            <p>At the beginning of this portfolio, 10 questions are asked to support us understand the current PC hardware shortage. Now, it's time to see how they've been answered. </p>
+
+        </section>
+        <h2>2.2 Answer Questions</h2>
+        <section id="ans-q1">
+        <p><b>1 How does the supply and price of PC components change?</b></p>
+        <p>
+            PC hardware have different trends of prices. Most CPUs' prices maintain stable. GPU and drives are impacted by cryptocurrencies with a large proportion of these products‘ prices skyrocketed since pandemic and crypto-boom.
+        </p>
+            <p>
+                In the figure below, price time series of the PC hardware are separated into 6 cluster. Cluster 2,3 are CPU products that have stable price trend. Cluster 5 is drives that impacted by Chia coin which show little spikes on the right side of graph. Cluster 1, 6 are GPU products that the prices skyrocketed since pandemic.
+            </p>
+        <figure style="width:80%">
+                <img class="center-fig" src="picture/cluster/new_1y_euclidean_6.png">
+                <figurecaption>Figure: clusters of PC hardware products based on their price time series
+                </figurecaption>
+            </figure>
+
+        </section>
+        <section id="ans-q2">
+        <p><b>2 How does the supply and price of raw materials change?</b></p>
+            <p>
+                Since the pandemic, suffered from the shutdown of factories, most raw material that used to manufacture PC hardware showed a tremendous increment in their prices.
+            </p>
+            <figure style="width:80%">
+                <img class="center-fig" src="picture/eda/commodity.png">
+                <figurecaption>Figure: Normalized Historical Prices of Raw Materials</figurecaption>
+            </figure>
+
+        </section>
+        <section id="ans-q3">
+        <p><b>3 How does the price of cryptocurrencies change?</b></p>
+            <p>
+                Since the pandemic, most cryptocurrencies also showed a great increment(crypto-boom) in their prices since pandemic. Also, there's another crypto-boom happened in 2018.
+            </p>
+            <figure style="width:80%">
+                <img class="center-fig" src="picture/eda/crypto.png">
+                <figurecaption>Figure: Historical Price of 8 cryptocurrencies from 2017 to 2021</figurecaption>
+            </figure>
+        </section>
+        <section id="ans-q4">
+        <p><b>4 What's the relation between the market of cryptos and the price of graphic cards?</b></p>
+        <p>
+            The analysis shows that the price change of graphic cards are very similar to the price change of cryptocurrencies. A events chain could happen like below:
+        </p>
+            <p>Crypto price rises => more miners buy graphic cards to mine crypto => scalpers buy cards and sell them at high price to those miners => graphic cards are out of stock & the price of graphic cards skyrocket</p>
+
+        </section>
+        <section id="ans-q5">
+        <p><b>5 Does Chia coin caused a significant change in the supply and price of SSD and HDD?</b></p>
+        <p>
+            From the data, Chia caused 2/3 drives to suffer from price raise and 1/3 drives to suffer from supply shortage. The analysis shows that drives with small capacity(128~256gb) and very large capacity(8tb, 10tb+) are more likely to be impacted by Chia.
+        </p>
+                <figure style="width:70%">
+                    <img class="center-fig" src="picture/svm/stock_chia1.png">
+                    <figurecaption>Figure: Drives' offer counts on marketplace shrink after Chia came out in April 2021</figurecaption>
+                </figure>
+
+        </section>
+        <section id="ans-q6">
+        <p><b>6 How many people discuss these hardware shortages under YouTube channel?</b></p>
+            <p>After analyze 140000 comments under a tech news YouTube channel, more than 7800 comments(5.6%) are related to the graphic card shortage.</p>
+
+        </section>
+        <section id="ans-q7">
+        <p><b>7 How do they feel about these hardware shortages?</b></p>
+            <p>A sentiment analysis shows that, people hold a very negative view towards the graphic card shortage. </p>
+            <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/sentiment_score.png">
+                    <figurecaption>Figure: monthly sentiment score of GPU-related comments from 2018 to 2021
+                    </figurecaption>
+                </figure>
+
+        </section>
+        <section id="ans-q8">
+        <p><b>8 Do people's view related to the market of cryptos?</b></p>
+        <p>From the sentiment analysis, the peaks in the sentiment score are highly correlated to the two crypto-boom happened in 2018 and 2020.</p>
+            <figure style="width:70%">
+                    <img class="center-fig" src="picture/naive_bayes/eth.png">
+                    <figurecaption>Screenshot: historical price of ETH from 2018 to 2021
+                    </figurecaption>
+                </figure>
+        </section>
+        <section id="ans-q9">
+        <p><b>9 Does Intel(or NVIDIA) reduce their price after AMD published a competitor?</b></p>
+        <p>This question has not been fully answered by this portfolio. For now, the analysis shows that the prices of Intel's CPUs are <b>lower</b> after AMD released their Zen3 CPUs, but the prices of AMD's CPUs are <b>higher</b> after Intel released their 10th gen CPUs.</p>
+        </section>
+        <section id="ans-q10">
+        <p><b>10 How does the price of last gen product change after the new generation is released?</b></p>
+            <p>This question has not been answered by this portfolio yet.</p>
+        </section>
+
+        <h2>3. Further Research</h2>
+        <section id="cpu">
+        <p><b> A New CPU-mined Crypto: RTM -- will it be a disaster of CPU market?</b></p>
+            <p>Raptoreum(RTM), a new cryptocurrency that featured with only CPU-mining. This crypto claims that using CPU to mine will create a more fair environment for miners since graphic cards are too expensive. </p>
+            <p>However, as we know, just like Chia coin, this crypto can easily cause the price of CPU significantly increase. Further research can be focused on this crypto and see how will it affect the market of CPU.</p>
+        </section>
+
+    </div>
+
+</div>
 
 <script src="jquery-3.5.1.min.js"></script>
 <script>$(function () {
     $(".headerpage-501").load("header.html");
 });</script>
+<script src="nav_scroll.js"></script>
 </body>
 </html>
