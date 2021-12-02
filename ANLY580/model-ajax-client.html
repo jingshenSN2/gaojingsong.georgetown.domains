@@ -70,7 +70,7 @@
     <div class="mdc-card__actions">
         <p>Question:</p>
       <div class="mdc-text-field text-field--fullwidth" data-mdc-auto-init="MDCTextField">
-        <input id="question" class="mdc-text-field__input" value="Why do we, as humans, crave social interaction and attention?">
+        <input id="question" class="mdc-text-field__input" value="How long do human live?">
         <div class="mdc-line-ripple"></div>
       </div>
     </div>
@@ -104,7 +104,7 @@
         method: "POST",
         contentType: "application/json; charset=UTF-8",
         data: JSON.stringify({"question": $("#question").val()}),
-        timeout: 30000,
+        timeout: 60000,
 
         success: function (data, textStatus, jqXHR) {
           $("#result").html(data.result);
